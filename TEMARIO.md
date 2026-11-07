@@ -1,6 +1,6 @@
 # Temario detallado
 
-> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 28 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
+> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 29 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
 >
 > 🌱 El curso está pensado para personas **sin experiencia previa en programación**. Lo marcado con ⭐ es **para saber más**: se presenta para que os suene, pero no es imprescindible para seguir avanzando.
 
@@ -332,11 +332,16 @@
 - *Route model binding*
 - Rutas de la API (`install:api`) y comandos de consola con argumentos y opciones
 
-### 23. Vistas con Blade
-- Sintaxis y directivas de Blade
-- *Layouts*, secciones y componentes
+### Clase 29 · Bloque 23. Vistas con Blade · [ver](clase-29-laravel-blade/README.md)
+- Qué es Blade y cómo se compila
+- Mostrar datos: `{{ }}`, `{!! !!}`, comentarios, `@php` y `@json`
+- Condiciones (`@if`, `@unless`, `@isset`, `@switch`) y `@class`
+- Bucles, `@forelse` y la variable `$loop`
+- *Layouts* con `@extends`, `@section` y `@yield`; pilas con `@stack` y `@push`
+- Vistas parciales con `@include`
+- Componentes anónimos con `@props`, `$slot` y `$attributes`
 - Paso de datos a las vistas
-- Recursos estáticos y Vite
+- Recursos estáticos con `asset()` y Vite
 
 ### 24. Base de datos: migraciones, seeders y factories
 - Configuración de la base de datos

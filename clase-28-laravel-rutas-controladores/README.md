@@ -479,6 +479,7 @@ Las soluciones se copian dentro del proyecto, respetando sus carpetas.
 ---
 
 **Clase anterior:** 👈 [Clase 27 · Primeros pasos con Laravel](../clase-27-laravel-primeros-pasos/README.md)
+**Clase siguiente:** 👉 [Clase 29 · Vistas con Blade](../clase-29-laravel-blade/README.md)
 
 ---
 
