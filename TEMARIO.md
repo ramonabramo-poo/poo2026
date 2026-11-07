@@ -1,6 +1,6 @@
 # Temario detallado
 
-> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 36 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
+> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 37 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
 >
 > 🌱 El curso está pensado para personas **sin experiencia previa en programación**. Lo marcado con ⭐ es **para saber más**: se presenta para que os suene, pero no es imprescindible para seguir avanzando.
 
@@ -414,13 +414,15 @@
 - *Fakes*: probar la subida de archivos
 - Pruebas de la API con Sanctum, y un error real encontrado por una prueba
 
-### 31. Funcionalidades avanzadas
+### Clase 37 · Bloque 31. Funcionalidades avanzadas · [ver](clase-37-laravel-avanzado/README.md)
 - Eventos y *listeners*
-- Colas (*queues*) y *jobs*
-- Correo electrónico y notificaciones
-- Caché
+- Correo electrónico con *Mailables* y vistas Markdown
+- Colas (*queues*), `queue:work` y *jobs*
+- Notificaciones por correo y en la base de datos
+- Caché con `Cache::remember()` y cómo invalidarla con los eventos del modelo
 - Tareas programadas (*scheduler*)
-- Registros (*logs*) y manejo de excepciones
+- Registros (*logs*) y canales propios
+- Excepciones propias con `render()` y `context()`
 
 ### 32. Proyecto final y despliegue
 - Desarrollo de un proyecto completo en grupo o individual
