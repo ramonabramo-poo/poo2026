@@ -1,6 +1,6 @@
 # Temario detallado
 
-> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 33 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
+> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 34 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
 >
 > 🌱 El curso está pensado para personas **sin experiencia previa en programación**. Lo marcado con ⭐ es **para saber más**: se presenta para que os suene, pero no es imprescindible para seguir avanzando.
 
@@ -384,11 +384,14 @@
 - *Gates*
 - *Policies* y la página de error 403
 
-### 28. Arquitectura interna de Laravel
-- Contenedor de servicios (*service container*)
-- *Service providers*
-- *Facades* y contratos
-- Middleware
+### Clase 34 · Bloque 28. Arquitectura interna de Laravel · [ver](clase-34-laravel-arquitectura/README.md)
+- Servicios: código que no es ni controlador ni modelo
+- Contenedor de servicios (*service container*): inyección, `bind` y `singleton`
+- *Service providers*: `register()`, `boot()` y *view composers*
+- Contratos: programar contra una interfaz
+- *Facades*: cómo funcionan y una fachada propia
+- Middleware propio: con parámetros, después de la respuesta y su registro
+- El ciclo de vida completo de una petición
 - Comparación con nuestro MVC
 
 ### 29. API REST con Laravel

@@ -59,7 +59,7 @@ En la carpeta de cada clase encontraréis:
 | Herramienta | Para qué | ¿La tenemos? |
 |---|---|---|
 | PHP 8.3 o superior | Laravel 13 lo exige | ✅ Laragon (comprobad la versión con `php -v`) |
-| Composer | Descarga Laravel y sus paquetes | ✅ Viene con Laragon (clase 21) |
+| Composer | Descarga Laravel y sus paquetes | ✅ Viene con Laragon (clase 19) |
 | MySQL | La base de datos | ✅ Laragon + HeidiSQL |
 | Node.js y npm | Solo para Vite (punto 8) | Opcional por ahora |
 
