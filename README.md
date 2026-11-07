@@ -95,6 +95,7 @@ Al terminar el curso seréis capaces de:
 | **32** | [📝 Formularios y validación](clase-32-laravel-formularios-validacion/README.md) | Protección CSRF, `validate()`, `old()` y `@error`, mensajes en español, *Form Requests*, el CRUD de cursos con `@method`, mensajes *flash* y subida de imágenes |
 | **33** | [🔐 Autenticación y autorización](clase-33-laravel-autenticacion/README.md) | Login, registro y *logout* con `Auth`, middleware `auth`, `guest` y `throttle`, *starter kits*, roles con un enum, *gates* y *policies* |
 | **34** | [⚙️ Arquitectura interna de Laravel](clase-34-laravel-arquitectura/README.md) | Servicios, contenedor con `bind` y `singleton`, *service providers* y *view composers*, contratos, *facades* propias, middleware con parámetros y la comparativa final con nuestro MVC |
+| **35** | [🔌 API REST con Laravel](clase-35-laravel-api-rest/README.md) | API versionada con `apiResource`, *API Resources*, paginación y filtros, tokens con Sanctum, permisos con las *policies*, errores en JSON y documentación |
 
 ### Lo que viene después
 
@@ -150,6 +151,7 @@ cursoPoo2026/
 ├── clase-32-laravel-formularios-validacion/
 ├── clase-33-laravel-autenticacion/
 ├── clase-34-laravel-arquitectura/
+├── clase-35-laravel-api-rest/
 └── ...                              ← Se irán añadiendo carpetas con cada clase
 ```
 

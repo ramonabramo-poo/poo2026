@@ -498,6 +498,7 @@ Las soluciones se copian dentro del proyecto, respetando sus carpetas.
 ---
 
 **Clase anterior:** 👈 [Clase 33 · Autenticación y autorización](../clase-33-laravel-autenticacion/README.md)
+**Clase siguiente:** 👉 [Clase 35 · API REST con Laravel](../clase-35-laravel-api-rest/README.md)
 
 ---
 

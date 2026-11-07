@@ -1,6 +1,6 @@
 # Temario detallado
 
-> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 34 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
+> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 35 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
 >
 > 🌱 El curso está pensado para personas **sin experiencia previa en programación**. Lo marcado con ⭐ es **para saber más**: se presenta para que os suene, pero no es imprescindible para seguir avanzando.
 
@@ -394,11 +394,15 @@
 - El ciclo de vida completo de una petición
 - Comparación con nuestro MVC
 
-### 29. API REST con Laravel
-- *API Resources*
-- Autenticación de APIs (tokens)
-- Versionado, paginación y gestión de errores
-- Documentación de la API
+### Clase 35 · Bloque 29. API REST con Laravel · [ver](clase-35-laravel-api-rest/README.md)
+- Rutas de la API, versionado (`/api/v1`) y límite de peticiones
+- *API Resources*: `whenLoaded`, `whenCounted` y `when`
+- El controlador de la API reutilizando el *Form Request* de la web
+- Paginación y filtros en la API
+- Autenticación con tokens: Sanctum
+- Permisos en la API con las *policies*
+- Gestión de errores en JSON y en español
+- Probar y documentar la API (Markdown, Scramble y Scribe)
 
 ### 30. Pruebas
 - Pruebas unitarias y de funcionalidad (*feature tests*)
