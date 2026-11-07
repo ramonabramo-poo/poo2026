@@ -92,6 +92,7 @@ Al terminar el curso seréis capaces de:
 | **29** | [🎨 Vistas con Blade](clase-29-laravel-blade/README.md) | Directivas de Blade, `$loop`, *layouts* con `@extends` y `@yield`, pilas, `@include`, componentes con `@props` y `$slot`, paso de datos y Vite |
 | **30** | [🗃️ Base de datos: migraciones, seeders y factories](clase-30-laravel-base-datos/README.md) | Conexión a MySQL, migraciones y claves foráneas, modificar tablas, *factories* con Faker, *seeders* y el Query Builder |
 | **31** | [🧬 Eloquent ORM](clase-31-laravel-eloquent/README.md) | Modelos y convenciones, CRUD, relaciones 1:1, 1:N y N:M, carga ansiosa y N+1, *scopes*, *casts*, *accessors* y *mutators*, borrado lógico y paginación |
+| **32** | [📝 Formularios y validación](clase-32-laravel-formularios-validacion/README.md) | Protección CSRF, `validate()`, `old()` y `@error`, mensajes en español, *Form Requests*, el CRUD de cursos con `@method`, mensajes *flash* y subida de imágenes |
 
 ### Lo que viene después
 
@@ -144,6 +145,7 @@ cursoPoo2026/
 ├── clase-29-laravel-blade/
 ├── clase-30-laravel-base-datos/
 ├── clase-31-laravel-eloquent/
+├── clase-32-laravel-formularios-validacion/
 └── ...                              ← Se irán añadiendo carpetas con cada clase
 ```
 

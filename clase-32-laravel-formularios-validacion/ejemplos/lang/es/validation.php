@@ -1,0 +1,72 @@
+<?php
+
+// Mensajes de validación en español (las reglas más usadas).
+// Las que no estén aquí salen en inglés: copiad la que necesitéis de la documentación.
+return [
+    'accepted' => 'Debes aceptar :attribute.',
+    'after' => 'El campo :attribute debe ser una fecha posterior a :date.',
+    'after_or_equal' => 'El campo :attribute debe ser una fecha posterior o igual a :date.',
+    'alpha' => 'El campo :attribute solo puede contener letras.',
+    'alpha_num' => 'El campo :attribute solo puede contener letras y números.',
+    'before' => 'El campo :attribute debe ser una fecha anterior a :date.',
+    'between' => [
+        'numeric' => 'El campo :attribute debe estar entre :min y :max.',
+        'string' => 'El campo :attribute debe tener entre :min y :max caracteres.',
+        'file' => 'El campo :attribute debe pesar entre :min y :max kilobytes.',
+        'array' => 'El campo :attribute debe tener entre :min y :max elementos.',
+    ],
+    'boolean' => 'El campo :attribute debe ser verdadero o falso.',
+    'confirmed' => 'La confirmación del campo :attribute no coincide.',
+    'current_password' => 'La contraseña no es correcta.',
+    'date' => 'El campo :attribute no es una fecha válida.',
+    'decimal' => 'El campo :attribute debe tener :decimal decimales.',
+    'email' => 'El campo :attribute debe ser un correo electrónico válido.',
+    'exists' => 'El valor elegido en el campo :attribute no es válido.',
+    'file' => 'El campo :attribute debe ser un archivo.',
+    'image' => 'El campo :attribute debe ser una imagen.',
+    'in' => 'El valor elegido en el campo :attribute no es válido.',
+    'integer' => 'El campo :attribute debe ser un número entero.',
+    'max' => [
+        'numeric' => 'El campo :attribute no puede ser mayor que :max.',
+        'string' => 'El campo :attribute no puede tener más de :max caracteres.',
+        'file' => 'El campo :attribute no puede pesar más de :max kilobytes.',
+        'array' => 'El campo :attribute no puede tener más de :max elementos.',
+    ],
+    'mimes' => 'El campo :attribute debe ser un archivo de tipo: :values.',
+    'min' => [
+        'numeric' => 'El campo :attribute debe ser como mínimo :min.',
+        'string' => 'El campo :attribute debe tener al menos :min caracteres.',
+        'file' => 'El campo :attribute debe pesar al menos :min kilobytes.',
+        'array' => 'El campo :attribute debe tener al menos :min elementos.',
+    ],
+    'numeric' => 'El campo :attribute debe ser un número.',
+    'password' => [
+        'letters' => 'El campo :attribute debe contener al menos una letra.',
+        'mixed' => 'El campo :attribute debe contener al menos una mayúscula y una minúscula.',
+        'numbers' => 'El campo :attribute debe contener al menos un número.',
+        'symbols' => 'El campo :attribute debe contener al menos un símbolo.',
+        'uncompromised' => 'El campo :attribute ha aparecido en una filtración de datos. Elige otra.',
+    ],
+    'regex' => 'El formato de :attribute no es válido.',
+    'required' => 'El campo :attribute es obligatorio.',
+    'same' => 'El campo :attribute y :other deben coincidir.',
+    'string' => 'El campo :attribute debe ser un texto.',
+    'unique' => 'Ya existe un registro con ese valor en el campo :attribute.',
+    'url' => 'El campo :attribute debe ser una dirección web válida.',
+
+    // Nombres "bonitos" de los campos para todos los formularios
+    'attributes' => [
+        'nombre' => 'nombre',
+        'apellidos' => 'apellidos',
+        'email' => 'correo electrónico',
+        'password' => 'contraseña',
+        'mensaje' => 'mensaje',
+        'titulo' => 'título',
+        'descripcion' => 'descripción',
+        'horas' => 'horas',
+        'precio' => 'precio',
+        'plazas' => 'plazas',
+        'imagen' => 'imagen',
+        'acepto' => 'la política de privacidad',
+    ],
+];

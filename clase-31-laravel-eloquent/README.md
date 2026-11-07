@@ -600,6 +600,7 @@ Las soluciones se copian dentro del proyecto, respetando sus carpetas.
 ---
 
 **Clase anterior:** 👈 [Clase 30 · Base de datos: migraciones, seeders y factories](../clase-30-laravel-base-datos/README.md)
+**Clase siguiente:** 👉 [Clase 32 · Formularios y validación](../clase-32-laravel-formularios-validacion/README.md)
 
 ---
 

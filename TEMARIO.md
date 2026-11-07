@@ -1,6 +1,6 @@
 # Temario detallado
 
-> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 31 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
+> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 32 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
 >
 > 🌱 El curso está pensado para personas **sin experiencia previa en programación**. Lo marcado con ⭐ es **para saber más**: se presenta para que os suene, pero no es imprescindible para seguir avanzando.
 
@@ -363,12 +363,16 @@
 - Borrado lógico (*soft deletes*)
 - Paginación y *route model binding* por otra columna
 
-### 26. Formularios y validación
-- Peticiones (`Request`) y validación
-- *Form Requests*
-- Mensajes de error personalizados
-- Protección CSRF
-- Subida y almacenamiento de archivos
+### Clase 32 · Bloque 26. Formularios y validación · [ver](clase-32-laravel-formularios-validacion/README.md)
+- Formularios y protección CSRF con `@csrf`
+- Validar con `$request->validate()`
+- Mostrar errores con `@error` y recuperar lo escrito con `old()`
+- Las reglas de validación más usadas
+- Mensajes de error en español (`lang/es/validation.php`)
+- *Form Requests*: reglas, mensajes, atributos y `Rule::unique()->ignore()`
+- El CRUD completo de cursos; `PUT` y `DELETE` con `@method`
+- Mensajes *flash* con `->with()` y `@session`
+- Subida y almacenamiento de archivos con `store()` y `storage:link`
 
 ### 27. Autenticación y autorización
 - Sesiones y autenticación
