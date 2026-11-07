@@ -1,6 +1,6 @@
 # Temario detallado
 
-> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 29 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
+> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 30 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
 >
 > 🌱 El curso está pensado para personas **sin experiencia previa en programación**. Lo marcado con ⭐ es **para saber más**: se presenta para que os suene, pero no es imprescindible para seguir avanzando.
 
@@ -343,11 +343,15 @@
 - Paso de datos a las vistas
 - Recursos estáticos con `asset()` y Vite
 
-### 24. Base de datos: migraciones, seeders y factories
-- Configuración de la base de datos
-- Migraciones y modificación de tablas
-- *Seeders* y *factories*
-- Query Builder
+### Clase 30 · Bloque 24. Base de datos: migraciones, seeders y factories · [ver](clase-30-laravel-base-datos/README.md)
+- Configuración de la base de datos en `.env`
+- Migraciones: crear tablas, tipos de columna, modificadores y claves foráneas
+- Convenciones de nombres de Laravel (y la tabla intermedia)
+- Ejecutar, deshacer y rehacer migraciones; modificar tablas
+- *Factories* y Faker
+- *Seeders* y `migrate:fresh --seed`
+- Query Builder: consultas, *joins*, agregados, `when()` y colecciones
+- La academia leyendo de la base de datos
 
 ### 25. Eloquent ORM
 - Modelos y convenciones

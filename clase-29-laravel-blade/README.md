@@ -428,6 +428,7 @@ Las soluciones se copian dentro del proyecto, respetando sus carpetas.
 ---
 
 **Clase anterior:** 👈 [Clase 28 · Rutas y controladores](../clase-28-laravel-rutas-controladores/README.md)
+**Clase siguiente:** 👉 [Clase 30 · Base de datos: migraciones, seeders y factories](../clase-30-laravel-base-datos/README.md)
 
 ---
 

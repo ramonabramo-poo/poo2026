@@ -90,6 +90,7 @@ Al terminar el curso seréis capaces de:
 | **27** | [🚀 Primeros pasos con Laravel](clase-27-laravel-primeros-pasos/README.md) | Instalación, estructura del proyecto, ciclo de vida de una petición, `.env` y `config()`, primeras rutas y vistas, Artisan y Vite |
 | **28** | [🧭 Rutas y controladores](clase-28-laravel-rutas-controladores/README.md) | Rutas con parámetros, restricciones, nombres y grupos; controladores, `Request`, controladores de recurso, *route model binding*, rutas de la API y comandos de consola |
 | **29** | [🎨 Vistas con Blade](clase-29-laravel-blade/README.md) | Directivas de Blade, `$loop`, *layouts* con `@extends` y `@yield`, pilas, `@include`, componentes con `@props` y `$slot`, paso de datos y Vite |
+| **30** | [🗃️ Base de datos: migraciones, seeders y factories](clase-30-laravel-base-datos/README.md) | Conexión a MySQL, migraciones y claves foráneas, modificar tablas, *factories* con Faker, *seeders* y el Query Builder |
 
 ### Lo que viene después
 
@@ -140,6 +141,7 @@ cursoPoo2026/
 ├── clase-27-laravel-primeros-pasos/ ← Clases 27 a 38: Laravel (carpetas ejemplos/ con las rutas del proyecto)
 ├── clase-28-laravel-rutas-controladores/
 ├── clase-29-laravel-blade/
+├── clase-30-laravel-base-datos/
 └── ...                              ← Se irán añadiendo carpetas con cada clase
 ```
 
