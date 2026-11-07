@@ -1,0 +1,11 @@
+# El FRONT CONTROLLER: si lo que se pide no es un archivo ni una carpeta que exista,
+# Apache se lo entrega a index.php, que decide qué hacer.
+RewriteEngine On
+
+# Apache no pasa a PHP la cabecera Authorization si no se lo pedimos (la necesita la API)
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]

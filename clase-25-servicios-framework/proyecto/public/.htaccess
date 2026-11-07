@@ -1,0 +1,6 @@
+# El FRONT CONTROLLER: si lo que se pide no es un archivo ni una carpeta que exista,
+# Apache se lo entrega a index.php, que decide qué hacer.
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]

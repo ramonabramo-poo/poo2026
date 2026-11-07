@@ -1,0 +1,28 @@
+{
+    "name": "alpe/calidad",
+    "description": "Clase 21: PHPStan, PHPUnit y PHP-CS-Fixer en un proyecto pequeño",
+    "type": "project",
+    "require": {
+        "php": ">=8.2"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.64",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^11.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "estilo": "php-cs-fixer fix --dry-run --diff --rules=@PSR12 src",
+        "analizar": "phpstan analyse src --level=6",
+        "probar": "phpunit tests"
+    }
+}

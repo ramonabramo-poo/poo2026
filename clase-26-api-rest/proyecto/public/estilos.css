@@ -1,0 +1,28 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; color: #1d2733; background: #f6f8f7; }
+header { display: flex; justify-content: space-between; align-items: center; padding: .8rem 1.5rem; background: #0b3d2e; }
+header a, header .usuario { color: white; text-decoration: none; margin-left: 1rem; }
+.logo { font-weight: 800; margin-left: 0 !important; }
+main { max-width: 900px; margin: 1.5rem auto; padding: 0 1rem; min-height: 60vh; }
+footer { text-align: center; padding: 1rem; color: #6b7684; font-size: .9rem; }
+h1 { color: #0b3d2e; }
+table { width: 100%; border-collapse: collapse; background: white; }
+th, td { padding: .5rem .7rem; border-bottom: 1px solid #dfe5ea; text-align: left; }
+th { background: #17694a; color: white; }
+.acciones a { margin-right: .6rem; }
+.en-linea { display: inline; margin: 0; }
+.boton { background: #17694a; color: white; border: 0; padding: .45rem .9rem; border-radius: 6px; cursor: pointer; }
+.enlace { background: none; border: 0; color: inherit; cursor: pointer; font: inherit; padding: 0; }
+header .enlace { color: white; margin-left: 1rem; }
+.peligro { color: #b00020; }
+.buscador input { padding: .4rem; width: 260px; }
+.paginacion { margin-top: 1rem; display: flex; gap: .4rem; }
+.paginacion a, .paginacion strong { padding: .25rem .6rem; border-radius: 4px; border: 1px solid #cfd6dd; text-decoration: none; }
+.paginacion strong { background: #17694a; color: white; }
+.formulario { max-width: 420px; }
+.formulario label { display: block; margin-top: .8rem; }
+.formulario input { width: 100%; padding: .4rem; }
+.error { color: #b00020; }
+.mensaje { padding: .6rem .9rem; border-radius: 6px; }
+.mensaje.ok { background: #e8f7ef; border: 1px solid #9fdcbd; }
+.mensaje.error { background: #fdecef; border: 1px solid #f0a1ae; }

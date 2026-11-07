@@ -1,0 +1,14 @@
+{
+    "name": "alpe/academia",
+    "description": "Soluciones de la clase 19: la academia organizada con namespaces y PSR-4",
+    "type": "project",
+    "require": {
+        "php": ">=8.2",
+        "nesbot/carbon": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}

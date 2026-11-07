@@ -1,0 +1,10 @@
+# Dependencias y entorno
+/vendor/
+node_modules/
+.env
+
+# Editores y sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

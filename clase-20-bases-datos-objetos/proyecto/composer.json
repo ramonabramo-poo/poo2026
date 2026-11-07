@@ -1,0 +1,16 @@
+{
+    "name": "alpe/academia-crud-poo",
+    "description": "Clase 20: el CRUD de cursos con clases, repositorios y autocarga PSR-4",
+    "type": "project",
+    "require": {
+        "php": ">=8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        },
+        "files": [
+            "src/funciones.php"
+        ]
+    }
+}
