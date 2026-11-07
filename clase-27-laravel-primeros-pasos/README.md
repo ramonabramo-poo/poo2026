@@ -438,6 +438,7 @@ Las soluciones se copian dentro del proyecto, respetando sus carpetas.
 ---
 
 **Clase anterior:** 👈 [Clase 26 · APIs REST con PHP puro](../clase-26-api-rest/README.md)
+**Clase siguiente:** 👉 [Clase 28 · Rutas y controladores](../clase-28-laravel-rutas-controladores/README.md)
 
 ---
 

@@ -1,6 +1,6 @@
 # Temario detallado
 
-> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 27 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
+> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 28 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
 >
 > 🌱 El curso está pensado para personas **sin experiencia previa en programación**. Lo marcado con ⭐ es **para saber más**: se presenta para que os suene, pero no es imprescindible para seguir avanzando.
 
@@ -322,11 +322,15 @@
 - Artisan: comandos básicos, Tinker y un comando propio
 - Frontend con Vite (y nuestra hoja de estilos en `public/css`)
 
-### 22. Rutas y controladores
-- Rutas básicas, con parámetros, nombradas y agrupadas
-- Controladores y controladores de recurso
+### Clase 28 · Bloque 22. Rutas y controladores · [ver](clase-28-laravel-rutas-controladores/README.md)
+- Rutas básicas, `Route::redirect()` y `Route::view()`
+- Parámetros obligatorios, opcionales y con restricciones
+- Rutas con nombre y la función `route()`
+- Grupos de rutas con prefijo y nombre
+- Controladores y el objeto `Request`
+- Controladores de recurso: las 7 rutas REST (y el plural en español)
 - *Route model binding*
-- Rutas de la API y de la consola
+- Rutas de la API (`install:api`) y comandos de consola con argumentos y opciones
 
 ### 23. Vistas con Blade
 - Sintaxis y directivas de Blade
