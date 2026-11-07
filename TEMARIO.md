@@ -1,6 +1,6 @@
 # Temario detallado
 
-> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 32 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
+> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 33 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
 >
 > 🌱 El curso está pensado para personas **sin experiencia previa en programación**. Lo marcado con ⭐ es **para saber más**: se presenta para que os suene, pero no es imprescindible para seguir avanzando.
 
@@ -374,11 +374,15 @@
 - Mensajes *flash* con `->with()` y `@session`
 - Subida y almacenamiento de archivos con `store()` y `storage:link`
 
-### 27. Autenticación y autorización
-- Sesiones y autenticación
-- *Starter kits* oficiales
-- *Gates* y *policies*
-- Roles y permisos
+### Clase 33 · Bloque 27. Autenticación y autorización · [ver](clase-33-laravel-autenticacion/README.md)
+- Sesiones y autenticación con la fachada `Auth`
+- *Starter kits* oficiales (React, Vue y Livewire) y Fortify
+- Nuestro login y registro: `attempt()`, `regenerate()`, `intended()` y contraseñas seguras
+- Proteger rutas con los middleware `auth`, `guest` y `throttle`
+- El usuario en las vistas: `@auth`, `@guest` y `auth()->user()`
+- Roles con un enum de PHP
+- *Gates*
+- *Policies* y la página de error 403
 
 ### 28. Arquitectura interna de Laravel
 - Contenedor de servicios (*service container*)

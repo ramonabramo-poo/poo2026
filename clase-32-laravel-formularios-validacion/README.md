@@ -528,6 +528,7 @@ Las soluciones se copian dentro del proyecto, respetando sus carpetas.
 ---
 
 **Clase anterior:** 👈 [Clase 31 · Eloquent ORM](../clase-31-laravel-eloquent/README.md)
+**Clase siguiente:** 👉 [Clase 33 · Autenticación y autorización](../clase-33-laravel-autenticacion/README.md)
 
 ---
 

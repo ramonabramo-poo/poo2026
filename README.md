@@ -93,6 +93,7 @@ Al terminar el curso seréis capaces de:
 | **30** | [🗃️ Base de datos: migraciones, seeders y factories](clase-30-laravel-base-datos/README.md) | Conexión a MySQL, migraciones y claves foráneas, modificar tablas, *factories* con Faker, *seeders* y el Query Builder |
 | **31** | [🧬 Eloquent ORM](clase-31-laravel-eloquent/README.md) | Modelos y convenciones, CRUD, relaciones 1:1, 1:N y N:M, carga ansiosa y N+1, *scopes*, *casts*, *accessors* y *mutators*, borrado lógico y paginación |
 | **32** | [📝 Formularios y validación](clase-32-laravel-formularios-validacion/README.md) | Protección CSRF, `validate()`, `old()` y `@error`, mensajes en español, *Form Requests*, el CRUD de cursos con `@method`, mensajes *flash* y subida de imágenes |
+| **33** | [🔐 Autenticación y autorización](clase-33-laravel-autenticacion/README.md) | Login, registro y *logout* con `Auth`, middleware `auth`, `guest` y `throttle`, *starter kits*, roles con un enum, *gates* y *policies* |
 
 ### Lo que viene después
 
@@ -146,6 +147,7 @@ cursoPoo2026/
 ├── clase-30-laravel-base-datos/
 ├── clase-31-laravel-eloquent/
 ├── clase-32-laravel-formularios-validacion/
+├── clase-33-laravel-autenticacion/
 └── ...                              ← Se irán añadiendo carpetas con cada clase
 ```
 
