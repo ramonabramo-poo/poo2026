@@ -1,6 +1,6 @@
 # Temario detallado
 
-> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 30 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
+> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 31 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
 >
 > 🌱 El curso está pensado para personas **sin experiencia previa en programación**. Lo marcado con ⭐ es **para saber más**: se presenta para que os suene, pero no es imprescindible para seguir avanzando.
 
@@ -353,14 +353,15 @@
 - Query Builder: consultas, *joins*, agregados, `when()` y colecciones
 - La academia leyendo de la base de datos
 
-### 25. Eloquent ORM
-- Modelos y convenciones
+### Clase 31 · Bloque 25. Eloquent ORM · [ver](clase-31-laravel-eloquent/README.md)
+- Modelos y convenciones; `#[Table]` y `#[Fillable]`
 - CRUD con Eloquent
-- Relaciones: uno a uno, uno a muchos, muchos a muchos
-- Carga ansiosa (*eager loading*) y problema N+1
-- *Scopes*, *accessors*, *mutators* y *casts*
+- Relaciones: uno a uno, uno a muchos y muchos a muchos (`pivot`, `attach`, `sync`)
+- Carga ansiosa (*eager loading*), `withCount()` y el problema N+1
+- *Scopes* con `#[Scope]`
+- *Casts*, *accessors* y *mutators*
 - Borrado lógico (*soft deletes*)
-- Paginación
+- Paginación y *route model binding* por otra columna
 
 ### 26. Formularios y validación
 - Peticiones (`Request`) y validación
