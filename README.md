@@ -83,6 +83,12 @@ Al terminar el curso seréis capaces de:
 | **25** | [⚙️ Servicios del framework](clase-25-servicios-framework/README.md) | Contenedor de dependencias con *autowiring*, middleware, validación con reglas, mensajes *flash*, autenticación y la comparativa con Laravel |
 | **26** | [🔌 APIs REST con PHP puro](clase-26-api-rest/README.md) | API REST de cursos en JSON, verbos y códigos de estado, token `Bearer`, errores en JSON y cliente cURL |
 
+### Laravel
+
+| Clase | Tema | Contenido |
+|---|---|---|
+| **27** | [🚀 Primeros pasos con Laravel](clase-27-laravel-primeros-pasos/README.md) | Instalación, estructura del proyecto, ciclo de vida de una petición, `.env` y `config()`, primeras rutas y vistas, Artisan y Vite |
+
 ### Lo que viene después
 
 A partir de aquí iremos añadiendo clases. Este es el recorrido previsto (en el temario veréis marcado con ⭐ lo que es «para saber más»):
@@ -129,6 +135,7 @@ cursoPoo2026/
 ├── clase-24-controladores-vistas-modelos/
 ├── clase-25-servicios-framework/
 ├── clase-26-api-rest/
+├── clase-27-laravel-primeros-pasos/ ← Clases 27 a 38: Laravel (carpetas ejemplos/ con las rutas del proyecto)
 └── ...                              ← Se irán añadiendo carpetas con cada clase
 ```
 

@@ -1,6 +1,6 @@
 # Temario detallado
 
-> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 26 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
+> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 27 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
 >
 > 🌱 El curso está pensado para personas **sin experiencia previa en programación**. Lo marcado con ⭐ es **para saber más**: se presenta para que os suene, pero no es imprescindible para seguir avanzando.
 
@@ -312,12 +312,15 @@
 
 ## Parte 5: Laravel 13
 
-### 21. Primeros pasos con Laravel
-- Instalación y estructura del proyecto
+### Clase 27 · Bloque 21. Primeros pasos con Laravel · [ver](clase-27-laravel-primeros-pasos/README.md)
+- Qué es Laravel y por qué hemos construido antes nuestro MVC
+- Instalación con Composer o con Laragon, y base de datos MySQL
+- Estructura del proyecto comparada con nuestro MVC
 - Ciclo de vida de una petición
-- Configuración y archivo `.env`
-- Artisan y comandos básicos
-- Frontend con Vite
+- Configuración: `.env`, la carpeta `config/` y la función `config()`
+- Primeras rutas y vistas
+- Artisan: comandos básicos, Tinker y un comando propio
+- Frontend con Vite (y nuestra hoja de estilos en `public/css`)
 
 ### 22. Rutas y controladores
 - Rutas básicas, con parámetros, nombradas y agrupadas

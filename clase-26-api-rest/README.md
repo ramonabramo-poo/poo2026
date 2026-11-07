@@ -436,7 +436,7 @@ En cinco clases habéis construido, pieza a pieza, un *framework* con front cont
 ---
 
 **Clase anterior:** 👈 [Clase 25 · Servicios del framework](../clase-25-servicios-framework/README.md)
-**Siguiente bloque:** primeros pasos con Laravel (se publicará en próximas clases). Consultad el [temario](../TEMARIO.md).
+**Clase siguiente:** 👉 [Clase 27 · Primeros pasos con Laravel](../clase-27-laravel-primeros-pasos/README.md)
 
 ---
 
