@@ -1,6 +1,6 @@
 # Temario detallado
 
-> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 35 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
+> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 36 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
 >
 > 🌱 El curso está pensado para personas **sin experiencia previa en programación**. Lo marcado con ⭐ es **para saber más**: se presenta para que os suene, pero no es imprescindible para seguir avanzando.
 
@@ -404,10 +404,15 @@
 - Gestión de errores en JSON y en español
 - Probar y documentar la API (Markdown, Scramble y Scribe)
 
-### 30. Pruebas
-- Pruebas unitarias y de funcionalidad (*feature tests*)
-- Base de datos de pruebas
-- *Factories* en los tests
+### Clase 36 · Bloque 30. Pruebas · [ver](clase-36-laravel-pruebas/README.md)
+- Por qué hacer pruebas; PHPUnit y `php artisan test`
+- La anatomía de una prueba: preparar, actuar y comprobar
+- Pruebas unitarias de un servicio
+- Base de datos de pruebas: SQLite en memoria y `RefreshDatabase`
+- *Factories* y estados en los tests
+- Pruebas de funcionalidad (*feature tests*): respuestas, sesión, base de datos y `actingAs()`
+- *Fakes*: probar la subida de archivos
+- Pruebas de la API con Sanctum, y un error real encontrado por una prueba
 
 ### 31. Funcionalidades avanzadas
 - Eventos y *listeners*

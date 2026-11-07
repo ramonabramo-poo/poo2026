@@ -96,6 +96,7 @@ Al terminar el curso seréis capaces de:
 | **33** | [🔐 Autenticación y autorización](clase-33-laravel-autenticacion/README.md) | Login, registro y *logout* con `Auth`, middleware `auth`, `guest` y `throttle`, *starter kits*, roles con un enum, *gates* y *policies* |
 | **34** | [⚙️ Arquitectura interna de Laravel](clase-34-laravel-arquitectura/README.md) | Servicios, contenedor con `bind` y `singleton`, *service providers* y *view composers*, contratos, *facades* propias, middleware con parámetros y la comparativa final con nuestro MVC |
 | **35** | [🔌 API REST con Laravel](clase-35-laravel-api-rest/README.md) | API versionada con `apiResource`, *API Resources*, paginación y filtros, tokens con Sanctum, permisos con las *policies*, errores en JSON y documentación |
+| **36** | [🧪 Pruebas](clase-36-laravel-pruebas/README.md) | PHPUnit y `php artisan test`, pruebas unitarias y de funcionalidad, base de datos de pruebas, *factories* y estados, `actingAs`, *fakes* y pruebas de la API |
 
 ### Lo que viene después
 
@@ -152,6 +153,7 @@ cursoPoo2026/
 ├── clase-33-laravel-autenticacion/
 ├── clase-34-laravel-arquitectura/
 ├── clase-35-laravel-api-rest/
+├── clase-36-laravel-pruebas/
 └── ...                              ← Se irán añadiendo carpetas con cada clase
 ```
 

@@ -458,6 +458,7 @@ Las soluciones se copian dentro del proyecto, respetando sus carpetas.
 ---
 
 **Clase anterior:** 👈 [Clase 34 · Arquitectura interna de Laravel](../clase-34-laravel-arquitectura/README.md)
+**Clase siguiente:** 👉 [Clase 36 · Pruebas](../clase-36-laravel-pruebas/README.md)
 
 ---
 
