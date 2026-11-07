@@ -619,6 +619,7 @@ Las soluciones se copian dentro del proyecto, respetando sus carpetas.
 ---
 
 **Clase anterior:** 👈 [Clase 36 · Pruebas](../clase-36-laravel-pruebas/README.md)
+**Clase siguiente:** 👉 [Clase 38 · Proyecto final y despliegue](../clase-38-laravel-proyecto-final/README.md)
 
 ---
 

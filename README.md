@@ -98,15 +98,15 @@ Al terminar el curso seréis capaces de:
 | **35** | [🔌 API REST con Laravel](clase-35-laravel-api-rest/README.md) | API versionada con `apiResource`, *API Resources*, paginación y filtros, tokens con Sanctum, permisos con las *policies*, errores en JSON y documentación |
 | **36** | [🧪 Pruebas](clase-36-laravel-pruebas/README.md) | PHPUnit y `php artisan test`, pruebas unitarias y de funcionalidad, base de datos de pruebas, *factories* y estados, `actingAs`, *fakes* y pruebas de la API |
 | **37** | [🚀 Funcionalidades avanzadas](clase-37-laravel-avanzado/README.md) | Eventos y *listeners*, correo con *Mailables*, colas y *jobs*, notificaciones por correo y base de datos, caché, tareas programadas, logs y excepciones propias |
+| **38** | [🏁 Proyecto final y despliegue](clase-38-laravel-proyecto-final/README.md) | La academia completa en `proyecto/`, buenas prácticas, revisión de código con Pint, preparación para producción, despliegue en un servidor con Nginx, Supervisor y `cron`, y el proyecto final |
 
 ### Lo que viene después
 
-A partir de aquí iremos añadiendo clases. Este es el recorrido previsto (en el temario veréis marcado con ⭐ lo que es «para saber más»):
+Con la clase 38 termina el recorrido principal del curso. En paralelo, iremos publicando (en el temario veréis marcado con ⭐ lo que es «para saber más»):
 
 | Parte | Contenido |
 |---|---|
 | 🐬 **SQL con MySQL** (en paralelo) | Diseño de tablas, consultas, funciones, agrupaciones y JOINs; como ampliación, subconsultas, transacciones e índices |
-| 🚀 **Laravel** | Rutas, Blade, migraciones, Eloquent, validación, autenticación, API, pruebas y despliegue |
 
 Consultad el **[temario detallado](TEMARIO.md)** para ver el contenido de cada bloque.
 
@@ -156,6 +156,7 @@ cursoPoo2026/
 ├── clase-35-laravel-api-rest/
 ├── clase-36-laravel-pruebas/
 ├── clase-37-laravel-avanzado/
+├── clase-38-laravel-proyecto-final/ ← Clase 38: la academia completa (carpeta proyecto/) y el despliegue
 └── ...                              ← Se irán añadiendo carpetas con cada clase
 ```
 
@@ -171,7 +172,7 @@ No instaléis nada todavía: lo haremos juntos en la clase 2 y en la clase 3. So
 - 🛠️ **Laragon 6.0**, que nos dará Apache, PHP y MySQL.
 - 🧩 **Visual Studio Code** como editor.
 - 🌐 Un navegador moderno: Chrome, Firefox o Edge.
-- 🔀 Más adelante, **Git** para descargar el material y **Node.js** para Laravel.
+- 🔀 Más adelante, **Git** para descargar el material y, de forma opcional, **Node.js** para Vite en Laravel.
 
 ---
 

@@ -1,6 +1,6 @@
 # Temario detallado
 
-> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 37 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
+> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 38 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
 >
 > 🌱 El curso está pensado para personas **sin experiencia previa en programación**. Lo marcado con ⭐ es **para saber más**: se presenta para que os suene, pero no es imprescindible para seguir avanzando.
 
@@ -424,10 +424,15 @@
 - Registros (*logs*) y canales propios
 - Excepciones propias con `render()` y `context()`
 
-### 32. Proyecto final y despliegue
-- Desarrollo de un proyecto completo en grupo o individual
-- Buenas prácticas y revisión de código
-- Preparación y despliegue en un servidor
+### Clase 38 · Bloque 32. Proyecto final y despliegue · [ver](clase-38-laravel-proyecto-final/README.md)
+- La academia completa e instalación del proyecto desde cero
+- Buenas prácticas en Laravel
+- Revisión de código: *pull requests*, Pint con reglas propias y Larastan
+- Preparación para producción: `.env`, `APP_DEBUG` y `php artisan optimize`
+- Dónde publicar: hosting compartido, VPS, Forge, Ploi y Laravel Cloud
+- Despliegue paso a paso: Nginx, permisos, HTTPS, Supervisor y `cron`
+- Actualizar con un script y el modo mantenimiento
+- El proyecto final: propuestas, requisitos y evaluación
 
 ## Material de consulta
 
