@@ -16,13 +16,22 @@ if ($metodo === "GET" && ($ruta === "/" || $ruta === "/cursos")) {
     $html = (new CursosControlador())->index();
 } elseif ($metodo === "GET" && $ruta === "/cursos/completos") {
     $html = (new CursosControlador())->completos();
+} elseif ($metodo === "GET" && $ruta === "/cursos/baratos") {
+    $html = (new CursosControlador())->baratos();
+} elseif ($metodo === "GET" && $ruta === "/cursos/aleatorio") {
+    (new CursosControlador())->aleatorio();
+} elseif ($metodo === "GET" && preg_match("#^/cursos/(\d+)/json$#", $ruta, $partes)) {
+    $html = (new CursosControlador())->json((int) $partes[1]);
 } elseif ($metodo === "GET" && preg_match("#^/cursos/(\d+)$#", $ruta, $partes)) {
     $html = (new CursosControlador())->ver((int) $partes[1]);
 } elseif ($metodo === "GET" && $ruta === "/acerca") {
     $html = (new PaginasControlador())->acerca();
+} elseif ($metodo === "GET" && $ruta === "/contacto") {
+    $html = (new PaginasControlador())->contacto();
 } else {
     http_response_code(404);
-    $html = vista("errores/404", ["titulo" => "Página no encontrada"]);
+    // Ejercicio 07: le pasamos a la vista la dirección que se pidió
+    $html = vista("errores/404", ["titulo" => "Página no encontrada", "rutaPedida" => $ruta]);
 }
 
 echo $html;

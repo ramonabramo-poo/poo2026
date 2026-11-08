@@ -18,6 +18,12 @@ class Router
         $this->anadir("POST", $ruta, $accion);
     }
 
+    // Ejercicio 09: una dirección antigua que lleva a otra (301 = "se ha mudado para siempre")
+    public function redirigir(string $desde, string $hacia): void
+    {
+        $this->anadir("GET", $desde, fn(Peticion $peticion) => Respuesta::redirigir($hacia, 301));
+    }
+
     // Para la página /rutas: método, dirección y quién la atiende
     public function listar(): array
     {
@@ -30,21 +36,24 @@ class Router
 
     public function despachar(Peticion $peticion): Respuesta
     {
-        $existeConOtroMetodo = false;
+        $metodosPermitidos = [];
 
         foreach ($this->rutas as $ruta) {
             if (preg_match($ruta["patron"], $peticion->ruta, $coincidencias) !== 1) {
                 continue;
             }
             if ($ruta["metodo"] !== $peticion->metodo) {
-                $existeConOtroMetodo = true;
+                $metodosPermitidos[] = $ruta["metodo"];
                 continue;
             }
             return $this->ejecutar($ruta["accion"], $peticion, $this->parametros($coincidencias));
         }
 
-        if ($existeConOtroMetodo) {
-            return Respuesta::html(vista("errores/405", ["titulo" => "Método no permitido"]), 405);
+        // Ejercicio 10: el 405 dice qué métodos sí valen, también en la cabecera Allow
+        if (count($metodosPermitidos) > 0) {
+            $permitidos = implode(", ", array_unique($metodosPermitidos));
+            return Respuesta::html(vista("errores/405", ["titulo" => "Método no permitido", "permitidos" => $permitidos]), 405)
+                ->conCabecera("Allow", $permitidos);
         }
         return Respuesta::html(vista("errores/404", ["titulo" => "Página no encontrada"]), 404);
     }
