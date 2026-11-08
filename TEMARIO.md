@@ -201,6 +201,8 @@
 
 ## Itinerario paralelo: SQL con MySQL
 
+> 📦 Los materiales de este itinerario están en **un repositorio aparte**. Aquí queda el índice para saber qué conviene ver antes de cada clase.
+>
 > Se imparte a lo largo del curso, **antes de empezar PDO (bloque 08)**: lo ideal es empezar tras la clase 8 o 9 e ir alternando con PHP. Los bloques S01 a S06 son **imprescindibles**; S07 a S09 son de **ampliación** ⭐ y se pueden dejar para el final.
 
 ### S01. Introducción a las bases de datos

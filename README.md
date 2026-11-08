@@ -100,13 +100,9 @@ Al terminar el curso seréis capaces de:
 | **37** | [🚀 Funcionalidades avanzadas](clase-37-laravel-avanzado/README.md) | Eventos y *listeners*, correo con *Mailables*, colas y *jobs*, notificaciones por correo y base de datos, caché, tareas programadas, logs y excepciones propias |
 | **38** | [🏁 Proyecto final y despliegue](clase-38-laravel-proyecto-final/README.md) | La academia completa en `proyecto/`, buenas prácticas, revisión de código con Pint, preparación para producción, despliegue en un servidor con Nginx, Supervisor y `cron`, y el proyecto final |
 
-### Lo que viene después
+### SQL con MySQL
 
-Con la clase 38 termina el recorrido principal del curso. En paralelo, iremos publicando (en el temario veréis marcado con ⭐ lo que es «para saber más»):
-
-| Parte | Contenido |
-|---|---|
-| 🐬 **SQL con MySQL** (en paralelo) | Diseño de tablas, consultas, funciones, agrupaciones y JOINs; como ampliación, subconsultas, transacciones e índices |
+Con la clase 38 termina el recorrido del curso. El itinerario de **SQL con MySQL** (diseño de tablas, consultas, funciones, agrupaciones y JOINs y, como ampliación, subconsultas, transacciones e índices) tiene **su propio repositorio**, aparte de este. En el temario veréis qué bloques conviene haber visto antes de la clase 14.
 
 Consultad el **[temario detallado](TEMARIO.md)** para ver el contenido de cada bloque.
 
