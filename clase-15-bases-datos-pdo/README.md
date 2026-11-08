@@ -398,6 +398,13 @@ Fijaos en el truco del `WHERE ... AND plazas > 0`: si no quedan plazas, el `UPDA
 - [ ] **03 · Ficha de un curso.** `?id=1` muestra los datos del curso y la lista de sus alumnos. Si el curso no existe, error 404. → [`ej03-ficha-curso.php`](soluciones/ej03-ficha-curso.php)
 - [ ] **04 · Estadísticas.** Para cada curso, cuántos alumnos tiene, su nota media y la mejor nota. Pista: `LEFT JOIN`, `COUNT`, `AVG`, `MAX` y `GROUP BY`. → [`ej04-estadisticas.php`](soluciones/ej04-estadisticas.php)
 - [ ] **05 · Cambio de curso.** Cambiad a un alumno de curso con una transacción: el curso nuevo pierde una plaza (si le quedan), el antiguo la recupera y el alumno cambia su `curso_id`. → [`ej05-cambiar-curso.php`](soluciones/ej05-cambiar-curso.php)
+- [ ] **06 · Paginación.** El listado de alumnos de 3 en 3 con enlaces a cada página (`?pagina=2`). Pistas: `COUNT(*)` con `fetchColumn()`, `LIMIT :cuantos OFFSET :desde` y `bindValue(..., PDO::PARAM_INT)`. → [`ej06-paginacion.php`](soluciones/ej06-paginacion.php)
+- [ ] **07 · Alta de curso.** Un formulario que valide el título, las horas y el precio, inserte el curso con una consulta preparada y redirija con el id nuevo (`lastInsertId()`). → [`ej07-alta-curso.php`](soluciones/ej07-alta-curso.php)
+- [ ] **08 · Poner notas.** Un desplegable con los alumnos y un campo de nota: validad que está entre 0 y 10 y, si se deja vacío, guardad `NULL`. Usad `rowCount()` para saber si ha cambiado algo. → [`ej08-poner-nota.php`](soluciones/ej08-poner-nota.php)
+- [ ] **09 · Borrar con confirmación.** Un botón «Borrar» por alumno, que pida confirmación, borre por POST y avise de cuántas filas se han borrado. → [`ej09-borrar-alumno.php`](soluciones/ej09-borrar-alumno.php)
+- [ ] **10 · Filtros combinados.** Un desplegable de ciudades (sacadas con `SELECT DISTINCT`) y una casilla «solo aprobados». Montad el `WHERE` según los filtros elegidos, pero con los valores **siempre** como parámetros. → [`ej10-filtros.php`](soluciones/ej10-filtros.php)
+- [ ] **11 · Alumnos a Excel.** Descargad en CSV los alumnos de un curso (`?curso=1`), juntando lo de hoy con lo de la clase 12. → [`ej11-exportar-csv.php`](soluciones/ej11-exportar-csv.php)
+- [ ] **12 · El podio.** Las tres mejores notas, con el nombre del curso y una medalla para cada puesto. → [`ej12-ranking.php`](soluciones/ej12-ranking.php)
 
 > 🏆 **Reto:** en el ejercicio 05, quitad la transacción (`beginTransaction`, `commit` y `rollBack`) y provocad un fallo a propósito justo antes del último `UPDATE` con un `throw new RuntimeException("¡Fallo!");`. Mirad las plazas en HeidiSQL. ¿A que ya no cuadran? Volved a poner la transacción y repetid la prueba.
 
