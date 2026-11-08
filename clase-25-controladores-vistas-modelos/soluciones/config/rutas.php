@@ -16,3 +16,7 @@ $router->post("/cursos/{id:\d+}", [CursosControlador::class, "actualizar"]);
 $router->post("/cursos/{id:\d+}/borrar", [CursosControlador::class, "borrar"]);
 
 $router->get("/alumnos", [App\Controladores\AlumnosControlador::class, "index"]);
+$router->get("/alumnos/crear", [App\Controladores\AlumnosControlador::class, "crear"]);     // ejercicio 09
+$router->post("/alumnos", [App\Controladores\AlumnosControlador::class, "guardar"]);        // ejercicio 09
+$router->get("/catalogo", [App\Controladores\CatalogoControlador::class, "tarjetas"]);      // ejercicio 05
+$router->get("/admin", [App\Controladores\AdminControlador::class, "index"]);              // ejercicio 07

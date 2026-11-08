@@ -41,6 +41,22 @@ abstract class Modelo
         return array_map(fn(array $fila) => static::desdeFila($fila), $consulta->fetchAll());
     }
 
+    // Ejercicio 04: cuántos registros hay en la tabla
+    public static function contar(): int
+    {
+        return (int) static::pdo()->query("SELECT COUNT(*) FROM " . static::$tabla)->fetchColumn();
+    }
+
+    // Ejercicio 04: el primer registro cuya columna vale $valor, o null
+    public static function primero(string $columna, mixed $valor): ?static
+    {
+        $columna = static::columnaPermitida($columna);
+        $consulta = static::pdo()->prepare("SELECT * FROM " . static::$tabla . " WHERE {$columna} = :valor LIMIT 1");
+        $consulta->execute(["valor" => $valor]);
+        $fila = $consulta->fetch();
+        return $fila === false ? null : static::desdeFila($fila);
+    }
+
     public static function contarDonde(string $columna, string $texto): int
     {
         $columna = static::columnaPermitida($columna);

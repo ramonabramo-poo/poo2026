@@ -8,7 +8,8 @@ use App\Nucleo\Entorno;
 define("NOMBRE_WEB", Entorno::obtener("APP_NOMBRE", "Mi academia"));
 define("DEPURACION", Entorno::obtener("APP_DEPURACION") === "true");
 
-const CURSOS_POR_PAGINA = 5;
+// Ejercicio 08: también viene del .env (APP_POR_PAGINA=8), con 5 si no está
+define("CURSOS_POR_PAGINA", (int) Entorno::obtener("APP_POR_PAGINA", "5"));
 
 date_default_timezone_set("Europe/Madrid");
 

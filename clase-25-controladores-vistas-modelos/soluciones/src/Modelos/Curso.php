@@ -57,4 +57,14 @@ class Curso extends Modelo
     {
         return $this->plazas === 0;
     }
+
+    // Ejercicio 06: el texto de las plazas, en un solo sitio para todas las vistas
+    public function etiquetaPlazas(): string
+    {
+        return match (true) {
+            $this->plazas === 0 => "Completo",
+            $this->plazas <= 3 => "¡Últimas {$this->plazas} plazas!",
+            default => "{$this->plazas} plazas libres",
+        };
+    }
 }

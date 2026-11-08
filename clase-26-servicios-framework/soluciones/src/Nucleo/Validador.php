@@ -68,6 +68,10 @@ class Validador
             "igual" => $valor !== trim((string) ($this->datos[$parametro] ?? "")) ? "no coincide" : null,
             // unico:usuarios,email → no puede existir ya en esa tabla y columna
             "unico" => $this->existeEnTabla($parametro, $valor) ? "ya está registrado" : null,
+            // Ejercicio 04. en:basico,medio,avanzado → solo uno de esos valores
+            "en" => !in_array($valor, explode(",", $parametro), true) ? "debe ser uno de estos: " . str_replace(",", ", ", $parametro) : null,
+            // Ejercicio 04. url → una dirección web válida
+            "url" => filter_var($valor, FILTER_VALIDATE_URL) === false ? "debe ser una dirección web válida" : null,
             default => throw new \InvalidArgumentException("Regla de validación desconocida: {$regla}"),
         };
     }

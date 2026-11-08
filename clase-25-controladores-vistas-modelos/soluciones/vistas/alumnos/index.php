@@ -1,4 +1,15 @@
-<h1>👥 Alumnos (<?= count($alumnos) ?>)</h1>
+<h1>👥 Alumnos (<?= $total ?>)</h1>
+<p>
+    <a class="boton" href="/alumnos/crear">➕ Nuevo alumno</a>
+    · Ordenar por:
+    <?php foreach ($ordenes as $clave => $texto): ?>
+        <?php if ($clave === $orden): ?>
+            <strong><?= $texto ?></strong>
+        <?php else: ?>
+            <a href="/alumnos?orden=<?= $clave ?>"><?= $texto ?></a>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</p>
 <table>
     <tr><th>Nombre</th><th>Email</th><th>Curso</th></tr>
     <?php foreach ($alumnos as $alumno): ?>
