@@ -63,15 +63,62 @@
         <button type="submit">Matricular</button>
     </form>
 
+    {{-- Ejercicio 09 --}}
+    @if ($alumnosLibres->isNotEmpty())
+        <h2>Matricular a varios alumnos</h2>
+        <form action="{{ route('matriculas.varios', $curso) }}" method="post">
+            @csrf
+            @foreach ($alumnosLibres as $id => $nombre)
+                <label>
+                    {{-- name="alumnos[]": PHP recibe un array con los valores marcados --}}
+                    <input type="checkbox" name="alumnos[]" value="{{ $id }}"
+                        @checked(in_array($id, old('alumnos', [])))>
+                    {{ $nombre }}
+                </label><br>
+            @endforeach
+            @error('alumnos')
+                <p class="error">{{ $message }}</p>
+            @enderror
+            @error('alumnos.*')
+                <p class="error">{{ $message }}</p>
+            @enderror
+            <button type="submit">Matricular a los marcados</button>
+        </form>
+    @endif
+
+    {{-- Ejercicio 07 --}}
+    <h2>📄 Temario</h2>
+    @if ($hayTemario)
+        <p><a href="{{ route('temario.show', $curso) }}">Descargar el temario en PDF</a></p>
+    @else
+        <p>Este curso todavía no tiene temario.</p>
+    @endif
+    {{-- Sin enctype="multipart/form-data" el fichero no llega al servidor --}}
+    <form action="{{ route('temario.store', $curso) }}" method="post" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="temario" accept="application/pdf">
+        @error('temario')
+            <p class="error">{{ $message }}</p>
+        @enderror
+        <button type="submit">Subir el temario</button>
+    </form>
+
     <p>
         <a class="boton boton-secundario" href="{{ route('cursos.index') }}">← Volver a los cursos</a>
         <a class="boton" href="{{ route('cursos.edit', $curso) }}">✏️ Editar</a>
     </p>
 
-    <form action="{{ route('cursos.destroy', $curso) }}" method="post"
-        onsubmit="return confirm('¿Seguro que quieres borrar este curso?')">
+    {{-- Ejercicio 10 --}}
+    <form action="{{ route('cursos.destroy', $curso) }}" method="post">
         @csrf
         @method('DELETE')
+        <div class="campo">
+            <label for="confirmacion">Para borrar el curso, escribe BORRAR</label>
+            <input type="text" id="confirmacion" name="confirmacion" autocomplete="off">
+            @error('confirmacion')
+                <p class="error">{{ $message }}</p>
+            @enderror
+        </div>
         <button type="submit" class="boton-peligro">🗑️ Borrar el curso</button>
     </form>
 @endsection

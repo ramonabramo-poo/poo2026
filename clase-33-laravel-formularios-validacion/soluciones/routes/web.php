@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\PaginaController;
+use App\Http\Controllers\SugerenciaController;
+use App\Http\Controllers\TemarioController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +23,20 @@ Route::resource('categorias', CategoriaController::class)->only(['index', 'creat
 
 // Ejercicio 02
 Route::post('/cursos/{curso}/matriculas', [MatriculaController::class, 'store'])->name('matriculas.store');
+
+// Ejercicios 04 y 05
+Route::resource('alumnos', AlumnoController::class)->except(['show', 'destroy']);
+
+// Ejercicio 06
+Route::get('/sugerencias', [SugerenciaController::class, 'create'])->name('sugerencias.create');
+Route::post('/sugerencias', [SugerenciaController::class, 'store'])->name('sugerencias.store');
+
+// Ejercicio 07
+Route::post('/cursos/{curso}/temario', [TemarioController::class, 'store'])->name('temario.store');
+Route::get('/cursos/{curso}/temario', [TemarioController::class, 'show'])->name('temario.show');
+
+// Ejercicio 09
+Route::post('/cursos/{curso}/matriculas/varios', [MatriculaController::class, 'storeVarios'])->name('matriculas.varios');
 
 // Route model binding por otra columna: /categorias/programacion
 Route::get('/categorias/{categoria:slug}', [CategoriaController::class, 'show'])->name('categorias.show');

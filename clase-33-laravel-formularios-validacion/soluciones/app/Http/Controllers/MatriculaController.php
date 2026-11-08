@@ -32,4 +32,31 @@ class MatriculaController extends Controller
 
         return back()->with('exito', 'Alumno matriculado.');
     }
+
+    // Ejercicio 09: matricular a varios alumnos de una vez (casillas alumnos[])
+    public function storeVarios(Request $request, Curso $curso): RedirectResponse
+    {
+        $datos = $request->validate([
+            'alumnos' => ['required', 'array', 'min:1'],
+            // alumnos.* valida CADA elemento del array
+            'alumnos.*' => [
+                'integer',
+                'exists:alumnos,id',
+                Rule::unique('alumno_curso', 'alumno_id')->where('curso_id', $curso->id),
+            ],
+        ], [
+            'alumnos.required' => 'Marca al menos un alumno.',
+            'alumnos.*.unique' => 'Alguno de los alumnos ya estaba matriculado.',
+        ]);
+
+        $libres = $curso->plazas - $curso->alumnos()->count();
+
+        if (count($datos['alumnos']) > $libres) {
+            return back()->with('error', "Solo quedan {$libres} plazas libres.");
+        }
+
+        $curso->alumnos()->attach($datos['alumnos']);
+
+        return back()->with('exito', 'Alumnos matriculados: ' . count($datos['alumnos']) . '.');
+    }
 }

@@ -47,6 +47,8 @@ class CursoController extends Controller
         return view('cursos.show', [
             'curso' => $curso,
             'alumnosLibres' => $alumnosLibres,
+            // Ejercicio 07
+            'hayTemario' => Storage::exists(TemarioController::ruta($curso)),
         ]);
     }
 
@@ -90,11 +92,13 @@ class CursoController extends Controller
     {
         $datos = $request->validated();
 
-        if ($request->hasFile('imagen')) {
-            if ($curso->imagen !== null) {
-                Storage::disk('public')->delete($curso->imagen);
-            }
+        // Ejercicio 08: si se sube una imagen nueva o se marca "quitar", la antigua sobra
+        if (($request->hasFile('imagen') || $request->boolean('quitar_imagen')) && $curso->imagen !== null) {
+            Storage::disk('public')->delete($curso->imagen);
+            $datos['imagen'] = null;
+        }
 
+        if ($request->hasFile('imagen')) {
             $datos['imagen'] = $request->file('imagen')->store('cursos', 'public');
         }
 
@@ -106,8 +110,16 @@ class CursoController extends Controller
     }
 
     // DELETE /cursos/{curso}: borrado lógico (la imagen se conserva por si se restaura)
-    public function destroy(Curso $curso): RedirectResponse
+    public function destroy(Request $request, Curso $curso): RedirectResponse
     {
+        // Ejercicio 10: hay que escribir BORRAR (en mayúsculas) para confirmar
+        $request->validate([
+            'confirmacion' => ['required', 'in:BORRAR'],
+        ], [
+            'confirmacion.required' => 'Escribe BORRAR para confirmar.',
+            'confirmacion.in' => 'Escribe BORRAR, en mayúsculas, para confirmar.',
+        ]);
+
         $curso->delete();
 
         return redirect()
