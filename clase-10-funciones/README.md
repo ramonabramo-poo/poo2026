@@ -22,7 +22,7 @@ Ya escribisteis alguna en la clase 5. Hoy las vemos con calma: la diferencia ent
 8. [Ejercicios](#-8-ejercicios)
 9. [Lo que tenéis que llevaros de hoy](#-9-lo-que-tenéis-que-llevaros-de-hoy)
 
-> 📁 Trabajad en `php-paso-a-paso/clase09/`. Ejemplos en [`ejemplos/`](ejemplos/) y soluciones en [`soluciones/`](soluciones/).
+> 📁 Trabajad en `php-paso-a-paso/clase10/`. Ejemplos en [`ejemplos/`](ejemplos/) y soluciones en [`soluciones/`](soluciones/).
 
 ---
 

@@ -45,7 +45,7 @@ if ($esEnvio) {
         guardarVisitas($archivo, $visitas);
 
         // Post/Redirect/Get: redirigimos para que F5 no vuelva a enviar el formulario
-        header("Location: 03-libro-visitas.php?ok=1");
+        header("Location: 07-libro-visitas.php?ok=1");
         exit;
     }
 }

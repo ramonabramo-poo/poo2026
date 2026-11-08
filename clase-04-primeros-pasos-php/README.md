@@ -723,6 +723,34 @@ PHP recibe los datos de un formulario en dos arrays especiales: **`$_GET`** y **
 | GET | En la URL: `buscar.php?q=php` | Búsquedas y filtros que se pueden compartir |
 | POST | Ocultos en la petición | Registros, contraseñas y datos que cambian algo |
 
+### Primero, con dos páginas: una pregunta y otra responde
+
+La forma más fácil de entenderlo es con **dos archivos**: uno con el formulario y otro que recibe los datos. El atributo **`action`** del formulario dice a qué página se envían:
+
+```html
+<!-- 17-formulario-saludo.html: la página que PREGUNTA -->
+<form action="18-recibir-saludo.php" method="post">
+    Nombre: <input type="text" name="nombre">
+    <button type="submit">Saludar</button>
+</form>
+```
+
+```php
+<?php
+// 18-recibir-saludo.php: la página que RESPONDE
+$nombre = trim($_POST["nombre"] ?? "");
+?>
+<?php if ($nombre === ""): ?>
+    <p>No has escrito tu nombre. <a href="17-formulario-saludo.html">Volver</a></p>
+<?php else: ?>
+    <p>¡Hola, <?php echo htmlspecialchars($nombre); ?>! 👋</p>
+<?php endif; ?>
+```
+
+📄 Ejemplos: [`17-formulario-saludo.html`](ejemplos/17-formulario-saludo.html) y [`18-recibir-saludo.php`](ejemplos/18-recibir-saludo.php)
+
+Fijaos en la barra de direcciones: al enviar, **cambiáis de página**. Funciona, pero si hay un error, el usuario tiene que volver atrás y puede perder lo que había escrito. Por eso, en los dos ejemplos siguientes, el formulario se envía **a sí mismo**: sin `action`, la misma página pregunta y responde. En la clase 12 compararemos con calma las dos formas y veremos cómo separar «lo que decide» de «lo que se ve», la idea que acabará siendo el MVC.
+
 ### Un formulario GET
 
 Un buscador sencillo. Fijaos en cómo aparece lo que escribís en la barra de direcciones:
@@ -779,7 +807,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <?php endif; ?>
 ```
 
-📄 Ejemplo: [`17-contacto.php`](ejemplos/17-contacto.php)
+📄 Ejemplo: [`19-contacto.php`](ejemplos/19-contacto.php)
 
 ### ¿Qué hace cada parte?
 
@@ -831,7 +859,7 @@ ini_set("display_errors", 1);
 error_reporting(E_ALL);
 ```
 
-📄 Ejemplo: [`18-mostrar-errores.php`](ejemplos/18-mostrar-errores.php)
+📄 Ejemplo: [`20-mostrar-errores.php`](ejemplos/20-mostrar-errores.php)
 
 O de forma permanente: clic derecho en Laragon → **PHP → php.ini**, poned `display_errors = On`, guardad y pulsad **Recargar**.
 

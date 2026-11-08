@@ -30,7 +30,7 @@ Os aviso: hoy no hay nada «nuevo y espectacular». Hay algo mejor. Vais a enten
 
 ## <img src="../img/emojis/ok.webp" width="40" alt=""> Cómo vamos a trabajar a partir de ahora
 
-Desde esta clase hasta la 12 trabajaremos en un proyecto nuevo, **`php-paso-a-paso`**, con una subcarpeta por clase:
+A partir de esta clase trabajaremos en un proyecto nuevo, **`php-paso-a-paso`**, con una subcarpeta por clase:
 
 1. En Laragon, pulsad **Raíz** y cread la carpeta **`php-paso-a-paso`**.
 2. Dentro, cread la carpeta **`clase07`**.

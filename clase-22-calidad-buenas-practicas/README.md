@@ -24,7 +24,7 @@ Esta clase no trae instrucciones nuevas de PHP. Trae **costumbres**: las que dis
 10. [Ejercicios](#-10-ejercicios)
 11. [Lo que tenéis que llevaros de hoy](#-11-lo-que-tenéis-que-llevaros-de-hoy)
 
-> 📁 Trabajad en `php-paso-a-paso/clase21/`. Casi todos los ejemplos muestran un **antes** (❌) y un **después** (✅) que dan el mismo resultado.
+> 📁 Trabajad en `php-paso-a-paso/clase22/`. Casi todos los ejemplos muestran un **antes** (❌) y un **después** (✅) que dan el mismo resultado.
 
 ---
 

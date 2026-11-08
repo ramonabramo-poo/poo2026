@@ -34,7 +34,7 @@ En la clase 6 ya conectasteis con MySQL. Hoy lo hacemos **bien**: con una conexi
 1. En Laragon, pulsad **Iniciar todo** (Apache **y** MySQL tienen que estar en verde).
 2. Pulsad el botón **Base de datos**: se abre HeidiSQL. Conectad con el usuario `root` y la contraseña vacía.
 3. Abrid la pestaña **Consulta**, pegad el contenido de [`academia_alpe.sql`](ejemplos/academia_alpe.sql) y pulsad **F9**. Se crea la base de datos `academia_alpe` con datos de prueba.
-4. Trabajad en `php-paso-a-paso/clase14/`. Copiad también la carpeta [`includes/`](ejemplos/includes/), con la conexión y las funciones de ayuda.
+4. Trabajad en `php-paso-a-paso/clase15/`. Copiad también la carpeta [`includes/`](ejemplos/includes/), con la conexión y las funciones de ayuda.
 
 > 💡 El script empieza borrando la base de datos si ya existe. Así, si un día la dejáis hecha un desastre en una prueba, lo volvéis a ejecutar y queda como nueva.
 

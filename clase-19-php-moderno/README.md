@@ -23,7 +23,7 @@ Hoy vemos las que más vais a usar en el día a día, y en Laravel. Ninguna es i
 9. [Ejercicios](#-9-ejercicios)
 10. [Lo que tenéis que llevaros de hoy](#-10-lo-que-tenéis-que-llevaros-de-hoy)
 
-> 📁 Trabajad en `php-paso-a-paso/clase18/`. Ejemplos en [`ejemplos/`](ejemplos/) y soluciones en [`soluciones/`](soluciones/).
+> 📁 Trabajad en `php-paso-a-paso/clase19/`. Ejemplos en [`ejemplos/`](ejemplos/) y soluciones en [`soluciones/`](soluciones/).
 
 ---
 

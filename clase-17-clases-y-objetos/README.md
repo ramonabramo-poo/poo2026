@@ -27,7 +27,7 @@ No os voy a engañar: al principio cuesta un poco, porque es otra forma de pensa
 11. [Ejercicios](#-11-ejercicios)
 12. [Lo que tenéis que llevaros de hoy](#-12-lo-que-tenéis-que-llevaros-de-hoy)
 
-> 📁 Trabajad en `php-paso-a-paso/clase16/`. Ejemplos en [`ejemplos/`](ejemplos/) y soluciones en [`soluciones/`](soluciones/).
+> 📁 Trabajad en `php-paso-a-paso/clase17/`. Ejemplos en [`ejemplos/`](ejemplos/) y soluciones en [`soluciones/`](soluciones/).
 
 ---
 
@@ -353,7 +353,7 @@ Los `::` se llaman **operador de resolución de ámbito**; los alumnos lo llaman
 Hasta ahora hemos escrito la clase y el código que la usa en el mismo archivo, siempre con la clase **arriba del todo**. En un proyecto real, cada clase va en **su propio archivo**, que se llama **exactamente igual** que la clase:
 
 ```text
-clase16/
+clase17/
 ├── clases/
 │   └── Producto.php     ← class Producto { ... }
 └── 09-una-clase-por-archivo.php

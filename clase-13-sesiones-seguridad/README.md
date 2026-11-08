@@ -21,7 +21,7 @@ Os voy a contar un secreto incómodo: **la web no tiene memoria**. Cada vez que 
 7. [Ejercicios](#-7-ejercicios)
 8. [Lo que tenéis que llevaros de hoy](#-8-lo-que-tenéis-que-llevaros-de-hoy)
 
-> 📁 Trabajad en `php-paso-a-paso/clase12/`. Ejemplos en [`ejemplos/`](ejemplos/) y soluciones en [`soluciones/`](soluciones/).
+> 📁 Trabajad en `php-paso-a-paso/clase13/`. Ejemplos en [`ejemplos/`](ejemplos/) y soluciones en [`soluciones/`](soluciones/).
 
 ---
 

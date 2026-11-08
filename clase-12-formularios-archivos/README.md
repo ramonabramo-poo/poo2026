@@ -15,17 +15,21 @@ Os adelanto la frase de la clase, la que os voy a repetir hasta que la soñéis:
 ## Índice
 
 1. [Repaso rápido: $_GET y $_POST](#-1-repaso-rápido-_get-y-_post)
-2. [El patrón del formulario profesional](#-2-el-patrón-del-formulario-profesional)
-3. [Validar: comprobar que el dato es correcto](#-3-validar-comprobar-que-el-dato-es-correcto)
-4. [Escapar: htmlspecialchars y los ataques XSS](#-4-escapar-htmlspecialchars-y-los-ataques-xss)
-5. [Guardar datos en un fichero JSON](#-5-guardar-datos-en-un-fichero-json)
-6. [Post/Redirect/Get: adiós al «¿Desea reenviar el formulario?»](#-6-postredirectget-adiós-al-desea-reenviar-el-formulario)
-7. [Subir archivos](#-7-subir-archivos)
-8. [Para saber más: ficheros CSV](#-8-para-saber-más-ficheros-csv)
-9. [Ejercicios](#-9-ejercicios)
-10. [Lo que tenéis que llevaros de hoy](#-10-lo-que-tenéis-que-llevaros-de-hoy)
+2. [Dos páginas: una pregunta y otra responde](#-2-dos-páginas-una-pregunta-y-otra-responde)
+3. [Todo en la misma página](#-3-todo-en-la-misma-página)
+4. [¿Una página o dos? Lo que gana y lo que pierde cada una](#-4-una-página-o-dos-lo-que-gana-y-lo-que-pierde-cada-una)
+5. [Separar la lógica de la vista: la semilla del MVC](#-5-separar-la-lógica-de-la-vista-la-semilla-del-mvc)
+6. [El patrón del formulario profesional](#-6-el-patrón-del-formulario-profesional)
+7. [Validar: comprobar que el dato es correcto](#-7-validar-comprobar-que-el-dato-es-correcto)
+8. [Escapar: htmlspecialchars y los ataques XSS](#-8-escapar-htmlspecialchars-y-los-ataques-xss)
+9. [Guardar datos en un fichero JSON](#-9-guardar-datos-en-un-fichero-json)
+10. [Post/Redirect/Get: adiós al «¿Desea reenviar el formulario?»](#-10-postredirectget-adiós-al-desea-reenviar-el-formulario)
+11. [Subir archivos](#-11-subir-archivos)
+12. [Para saber más: ficheros CSV](#-12-para-saber-más-ficheros-csv)
+13. [Ejercicios](#-13-ejercicios)
+14. [Lo que tenéis que llevaros de hoy](#-14-lo-que-tenéis-que-llevaros-de-hoy)
 
-> 📁 Trabajad en `php-paso-a-paso/clase11/`. Dentro, cread también las carpetas **`datos`** y **`uploads`**: ahí guardaremos los ficheros y las fotos.
+> 📁 Trabajad en `php-paso-a-paso/clase12/`. Dentro, cread también las carpetas **`datos`** y **`uploads`**: ahí guardaremos los ficheros y las fotos.
 
 ---
 
@@ -43,9 +47,249 @@ PHP guarda lo que llega del navegador en unos arrays especiales, las **superglob
 
 ---
 
-## <img src="../img/emojis/ok.webp" width="40" alt=""> 2. El patrón del formulario profesional
+## <img src="../img/emojis/bien.webp" width="40" alt=""> 2. Dos páginas: una pregunta y otra responde
 
-Vamos a escribir un formulario de contacto que se procesa **en el mismo archivo**. Fijaos en que sigue el orden de programa que vimos en la clase 10, porque lo usaréis siempre:
+Empecemos por la forma más fácil de entender, la que usaba la web en sus primeros tiempos: **dos archivos**. Uno **pregunta** (el formulario) y otro **responde** (recibe los datos y hace algo con ellos). ¿Recordáis el restaurante de la clase 1? El formulario es la carta con la comanda; el camarero la lleva a la cocina, que es la página que recibe.
+
+```text
+ 01-formulario.html                       02-recibir.php
+ ┌───────────────────────┐   POST    ┌─────────────────────────────┐
+ │ Nombre: [ Ana       ] │ ────────► │ $_POST["nombre"] → "Ana"    │
+ │ Email:  [ ana@...   ] │           │ $_POST["email"]  → "ana@…"  │
+ │      [ Inscribirme ]  │           │ valida y responde           │
+ └───────────────────────┘           └─────────────────────────────┘
+```
+
+La página que **pregunta** es HTML puro. Lo importante son dos atributos del `<form>` ([`01-formulario.html`](ejemplos/01-formulario.html)):
+
+```html
+<!-- action: QUIÉN recibe los datos. method: CÓMO viajan -->
+<form action="02-recibir.php" method="post">
+    <p>
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre">
+    </p>
+    <p>
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email">
+    </p>
+    <button type="submit">Inscribirme</button>
+</form>
+```
+
+- **`action`** es la dirección de la página que recibirá los datos.
+- **`method`** dice cómo viajan: `get` (en la URL) o `post` (ocultos).
+- El **`name`** de cada campo será la **clave** con la que lo leeremos en PHP.
+
+Y la página que **responde** ([`02-recibir.php`](ejemplos/02-recibir.php)):
+
+```php
+<?php
+declare(strict_types=1);
+
+// Esta página SOLO recibe: los datos llegan en $_POST con la clave del name de cada campo
+$errores = [];
+
+$nombre = trim($_POST["nombre"] ?? "");
+$email = trim($_POST["email"] ?? "");
+
+if ($nombre === "") {
+    $errores[] = "El nombre es obligatorio.";
+}
+if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+    $errores[] = "El email no tiene un formato válido.";
+}
+?>
+<?php if (count($errores) === 0): ?>
+    <h1>¡Inscripción recibida!</h1>
+    <p>Gracias, <?= htmlspecialchars($nombre) ?>. Te escribiremos a <?= htmlspecialchars($email) ?>.</p>
+<?php else: ?>
+    <h1>Faltan datos</h1>
+    <ul>
+        <?php foreach ($errores as $error): ?>
+            <li><?= $error ?></li>
+        <?php endforeach; ?>
+    </ul>
+    <!-- El usuario tiene que volver atrás… y puede que lo escrito se haya perdido -->
+    <p><a href="01-formulario.html">← Volver al formulario</a></p>
+<?php endif; ?>
+```
+
+Abrid `01-formulario.html`, rellenadlo y enviadlo. Fijaos en la barra de direcciones: **habéis cambiado de página**, de `01-formulario.html` a `02-recibir.php`.
+
+Funciona, y es muy fácil de entender: cada archivo hace **una sola cosa**. Pero haced estas tres pruebas:
+
+| Prueba | Qué pasa | ¿Problema? |
+|---|---|---|
+| Enviad el formulario vacío | Sale la lista de errores en **otra** página | El usuario tiene que pulsar «Volver» y buscar qué estaba mal |
+| Escribid el nombre con un email mal escrito y volved | Según el navegador, el nombre sigue escrito… o no | No podemos rellenar los campos desde PHP: el formulario es HTML puro |
+| Abrid `02-recibir.php` directamente, sin pasar por el formulario | Salen los errores aunque nadie ha enviado nada | La página que recibe no sabe si la han llamado desde el formulario |
+
+---
+
+## <img src="../img/emojis/genial.webp" width="40" alt=""> 3. Todo en la misma página
+
+La solución a esos tres problemas es que **la misma página** pregunte **y** responda. El formulario se envía a sí mismo: basta con **no poner `action`** (o dejarlo vacío). Pero entonces la página necesita saber en cuál de las dos situaciones está:
+
+- Si la hemos **abierto** escribiendo la dirección o con un enlace, llega por **GET**: solo hay que enseñar el formulario.
+- Si venimos de **pulsar el botón**, llega por **POST**: hay que validar y responder.
+
+Eso nos lo dice `$_SERVER["REQUEST_METHOD"]` ([`03-una-sola-pagina.php`](ejemplos/03-una-sola-pagina.php)):
+
+```php
+<?php
+declare(strict_types=1);
+
+$errores = [];
+$inscrito = false;
+
+// ¿Venimos de pulsar el botón (POST) o solo estamos abriendo la página (GET)?
+$esEnvio = $_SERVER["REQUEST_METHOD"] === "POST";
+$nombre = trim($_POST["nombre"] ?? "");
+$email = trim($_POST["email"] ?? "");
+
+if ($esEnvio) {
+    if ($nombre === "") {
+        $errores[] = "El nombre es obligatorio.";
+    }
+    if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+        $errores[] = "El email no tiene un formato válido.";
+    }
+    $inscrito = count($errores) === 0;
+}
+?>
+<?php if ($inscrito): ?>
+    <p>Gracias, <?= htmlspecialchars($nombre) ?>. Te escribiremos a <?= htmlspecialchars($email) ?>.</p>
+<?php else: ?>
+    <?php foreach ($errores as $error): ?>
+        <p style="color: #b00020"><?= $error ?></p>
+    <?php endforeach; ?>
+
+    <!-- Sin action: el formulario se envía a esta misma página -->
+    <form method="post">
+        <input type="text" id="nombre" name="nombre" value="<?= htmlspecialchars($nombre) ?>">
+        <input type="text" id="email" name="email" value="<?= htmlspecialchars($email) ?>">
+        <button type="submit">Inscribirme</button>
+    </form>
+<?php endif; ?>
+```
+
+Repetid las tres pruebas de antes:
+
+- Los errores salen **encima del formulario**, sin cambiar de página.
+- Lo que el usuario escribió **sigue en los campos**, porque ahora el formulario es PHP y lo rellenamos con `value="..."`.
+- Si se abre la página sin enviar nada, `$esEnvio` es `false` y no sale ningún error: solo el formulario vacío.
+
+---
+
+## <img src="../img/emojis/pensando.webp" width="40" alt=""> 4. ¿Una página o dos? Lo que gana y lo que pierde cada una
+
+| | Dos páginas | Una sola página |
+|---|---|---|
+| Errores | En otra página; el usuario tiene que volver | Junto al formulario, en el sitio |
+| Datos escritos | Se pueden perder al volver | Se conservan siempre (`value`) |
+| Abrir la página «a pelo» | La que recibe muestra errores falsos | Distingue GET de POST |
+| Archivos que mantener | Dos, y sus `name` tienen que coincidir | Uno |
+| Lo fácil de leer | Cada archivo hace **una** cosa | El archivo hace **dos**: decidir y pintar |
+
+Para el **usuario**, gana claramente la página única, y por eso es la que usaremos a partir de ahora. Pero fijaos en la última fila: hemos juntado en un solo archivo dos trabajos muy distintos:
+
+1. **Decidir**: leer `$_POST`, validar, guardar, elegir qué mensaje se muestra. Es **lógica**.
+2. **Pintar**: el HTML, con sus etiquetas y sus estilos. Es **presentación**.
+
+Con un formulario de dos campos no pasa nada. Pero con veinte campos, una consulta a la base de datos y una página con mucho diseño, ese archivo se convierte en una sopa de PHP y HTML donde nadie encuentra nada. Y si en vuestro equipo hay alguien que solo sabe de diseño, tendrá que pelearse con vuestro código para cambiar un color. 😅
+
+> 🎯 **¿Entonces qué es mejor?** Ni una cosa ni la otra tal cual: **una sola dirección para el usuario, pero el trabajo repartido en dos archivos para nosotros**. Lo vemos ahora mismo.
+
+---
+
+## <img src="../img/emojis/sorpresa.webp" width="40" alt=""> 5. Separar la lógica de la vista: la semilla del MVC
+
+Vamos a coger la página única y partirla en dos archivos, cada uno con **un solo trabajo** ([`04-separado/`](ejemplos/04-separado/)):
+
+```text
+ 04-separado/
+ ├── inscripcion.php                ← el que DECIDE: lee, valida y elige qué mostrar
+ └── vistas/
+     └── inscripcion.vista.php      ← el que PINTA: solo HTML con huecos para los datos
+```
+
+El primero, el que decide, no escribe **ni una etiqueta HTML** ([`inscripcion.php`](ejemplos/04-separado/inscripcion.php)):
+
+```php
+<?php
+declare(strict_types=1);
+
+// EL CONTROLADOR: recibe la petición, comprueba los datos y decide qué se muestra.
+// No escribe ni una etiqueta HTML.
+
+function validarInscripcion(string $nombre, string $email): array
+{
+    $errores = [];
+    if ($nombre === "") {
+        $errores[] = "El nombre es obligatorio.";
+    }
+    if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+        $errores[] = "El email no tiene un formato válido.";
+    }
+    return $errores;
+}
+
+$errores = [];
+$inscrito = false;
+
+$esEnvio = $_SERVER["REQUEST_METHOD"] === "POST";
+$nombre = trim($_POST["nombre"] ?? "");
+$email = trim($_POST["email"] ?? "");
+
+if ($esEnvio) {
+    $errores = validarInscripcion($nombre, $email);
+    $inscrito = count($errores) === 0;
+    // Aquí iría guardar la inscripción en un fichero o en la base de datos
+}
+
+// LA VISTA: solo pinta con los datos que le hemos preparado
+require __DIR__ . "/vistas/inscripcion.vista.php";
+```
+
+Y el segundo, la **vista**, es el HTML de antes, sin una sola decisión «de negocio»: no lee `$_POST`, no valida, no guarda. Solo usa las variables que le ha dejado preparadas el primero: `$inscrito`, `$errores`, `$nombre` y `$email` ([`inscripcion.vista.php`](ejemplos/04-separado/vistas/inscripcion.vista.php)).
+
+Para el usuario no ha cambiado nada: sigue habiendo **una sola dirección**, `inscripcion.php`, que pregunta y responde. Pero para nosotros todo está en su sitio:
+
+| ¿Quiero cambiar…? | Abro… |
+|---|---|
+| Una regla de validación | `inscripcion.php` |
+| El diseño, un texto o un color | `vistas/inscripcion.vista.php` |
+| Dónde se guardan los datos | `inscripcion.php` (y, más adelante, otro archivo solo para eso) |
+
+### Esto tiene nombre: MVC
+
+Lo que acabáis de hacer es la idea en la que se basan **todos** los *frameworks* modernos, Laravel incluido. Se llama **MVC** (*Modelo, Vista, Controlador*) y la construiremos a lo grande a partir de la clase 23:
+
+```text
+                 ┌────────────────────┐
+ petición ─────► │    CONTROLADOR     │  lee los datos, valida y decide
+                 │  inscripcion.php   │
+                 └───┬────────────┬───┘
+                     │            │
+          pide datos ▼            ▼ le pasa los datos
+           ┌──────────────┐  ┌──────────────────────────┐
+           │    MODELO    │  │          VISTA           │
+           │ (fichero, BD)│  │ inscripcion.vista.php    │ ─────► HTML
+           └──────────────┘  └──────────────────────────┘
+```
+
+- El **controlador** es el jefe de cocina del restaurante: recibe la comanda y organiza.
+- La **vista** es el emplatado: cómo se presenta el plato.
+- El **modelo**, que todavía no tenemos, será la despensa: guardar y leer los datos (en la clase 15, de la base de datos).
+
+> 💡 No os agobiéis con los nombres: de momento basta con una costumbre. **Arriba, la lógica; abajo, la vista**, y cuando la página crezca, la vista a su propio archivo. Es exactamente el orden de programa que seguimos desde la clase 10: entradas y procesamiento primero, salidas al final.
+
+---
+
+## <img src="../img/emojis/ok.webp" width="40" alt=""> 6. El patrón del formulario profesional
+
+Ahora que sabéis por qué, vamos con un formulario de contacto completo que se procesa **en el mismo archivo**, con la lógica arriba y la vista abajo. Fijaos en que sigue el orden de programa que vimos en la clase 10, porque lo usaréis siempre:
 
 | Parte | En un formulario |
 |---|---|
@@ -99,9 +343,9 @@ En el HTML volvemos a poner en cada campo lo que el usuario escribió, para que 
 <input type="text" name="nombre" value="<?= e($nombre) ?>">
 ```
 
-¿Y qué hace exactamente esa `e()`? Lo explico en el punto 4.
+¿Y qué hace exactamente esa `e()`? Lo explico en el punto 8.
 
-📄 Ejemplo completo: [`01-formulario-contacto.php`](ejemplos/01-formulario-contacto.php)
+📄 Ejemplo completo: [`05-formulario-contacto.php`](ejemplos/05-formulario-contacto.php)
 
 > 💡 **¿Por qué `REQUEST_METHOD` y no `isset($_POST["enviar"])`?** Porque si el usuario envía el formulario pulsando **Intro** en lugar del botón, en algunos casos el botón no viaja y vuestro código no se enteraría del envío. Preguntar por el método funciona siempre.
 
@@ -115,7 +359,7 @@ En el HTML volvemos a poner en cada campo lo que el usuario escribió, para que 
 
 ---
 
-## <img src="../img/emojis/pensando.webp" width="40" alt=""> 3. Validar: comprobar que el dato es correcto
+## <img src="../img/emojis/pensando.webp" width="40" alt=""> 7. Validar: comprobar que el dato es correcto
 
 **Validar** es comprobar que lo que llega tiene sentido **antes** de usarlo. Y ojo: el atributo `required` del HTML ayuda al usuario, pero **no os protege**. Cualquiera puede saltárselo desde las herramientas del navegador. La validación de verdad se hace **siempre en PHP**.
 
@@ -132,7 +376,7 @@ En el HTML volvemos a poner en cada campo lo que el usuario escribió, para que 
 
 ---
 
-## <img src="../img/emojis/error.webp" width="40" alt=""> 4. Escapar: htmlspecialchars y los ataques XSS
+## <img src="../img/emojis/error.webp" width="40" alt=""> 8. Escapar: htmlspecialchars y los ataques XSS
 
 Imaginad un libro de visitas. Alguien escribe esto como «mensaje»:
 
@@ -165,13 +409,13 @@ function e(string $texto): string
 echo "<p>" . e($comentario) . "</p>";
 ```
 
-📄 Ejemplo: [`02-xss.php`](ejemplos/02-xss.php)
+📄 Ejemplo: [`06-xss.php`](ejemplos/06-xss.php)
 
 > 🛡️ **Las dos reglas de oro:** **validad al entrar** (¿el dato tiene sentido?) y **escapad al salir** (¿se puede mostrar sin peligro?). Son dos cosas distintas, y hacen falta las dos.
 
 ---
 
-## <img src="../img/emojis/bien.webp" width="40" alt=""> 5. Guardar datos en un fichero JSON
+## <img src="../img/emojis/bien.webp" width="40" alt=""> 9. Guardar datos en un fichero JSON
 
 Hasta que veamos bases de datos, podemos guardar información en **ficheros**. El formato más cómodo es **JSON**: un texto que representa arrays y que entienden PHP, JavaScript y casi cualquier lenguaje [5].
 
@@ -211,11 +455,11 @@ Tres detalles de ese código:
 - `JSON_PRETTY_PRINT` y `JSON_UNESCAPED_UNICODE` hacen que el fichero sea legible y que las tildes se vean bien.
 - `LOCK_EX` evita que dos personas escriban a la vez y se estropee el fichero.
 
-📄 Ejemplo: [`03-libro-visitas.php`](ejemplos/03-libro-visitas.php). Abrid `datos/visitas.json` después de firmar: es texto normal.
+📄 Ejemplo: [`07-libro-visitas.php`](ejemplos/07-libro-visitas.php). Abrid `datos/visitas.json` después de firmar: es texto normal.
 
 ---
 
-## <img src="../img/emojis/sorpresa.webp" width="40" alt=""> 6. Post/Redirect/Get: adiós al «¿Desea reenviar el formulario?»
+## <img src="../img/emojis/sorpresa.webp" width="40" alt=""> 10. Post/Redirect/Get: adiós al «¿Desea reenviar el formulario?»
 
 Firmad en el libro de visitas y pulsad **F5**. Si no hacemos nada, el navegador pregunta «¿Desea reenviar el formulario?»… y si decís que sí, la firma se guarda **dos veces**. En una tienda, sería un pedido duplicado. 😬
 
@@ -224,7 +468,7 @@ La solución es un patrón con nombre propio: **Post/Redirect/Get**. Después de
 ```php
 <?php
 // ...guardar los datos...
-header("Location: 03-libro-visitas.php?ok=1");
+header("Location: 07-libro-visitas.php?ok=1");
 exit;
 ```
 
@@ -236,7 +480,7 @@ Ahora F5 recarga el GET, que es inofensivo. Y el `?ok=1` nos sirve para mostrar 
 
 ---
 
-## <img src="../img/emojis/genial.webp" width="40" alt=""> 7. Subir archivos
+## <img src="../img/emojis/genial.webp" width="40" alt=""> 11. Subir archivos
 
 Para subir fotos o documentos, el formulario necesita dos cosas: `method="post"` y, **obligatoriamente**, `enctype="multipart/form-data"`. Sin ese atributo, el archivo no viaja.
 
@@ -286,13 +530,13 @@ if ($foto === null || $foto["error"] !== UPLOAD_ERR_OK) {
 - **Inventamos un nombre nuevo y aleatorio.** Así nadie puede sobrescribir otro archivo ni colar un nombre peligroso.
 - **`move_uploaded_file()`** mueve el archivo temporal a su sitio definitivo. Si no lo movéis, PHP lo borra al terminar.
 
-📄 Ejemplo: [`04-subir-foto.php`](ejemplos/04-subir-foto.php)
+📄 Ejemplo: [`08-subir-foto.php`](ejemplos/08-subir-foto.php)
 
 > 💡 Si una foto grande da error aunque esté por debajo de vuestro límite, revisad `upload_max_filesize` y `post_max_size` en el `php.ini` (en Laragon: **Menú → PHP → php.ini**). Recordad que con `phpinfo()` podéis ver qué valores tenéis.
 
 ---
 
-## <img src="../img/emojis/curioso.webp" width="40" alt=""> 8. Para saber más: ficheros CSV
+## <img src="../img/emojis/curioso.webp" width="40" alt=""> 12. Para saber más: ficheros CSV
 
 Un **CSV** es una tabla en texto: una fila por línea y los valores separados por `;` o `,`. Excel los abre directamente, así que son perfectos para exportar listados.
 
@@ -305,11 +549,11 @@ fclose($f);                                         // cerrar siempre
 
 Para leerlos se usa `fgetcsv()` dentro de un `while`, línea a línea.
 
-📄 Ejemplo: [`05-csv.php`](ejemplos/05-csv.php)
+📄 Ejemplo: [`09-csv.php`](ejemplos/09-csv.php)
 
 ---
 
-## <img src="../img/emojis/genial.webp" width="40" alt=""> 9. Ejercicios
+## <img src="../img/emojis/genial.webp" width="40" alt=""> 13. Ejercicios
 
 - [ ] **01 · Registro.** Nombre, email, edad (entre 16 y 99), ciudad (un `<select>`) y contraseña repetida dos veces (mínimo 8 caracteres). Cada error debe aparecer **debajo de su campo** y los datos deben conservarse (menos las contraseñas). → [`ej01-registro.php`](soluciones/ej01-registro.php)
 - [ ] **02 · Encuesta.** «¿Qué lenguaje te gusta más?» con botones de radio. Guardad los votos en un JSON, aplicad Post/Redirect/Get y mostrad los resultados con su porcentaje. → [`ej02-encuesta.php`](soluciones/ej02-encuesta.php)
@@ -327,12 +571,15 @@ Para leerlos se usa `fgetcsv()` dentro de un `while`, línea a línea.
 
 ---
 
-## <img src="../img/emojis/hola.webp" width="40" alt=""> 10. Lo que tenéis que llevaros de hoy
+## <img src="../img/emojis/hola.webp" width="40" alt=""> 14. Lo que tenéis que llevaros de hoy
 
 | Idea | En una frase |
 |---|---|
 | GET o POST | GET para consultar, POST para enviar o cambiar datos. Contraseñas, siempre por POST |
+| Dos páginas | `action="recibir.php"`: fácil de entender, pero los errores salen lejos y se pierde lo escrito |
+| Una página | Sin `action`: el formulario se envía a sí mismo y conserva los datos |
 | ¿Me han enviado el formulario? | `$_SERVER["REQUEST_METHOD"] === "POST"` |
+| Lógica y vista | Una dirección para el usuario, dos archivos para nosotros: la semilla del MVC |
 | Validar | En PHP, siempre. El `required` del HTML no protege |
 | Escapar | `htmlspecialchars()` (nuestra `e()`) en todo lo que venga del usuario |
 | Conservar datos | `value="<?= e($nombre) ?>"` |

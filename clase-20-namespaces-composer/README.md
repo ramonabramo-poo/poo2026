@@ -28,7 +28,7 @@ Hoy aprendemos tres cosas que van juntas y que usa **cualquier proyecto PHP prof
 10. [Ejercicios](#-10-ejercicios)
 11. [Lo que tenéis que llevaros de hoy](#-11-lo-que-tenéis-que-llevaros-de-hoy)
 
-> 📁 Trabajad en `php-paso-a-paso/clase19/`. Los ejemplos con Composer son **carpetas de proyecto** completas: [`autocarga-manual/`](ejemplos/autocarga-manual/) y [`proyecto-composer/`](ejemplos/proyecto-composer/).
+> 📁 Trabajad en `php-paso-a-paso/clase20/`. Los ejemplos con Composer son **carpetas de proyecto** completas: [`autocarga-manual/`](ejemplos/autocarga-manual/) y [`proyecto-composer/`](ejemplos/proyecto-composer/).
 
 ---
 

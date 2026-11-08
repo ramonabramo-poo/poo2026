@@ -25,7 +25,7 @@ Y al final llega la palabra más rimbombante del curso: **polimorfismo**. Os pro
 11. [Ejercicios](#-11-ejercicios)
 12. [Lo que tenéis que llevaros de hoy](#-12-lo-que-tenéis-que-llevaros-de-hoy)
 
-> 📁 Trabajad en `php-paso-a-paso/clase17/`. Ejemplos en [`ejemplos/`](ejemplos/) y soluciones en [`soluciones/`](soluciones/).
+> 📁 Trabajad en `php-paso-a-paso/clase18/`. Ejemplos en [`ejemplos/`](ejemplos/) y soluciones en [`soluciones/`](soluciones/).
 
 ---
 

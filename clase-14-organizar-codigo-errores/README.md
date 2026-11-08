@@ -26,7 +26,7 @@ Con esta clase cerramos la parte de **PHP paso a paso**. Después vienen las bas
 - [Ejercicios](#-8-ejercicios)
 - [Lo que tenéis que llevaros de hoy](#-9-lo-que-tenéis-que-llevaros-de-hoy)
 
-> 📁 Trabajad en `php-paso-a-paso/clase13/`. Ejemplos en [`ejemplos/`](ejemplos/) y soluciones en [`soluciones/`](soluciones/).
+> 📁 Trabajad en `php-paso-a-paso/clase14/`. Ejemplos en [`ejemplos/`](ejemplos/) y soluciones en [`soluciones/`](soluciones/).
 
 ---
 
@@ -69,7 +69,7 @@ La solución es usar **`__DIR__`**, una constante especial que siempre contiene 
 require_once __DIR__ . "/includes/funciones.php";
 ```
 
-Así la ruta es siempre completa (por ejemplo, `C:\laragon\www\php-paso-a-paso\clase13\includes\funciones.php`) y funciona la mováis donde la mováis.
+Así la ruta es siempre completa (por ejemplo, `C:\laragon\www\php-paso-a-paso\clase14\includes\funciones.php`) y funciona la mováis donde la mováis.
 
 > 🎯 Acostumbraos desde hoy: **todas** vuestras inclusiones con `__DIR__ . "/..."`.
 
@@ -112,7 +112,7 @@ require __DIR__ . "/includes/cabecera.php";
 
 Fijaos en un detalle importante: los archivos incluidos **ven las variables** de la página que los incluye. Por eso la cabecera puede usar `$titulo` y `$pagina`. Tiene sentido: `require` pega el código justo ahí, como si estuviera escrito en la propia página.
 
-📄 Ejemplo: la carpeta [`web/`](ejemplos/web/). Abrid `http://php-paso-a-paso.test/clase13/web/` y navegad por el menú.
+📄 Ejemplo: la carpeta [`web/`](ejemplos/web/). Abrid `http://php-paso-a-paso.test/clase14/web/` y navegad por el menú.
 
 > 💡 Lo que acabáis de hacer es la idea básica de las **plantillas** (*layouts*). Laravel lo hace de una forma más elegante con Blade, pero la idea es exactamente esta.
 
@@ -125,7 +125,7 @@ Fijaos en un detalle importante: los archivos incluidos **ven las variables** de
 Un mensaje de error **no es un insulto**: es una pista. Y casi siempre os dice exactamente qué pasa y dónde. Mirad uno:
 
 ```text
-Warning: Undefined array key "email" in C:\laragon\www\php-paso-a-paso\clase13\perfil.php on line 12
+Warning: Undefined array key "email" in C:\laragon\www\php-paso-a-paso\clase14\perfil.php on line 12
    │                  │                                     │                             │
   tipo           qué ha pasado                          en qué archivo               en qué línea
 ```
