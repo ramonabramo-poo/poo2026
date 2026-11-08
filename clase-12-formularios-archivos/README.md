@@ -279,9 +279,9 @@ Lo que acabáis de hacer es la idea en la que se basan **todos** los *frameworks
            └──────────────┘  └──────────────────────────┘
 ```
 
-- El **controlador** es el jefe de cocina del restaurante: recibe la comanda y organiza.
-- La **vista** es el emplatado: cómo se presenta el plato.
-- El **modelo**, que todavía no tenemos, será la despensa: guardar y leer los datos (en la clase 15, de la base de datos).
+- El **controlador** es el camarero y jefe de sala del restaurante: recibe la comanda, la comprueba y organiza.
+- La **vista** es el emplatado: cómo se presenta el plato en la mesa.
+- El **modelo**, que todavía no tenemos, será la cocina y la despensa: guardar y leer los datos (en la clase 15, de la base de datos).
 
 > 💡 No os agobiéis con los nombres: de momento basta con una costumbre. **Arriba, la lógica; abajo, la vista**, y cuando la página crezca, la vista a su propio archivo. Es exactamente el orden de programa que seguimos desde la clase 10: entradas y procesamiento primero, salidas al final.
 

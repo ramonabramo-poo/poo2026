@@ -54,7 +54,7 @@ Durante las próximas cinco clases trabajaremos en **un único proyecto**, `acad
 
 La regla de oro: **cada pieza solo hace lo suyo**. La vista no consulta la base de datos. El modelo no escribe HTML. El controlador no hace cálculos de negocio: coordina.
 
-> 🎯 Ya conocéis dos de las tres piezas. El **modelo** es lo de la clase 21 (la entidad `Curso` y el `CursoRepositorio`). Las **vistas** son las plantillas con sintaxis alternativa que usáis desde la clase 8. Hoy añadimos el **controlador** y lo organizamos todo.
+> 🎯 Ya conocéis dos de las tres piezas. El **modelo** es lo de la clase 21 (la entidad `Curso` y el `CursoRepositorio`). Las **vistas** son las plantillas con sintaxis alternativa que usáis desde la clase 8. Y el **controlador** ya lo asomamos en la clase 12, cuando partimos la inscripción en `inscripcion.php` (decide) e `inscripcion.vista.php` (pinta). Hoy lo convertimos en una pieza de verdad y lo organizamos todo.
 
 ---
 
