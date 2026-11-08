@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             CursoSeeder::class,
             AlumnoSeeder::class,
             ProfesorSeeder::class,  // Ejercicio 01
+            ValoracionSeeder::class,  // Ejercicio 05
         ]);
     }
 }

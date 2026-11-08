@@ -21,6 +21,26 @@ Route::get('/precios', function () {
     return view('paginas.precios', ['cursos' => config('academia.cursos')]);
 })->name('precios');
 
+// Ejercicios 04 a 10: páginas para practicar Blade
+Route::view('/tarjetas', 'paginas.tarjetas')->name('tarjetas');
+
+Route::get('/ranking', function () {
+    $cursos = config('academia.cursos');
+    usort($cursos, fn (array $a, array $b) => $b['horas'] <=> $a['horas']);
+
+    return view('paginas.ranking', ['cursos' => $cursos]);
+})->name('ranking');
+
+Route::get('/horario', function () {
+    return view('paginas.horario', ['dias' => ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo']]);
+})->name('horario');
+
+Route::view('/contador', 'paginas.contador')->name('contador');
+
+Route::get('/catalogo-js', function () {
+    return view('paginas.catalogo-js', ['cursos' => array_values(config('academia.cursos'))]);
+})->name('catalogo-js');
+
 // Una página para practicar las directivas de Blade
 Route::get('/blade', function () {
     return view('ejemplos.directivas', [

@@ -83,3 +83,66 @@ Artisan::command('academia:matricular {alumno} {curso}', function (int $alumno, 
 
     $this->info("✅ {$datosAlumno->nombre} {$datosAlumno->apellidos} matriculado en {$datosCurso->titulo}.");
 })->purpose('Matricula a un alumno en un curso');
+
+// Ejercicio 06: php artisan academia:crear-pruebas 3
+Artisan::command('academia:crear-pruebas {cuantos=3}', function (int $cuantos) {
+    $categoria = DB::table('categorias')->value('id');
+
+    \App\Models\Curso::factory($cuantos)->caro()->create(['categoria_id' => $categoria]);
+    \App\Models\Curso::factory()->completo()->create(['categoria_id' => $categoria]);
+
+    $this->info("Creados $cuantos cursos caros y uno completo.");
+})->purpose('Crea cursos de prueba con los estados de la factory');
+
+// Ejercicio 08: php artisan academia:notas
+Artisan::command('academia:notas', function () {
+    $filas = DB::table('alumno_curso')
+        ->join('cursos', 'cursos.id', '=', 'alumno_curso.curso_id')
+        ->whereNotNull('alumno_curso.nota')
+        ->select('cursos.titulo', DB::raw('COUNT(*) AS notas'), DB::raw('ROUND(AVG(alumno_curso.nota), 2) AS media'))
+        ->groupBy('cursos.id', 'cursos.titulo')
+        ->having('notas', '>=', 2)          // having: filtrar DESPUÉS de agrupar
+        ->orderByDesc('media')
+        ->get();
+
+    $this->table(['Curso', 'Notas', 'Media'], $filas->map(fn ($fila) => (array) $fila));
+})->purpose('Nota media de cada curso con al menos dos notas');
+
+// Ejercicio 09: php artisan academia:subir-precios 5 --categoria=diseno
+Artisan::command('academia:subir-precios {porcentaje} {--categoria=}', function (float $porcentaje) {
+    $consulta = DB::table('cursos')
+        ->when($this->option('categoria'), function ($consulta, string $slug) {
+            $consulta->whereIn('categoria_id', DB::table('categorias')->where('slug', $slug)->select('id'));
+        });
+
+    $afectados = (clone $consulta)->count();
+
+    if (!$this->confirm("Se subirá un {$porcentaje} % el precio de {$afectados} cursos. ¿Seguro?", true)) {
+        return;
+    }
+
+    // DB::raw: la operación la hace MySQL, fila a fila
+    $consulta->update(['precio' => DB::raw('ROUND(precio * ' . (1 + $porcentaje / 100) . ', 2)')]);
+    $this->info("Precios actualizados en {$afectados} cursos.");
+})->purpose('Sube los precios un porcentaje');
+
+// Ejercicio 10: php artisan academia:vaciar-curso 3
+Artisan::command('academia:vaciar-curso {id}', function (int $id) {
+    $curso = DB::table('cursos')->find($id);
+
+    if ($curso === null) {
+        $this->error('Ese curso no existe.');
+
+        return 1;
+    }
+
+    // Todo o nada: si algo falla a medias, se deshace lo anterior
+    $borradas = DB::transaction(function () use ($id, $curso) {
+        $borradas = DB::table('alumno_curso')->where('curso_id', $id)->delete();
+        DB::table('cursos')->where('id', $id)->update(['plazas' => $curso->plazas + $borradas]);
+
+        return $borradas;
+    });
+
+    $this->info("Borradas {$borradas} matrículas de «{$curso->titulo}»; sus plazas vuelven a estar libres.");
+})->purpose('Anula todas las matrículas de un curso');

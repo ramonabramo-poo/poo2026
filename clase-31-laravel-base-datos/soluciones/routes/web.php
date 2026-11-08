@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PaginaController::class, 'inicio'])->name('inicio');
 Route::get('/contacto', [PaginaController::class, 'contacto'])->name('contacto');
 Route::get('/estadisticas', [PaginaController::class, 'estadisticas'])->name('estadisticas');  // Ejercicio 02
+Route::get('/cursos/proximos', [PaginaController::class, 'proximos'])->name('cursos.proximos');  // Ejercicio 07
 
 // Las 7 rutas REST de los cursos; de momento solo usamos dos
 Route::resource('cursos', CursoController::class)->only(['index', 'show']);

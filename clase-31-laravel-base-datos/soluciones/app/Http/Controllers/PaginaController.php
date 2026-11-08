@@ -58,4 +58,19 @@ class PaginaController extends Controller
             'masAlumnos' => $masAlumnos,
         ]);
     }
+
+    // Ejercicio 07: GET /cursos/proximos
+    public function proximos(): View
+    {
+        $cursos = DB::table('cursos')
+            ->leftJoin('valoraciones', 'valoraciones.curso_id', '=', 'cursos.id')
+            ->select('cursos.id', 'cursos.titulo', 'cursos.fecha_inicio', DB::raw('ROUND(AVG(valoraciones.puntuacion), 1) AS estrellas'))
+            ->where('cursos.publicado', true)
+            ->whereBetween('cursos.fecha_inicio', [today(), today()->addDays(30)])
+            ->groupBy('cursos.id', 'cursos.titulo', 'cursos.fecha_inicio')
+            ->orderBy('cursos.fecha_inicio')
+            ->get();
+
+        return view('cursos.proximos', ['cursos' => $cursos]);
+    }
 }
