@@ -407,6 +407,12 @@ Ese `desdeArray()` es un **método estático que fabrica objetos**: recibe una f
 - [ ] **03 · Conversor.** Una clase `Conversor` con métodos **estáticos** para pasar de grados Celsius a Fahrenheit y al revés, y de millas a kilómetros (con una constante de clase). → [`ej03-conversor.php`](soluciones/ej03-conversor.php)
 - [ ] **04 · Carrito.** Una clase `Carrito` que guarde objetos `Producto` con sus unidades, compruebe el stock, permita quitar productos y calcule el total con IVA. → [`ej04-carrito.php`](soluciones/ej04-carrito.php) y [`clases/Carrito.php`](soluciones/clases/Carrito.php)
 - [ ] **05 · Alumnos.** Convertid unas filas de la tabla `alumnos` en objetos `Alumno` con `Alumno::desdeArray()`, mostrad la lista con una ✅ para los aprobados y calculad la media de los que tienen nota. → [`ej05-alumnos.php`](soluciones/ej05-alumnos.php) y [`clases/Alumno.php`](soluciones/clases/Alumno.php)
+- [ ] **06 · Puntos en un mapa.** Clase `Punto` con `x` e `y` `readonly`, `distanciaA(Punto $otro)` y `desplazar()`, que devuelve un punto **nuevo**. Comprobad qué pasa si intentáis cambiar `x`. → [`ej06-punto.php`](soluciones/ej06-punto.php)
+- [ ] **07 · Contadores.** Clase `Contador` con `incrementar()`, `reiniciar()` y `valor()`, y una propiedad **estática** que cuente cuántos contadores se han creado. → [`ej07-contador.php`](soluciones/ej07-contador.php)
+- [ ] **08 · Termostato.** Un *setter* `setTemperatura()` que solo acepte valores entre las constantes `MINIMA` (10) y `MAXIMA` (30), y un método `subir()` que lo use. → [`ej08-termostato.php`](soluciones/ej08-termostato.php)
+- [ ] **09 · Biblioteca.** Clases `Libro` (que sabe si está prestado) y `Biblioteca` (que guarda libros por ISBN, presta, devuelve y lista los disponibles). Prestar un libro ya prestado lanza una excepción. → [`ej09-biblioteca.php`](soluciones/ej09-biblioteca.php)
+- [ ] **10 · Generador de contraseñas.** `GeneradorClave::generar(int $longitud)`, un método estático que use las constantes `LETRAS`, `MAYUSCULAS` y `NUMEROS` y `random_int()`. → [`ej10-generador-claves.php`](soluciones/ej10-generador-claves.php)
+- [ ] **11 · Personas y edades.** Clase `Persona` con nombre y fecha de nacimiento (`DateTimeImmutable`), y métodos `edad()`, `esMayorDeEdad()` y `describir()`. → [`ej11-persona.php`](soluciones/ej11-persona.php)
 
 > 🏆 **Reto:** en el proyecto CRUD de la clase 16, cread una clase `Curso` con `desdeArray()` y métodos como `precioConIva()` o `estaCompleto()`, y haced que el listado trabaje con objetos `Curso` en lugar de arrays.
 

@@ -426,8 +426,14 @@ Las soluciones son páginas nuevas para **copiar dentro de la carpeta del proyec
 - [ ] **02 · Ordenar el listado.** Un `<select>` para ordenar por título, precio (de menor a mayor y al revés) u horas. Cuidado: los nombres de columna **no** pueden ir en un marcador (`ORDER BY :orden` no funciona). Pista: una lista blanca con los valores permitidos. → [`index-ordenado.php`](soluciones/index-ordenado.php)
 - [ ] **03 · Registro.** `registro.php` para crear cuentas nuevas: nombre, email y contraseña repetida, guardada con `password_hash()`. Si el email ya existe, avisad. → [`registro.php`](soluciones/registro.php)
 - [ ] **04 · Exportar a CSV.** `exportar.php` descarga el catálogo como archivo CSV que Excel abra con las tildes bien. Pista: las cabeceras `Content-Type` y `Content-Disposition`, y `fputcsv()` sobre `php://output`. → [`exportar.php`](soluciones/exportar.php)
+- [ ] **05 · Listado de alumnos.** `alumnos.php` con el título del curso de cada alumno (`INNER JOIN`) y un buscador por nombre o email. → [`alumnos.php`](soluciones/alumnos.php)
+- [ ] **06 · Alta de alumnos.** `alumno-crear.php`, solo con sesión iniciada y token CSRF: nombre, email (válido y que no esté repetido) y un `<select>` de cursos, comprobando que el curso elegido existe. → [`alumno-crear.php`](soluciones/alumno-crear.php)
+- [ ] **07 · Borrar alumnos.** `alumno-borrar.php`: solo POST, con sesión iniciada y token CSRF, y un mensaje *flash* que diga si se ha borrado. → [`alumno-borrar.php`](soluciones/alumno-borrar.php)
+- [ ] **08 · Duplicar un curso.** Un botón que cree una copia de un curso («Copia de…») reutilizando `obtenerCurso()` y `crearCurso()`, y lleve a editarla. → [`duplicar.php`](soluciones/duplicar.php)
+- [ ] **09 · Estadísticas.** Número de cursos, plazas libres en total, precio medio, cursos completos, el más caro y cuántos alumnos tiene cada curso (`LEFT JOIN` y `GROUP BY`). → [`estadisticas.php`](soluciones/estadisticas.php)
+- [ ] **10 · Cambiar la contraseña.** El usuario conectado cambia su contraseña: la actual con `password_verify()`, la nueva con `password_hash()`. → [`cambiar-clave.php`](soluciones/cambiar-clave.php)
 
-> 🏆 **Reto final:** haced el CRUD completo de la tabla **`alumnos`**: listado con el título de su curso (`INNER JOIN`), alta y edición con un `<select>` de cursos y borrado seguro. Tenéis todas las piezas: es repetir el proceso de hoy con otra tabla. Si lo conseguís sin mirar, este bloque está superado. 💪
+> 🏆 **Reto final:** con los ejercicios 05, 06 y 07 ya tenéis casi todo el CRUD de la tabla **`alumnos`**. Os falta la edición: `alumno-editar.php`, con el formulario relleno y el `<select>` con su curso marcado. Tenéis todas las piezas: es repetir el proceso de hoy con otra tabla. Si lo conseguís sin mirar, este bloque está superado. 💪
 
 ---
 

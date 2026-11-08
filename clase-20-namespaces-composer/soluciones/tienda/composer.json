@@ -1,0 +1,19 @@
+{
+    "name": "alpe/tienda",
+    "description": "Soluciones 05 a 10 de la clase 20: una tienda organizada con namespaces",
+    "type": "project",
+    "require": {
+        "php": ">=8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tienda\\": "src/"
+        },
+        "files": [
+            "src/funciones.php"
+        ]
+    },
+    "scripts": {
+        "stock": "php bin/stock.php"
+    }
+}
