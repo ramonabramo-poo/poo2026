@@ -23,6 +23,7 @@ class Peticion
         $cabeceras = [
             "content-type" => $_SERVER["CONTENT_TYPE"] ?? "",
             "authorization" => $_SERVER["HTTP_AUTHORIZATION"] ?? "",
+            "x-api-key" => $_SERVER["HTTP_X_API_KEY"] ?? "",   // ejercicio 07
             "accept" => $_SERVER["HTTP_ACCEPT"] ?? "",
         ];
 

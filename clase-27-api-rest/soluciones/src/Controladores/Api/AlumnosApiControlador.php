@@ -23,4 +23,13 @@ class AlumnosApiControlador extends Controlador
             "meta" => ["total" => count($alumnos)],
         ]);
     }
+
+    // Ejercicio 09. GET /api/alumnos?curso=2  (sin ?curso, todos)
+    public function index(Peticion $peticion): Respuesta
+    {
+        $curso = $peticion->consulta("curso");
+        $alumnos = $curso === "" ? Alumno::todos("nombre") : Alumno::donde("curso_id", (int) $curso);
+
+        return Respuesta::json(["datos" => $alumnos, "meta" => ["total" => count($alumnos)]]);
+    }
 }

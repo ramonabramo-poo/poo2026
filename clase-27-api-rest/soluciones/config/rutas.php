@@ -36,6 +36,9 @@ $router->grupo([Autenticado::class], function (Router $router): void {
 $router->get("/api/cursos", [CursosApiControlador::class, "index"]);
 $router->get("/api/cursos/{id:\d+}", [CursosApiControlador::class, "ver"]);
 $router->get("/api/cursos/{id:\d+}/alumnos", [AlumnosApiControlador::class, "delCurso"]);
+$router->get("/api/cursos/{id:\d+}/precio", [CursosApiControlador::class, "precio"]);   // ejercicio 06
+$router->get("/api/estadisticas", [CursosApiControlador::class, "estadisticas"]);        // ejercicio 04
+$router->get("/api/alumnos", [AlumnosApiControlador::class, "index"]);                   // ejercicio 09
 
 // Escribir exige el token
 $router->grupo([TokenApi::class], function (Router $router): void {

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Estadísticas</title>
+    <link rel="stylesheet" href="/estilos.css">
+</head>
+<body>
+    <main>
+        <!-- Ejercicio 10: una página HTML "tonta" que pide los datos a nuestra API con JavaScript -->
+        <h1>📊 La academia en cifras</h1>
+        <p id="cifras">Cargando…</p>
+    </main>
+
+    <script>
+        fetch("/api/estadisticas")
+            .then((respuesta) => respuesta.json())
+            .then(({ datos }) => {
+                document.getElementById("cifras").textContent =
+                    `${datos.cursos} cursos · ${datos.completos} completos · precio medio ${datos.precio_medio.toFixed(2)} €`;
+            })
+            .catch(() => {
+                document.getElementById("cifras").textContent = "No se han podido cargar las cifras.";
+            });
+    </script>
+</body>
+</html>
