@@ -66,7 +66,7 @@ Imaginad una mudanza. Cada caja lleva una **etiqueta** escrita con rotulador («
 - El **contenido** es el valor que guardáis con `=`.
 - Podéis **cambiar el contenido** cuando queráis: `$edad = 26;` tira el 25 y guarda el 26.
 
-Pero ojo: la analogía tiene un límite. En una caja real podéis meter varias cosas; en una variable sencilla, **solo un valor**. Para guardar varios valores juntos usaremos arrays (clase 10).
+Pero ojo: la analogía tiene un límite. En una caja real podéis meter varias cosas; en una variable sencilla, **solo un valor**. Para guardar varios valores juntos usaremos arrays (clase 11).
 
 ---
 
@@ -99,7 +99,7 @@ echo gettype($edad);   // integer
 
 Dos curiosidades que os vais a encontrar en el ejemplo:
 
-- `"Lucía"` tiene 5 letras, pero `var_dump()` dice `string(6)`. No es un error: cuenta **bytes**, y la «í» ocupa dos. Volveremos a esto con los textos en la clase 10.
+- `"Lucía"` tiene 5 letras, pero `var_dump()` dice `string(6)`. No es un error: cuenta **bytes**, y la «í» ocupa dos. Volveremos a esto con los textos en la clase 11.
 
 Y una más que confunde mucho: si hacéis `echo` de una variable que vale `false`, **no aparece nada** en pantalla. `echo` convierte `false` en un texto vacío. Para ver lo que hay de verdad dentro de la caja, `var_dump()` [2].
 - `gettype()` llama `double` a los `float`. Es un nombre antiguo; significa lo mismo.
@@ -420,7 +420,7 @@ Cread los archivos en `php-paso-a-paso/clase07/`. Primero intentadlo; después c
 ---
 
 **Clase anterior:** 👈 [Clases 4 a 6 · Primeros pasos con PHP](../clase-04-primeros-pasos-php/README.md)
-**Clase siguiente:** 👉 [Clase 8 · Decidir y repetir](../clase-08-decidir-y-repetir/README.md)
+**Clase siguiente:** 👉 [Clase 8 · Condicionales: tomar decisiones](../clase-08-condicionales/README.md)
 
 ---
 

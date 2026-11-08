@@ -17,10 +17,11 @@ Así que tranquilos. Hoy toca escuchar, preguntar y hacerse una idea del mapa.
 1. [¿Qué es programar?](#-qué-es-programar)
 2. [Programación de escritorio y programación web](#-programación-de-escritorio-y-programación-web)
 3. [Cómo funciona la web: cliente y servidor](#-cómo-funciona-la-web-cliente-y-servidor)
-4. [Frontend, backend y fullstack](#-frontend-backend-y-fullstack)
-5. [Las tecnologías que vamos a usar](#-las-tecnologías-que-vamos-a-usar)
-6. [Lo que os vais a encontrar en el curso](#-lo-que-os-vais-a-encontrar-en-el-curso)
-7. [Vocabulario de hoy](#-vocabulario-de-hoy)
+4. [La analogía del restaurante: cómo trabaja PHP](#-la-analogía-del-restaurante-cómo-trabaja-php)
+5. [Frontend, backend y fullstack](#-frontend-backend-y-fullstack)
+6. [Las tecnologías que vamos a usar](#-las-tecnologías-que-vamos-a-usar)
+7. [Lo que os vais a encontrar en el curso](#-lo-que-os-vais-a-encontrar-en-el-curso)
+8. [Vocabulario de hoy](#-vocabulario-de-hoy)
 
 ---
 
@@ -79,6 +80,41 @@ Ahora, un detalle que os va a ahorrar muchos dolores de cabeza: **el navegador n
 
 ---
 
+## <img src="../img/emojis/genial.webp" width="40" alt=""> La analogía del restaurante: cómo trabaja PHP
+
+Lo de «petición» y «respuesta» suena muy técnico, así que os lo cuento como lo cuento siempre en clase: **imaginad que entráis a cenar a un restaurante** bien organizado. Intervienen cuatro personajes que se coordinan a la perfección.
+
+![La gran analogía del restaurante: el comensal, el camarero, el chef y la despensa](img/restaurante-web.webp)
+
+| | En el restaurante | En la web | Qué hace |
+|---|---|---|---|
+| 🧑 | **El comensal** en la mesa | El **navegador** (el cliente) | Abre la carta (escribe la dirección) y pide lo que quiere. **Nunca entra en la cocina**: solo se come el plato cuando se lo sirven terminado |
+| 🤵 | **El camarero** | El protocolo **HTTP** | Lleva la comanda de la mesa a la cocina (la **petición**) y vuelve con el plato (la **respuesta**) |
+| 👨‍🍳 | **El chef** en la cocina | El **servidor web** (Apache) y el intérprete de **PHP** | Lee la receta (vuestro código PHP), coge los ingredientes, cocina y emplata el resultado en **HTML** |
+| 🗄️ | **La despensa** con candado | La base de datos **MySQL** | Guarda los ingredientes (usuarios, productos, notas…). **Solo el chef tiene la llave** |
+
+### Una cena, paso a paso
+
+Pongamos que en la web de una academia pedís la lista de cursos, `cursos.php`:
+
+1. 🧑 **Pedís.** Escribís la dirección en el navegador: el comensal pide «la lista de cursos».
+2. 🤵 **El camarero lleva la comanda.** El navegador envía una **petición HTTP** al servidor.
+3. 👨‍🍳 **El chef lee la receta.** Apache ve que es un archivo `.php` y se lo pasa a PHP, que ejecuta el código línea a línea.
+4. 🗄️ **El chef va a la despensa.** El código le pide a MySQL los cursos que hay guardados.
+5. 🍽️ **El chef emplata.** PHP mezcla esos datos con el diseño y prepara una página **HTML** terminada.
+6. 🤵 **El camarero sirve el plato.** El servidor envía la **respuesta HTTP** con ese HTML.
+7. 😋 **Coméis.** El navegador pinta la página, con su CSS y su JavaScript.
+
+### Las tres ideas que os tenéis que llevar
+
+- **El comensal nunca ve la receta.** El navegador recibe el plato cocinado (HTML), nunca el código PHP. Por eso, si en el navegador hacéis clic derecho y «Ver código fuente», no veréis ni una línea de PHP.
+- **Sin cocina no hay plato.** Si hacéis doble clic en un archivo `.php` desde el explorador de Windows, no funciona: lo estáis abriendo sin chef. Los archivos PHP **tienen que pasar por un servidor**. Para eso instalaremos Laragon en la clase 2: una cocina completa dentro de vuestro ordenador.
+- **La despensa tiene candado.** El usuario no puede tocar la base de datos directamente; siempre pasa por el código PHP, que decide qué se puede sacar y qué no. Gran parte de la **seguridad** de una web consiste en que ese chef no se deje engañar.
+
+> 💡 Vamos a volver a este restaurante muchas veces durante el curso: el camarero cuando veamos los formularios y los códigos de estado HTTP, la despensa cuando lleguemos a las bases de datos… Si en algún momento os perdéis, pensad: **¿quién hace esto en el restaurante?**
+
+---
+
 ## <img src="../img/emojis/ok.webp" width="40" alt=""> Frontend, backend y fullstack
 
 ![Frontend, backend y fullstack](img/frontend-backend.webp)
@@ -97,7 +133,7 @@ Es lo que ocurre **en el servidor**: comprobar el usuario y la contraseña, calc
 
 Un desarrollador **fullstack** sabe moverse en las dos partes: monta la interfaz y también programa el servidor y la base de datos. No hace falta ser un experto absoluto en todo, pero sí entender cómo encajan las piezas.
 
-> 🍽️ **Pensad en un restaurante.** El frontend es la sala: las mesas, la carta, el camarero que os atiende. El backend es la cocina, donde se prepara todo y donde está la despensa (la base de datos). El cliente nunca entra en la cocina, pero sin cocina no hay comida.
+> 🍽️ **Volvamos al restaurante.** El frontend es la sala: las mesas, la carta, cómo os presentan el plato. El backend es la cocina, donde se prepara todo y donde está la despensa (la base de datos). El cliente nunca entra en la cocina, pero sin cocina no hay comida.
 
 Nuestro curso está centrado en el **backend con PHP**, aunque usaremos HTML, CSS y algo de JavaScript para que nuestras páginas tengan buena cara. Al final, con Laravel, tendréis una visión bastante completa de cómo se construye una aplicación de principio a fin.
 

@@ -1,6 +1,6 @@
 # Temario detallado
 
-> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 38 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
+> Temario **previsto**: puede ajustarse según el ritmo del grupo. Las clases 1 a 39 ya están publicadas. A partir de la Parte 2, la numeración corresponde a **bloques temáticos** (del 08 en adelante) (cada bloque puede ocupar una o varias clases), y cada uno tendrá su carpeta con apuntes, ejemplos y ejercicios resueltos.
 >
 > 🌱 El curso está pensado para personas **sin experiencia previa en programación**. Lo marcado con ⭐ es **para saber más**: se presenta para que os suene, pero no es imprescindible para seguir avanzando.
 
@@ -32,7 +32,7 @@
 - **Clase 5:** condicionales, `switch` y `match`, bucles, sintaxis alternativa, arrays y funciones
 - **Clase 6:** formularios GET y POST, errores frecuentes, primera conexión con MySQL (PDO) y ejercicios
 
-## Parte 1: PHP paso a paso (clases 7 a 13)
+## Parte 1: PHP paso a paso (clases 7 a 14)
 
 > Volvemos sobre lo visto en las clases 4 a 6, ahora despacio y con ejercicios resueltos. Todas las clases se trabajan en el proyecto `php-paso-a-paso` de Laragon.
 
@@ -47,16 +47,28 @@
 - Redondear y mostrar números: `round()`, `number_format()`, `intdiv()` y `%`
 - Errores típicos: olvidar el `$`, guiones en los nombres, `echo` de un `false`
 
-### Clase 8 · Bloque 03. Decidir y repetir · [ver](clase-08-decidir-y-repetir/README.md)
-- Pensar antes de programar: pseudocódigo y pruebas de todos los caminos
-- `if`, `elseif` y `else` sin anidar: descartar primero los casos que no cumplen
+### Clase 8 · Bloque 03 (I). Condicionales: tomar decisiones · [ver](clase-08-condicionales/README.md)
+- Qué es una condición: valores verdaderos y falsos
+- `if`, `else` y `elseif`; por qué el orden de las condiciones importa
+- Condiciones compuestas con `&&`, `||` y `!`; tabla de verdad y cortocircuito
+- Pensar antes de programar: pseudocódigo, pruebas de todos los caminos y no anidar
 - La trampa de `if ($x = 10)`
-- `match` (y `UnhandledMatchError`) frente a `elseif`
-- Qué bucle elegir: `for`, `while`, `do while` y `foreach`
-- Patrones imprescindibles: contador, acumulador y buscar el máximo
-- Bucles infinitos, `break`, `continue` y bucles anidados
+- `switch` (y el `break` olvidado) frente a `match` y `match (true)`
+- El operador ternario y por qué no anidarlo
+- Los operadores del PHP moderno: `?:`, `??`, `??=` y `?->`; la nave espacial `<=>`
+- Condicionales dentro del HTML con la sintaxis alternativa
 
-### Clase 9 · Bloque 04. Funciones · [ver](clase-09-funciones/README.md)
+### Clase 9 · Bloque 03 (II). Bucles: repetir sin cansarse · [ver](clase-09-bucles/README.md)
+- Las cuatro piezas de un bucle
+- `while`, el bucle infinito y `do…while`
+- `for` para repetir un número conocido de veces
+- Una primera visita a los arrays: índices, `count()` y arrays asociativos
+- `foreach` para recorrer listas
+- Patrones imprescindibles: contador, acumulador, máximo, bandera y «repetir hasta»
+- `break`, `continue` y bucles anidados
+- Bucles dentro del HTML y los errores típicos
+
+### Clase 10 · Bloque 04. Funciones · [ver](clase-10-funciones/README.md)
 - Por qué usar funciones: el principio DRY
 - `echo` frente a `return`
 - Parámetros con valor por defecto y argumentos con nombre
@@ -66,7 +78,7 @@
 - Cómo escribir buenas funciones
 - ⭐ Paso por referencia, funciones variádicas y *closures* con `use` (se retoman en la Parte 2)
 
-### Clase 10 · Bloque 05. Arrays y textos · [ver](clase-10-arrays-y-textos/README.md)
+### Clase 11 · Bloque 05. Arrays y textos · [ver](clase-11-arrays-y-textos/README.md)
 - Arrays indexados, asociativos y multidimensionales (tablas de datos)
 - Añadir, modificar y eliminar elementos; `print_r()`
 - Funciones útiles: `count`, `in_array`, `array_key_exists`, `array_search`, `array_merge`…
@@ -78,7 +90,7 @@
 - Fechas con `date()` y `DateTime`; zona horaria
 - ⭐ Desestructuración, operador *spread* (`...`) y `array_reduce`
 
-### Clase 11 · Bloque 06 (I). Formularios, archivos y ficheros · [ver](clase-11-formularios-archivos/README.md)
+### Clase 12 · Bloque 06 (I). Formularios, archivos y ficheros · [ver](clase-12-formularios-archivos/README.md)
 - `$_GET` y `$_POST`: cuándo usar cada uno
 - El patrón del formulario profesional: `REQUEST_METHOD`, recoger, validar y conservar datos
 - Validar en el servidor con `filter_var()`, longitudes y listas de valores
@@ -88,7 +100,7 @@
 - Subida de archivos con `$_FILES` de forma segura
 - ⭐ Leer y escribir ficheros CSV
 
-### Clase 12 · Bloque 06 (II). Sesiones, login y seguridad · [ver](clase-12-sesiones-seguridad/README.md)
+### Clase 13 · Bloque 06 (II). Sesiones, login y seguridad · [ver](clase-13-sesiones-seguridad/README.md)
 - Por qué la web no tiene memoria: cookies frente a sesiones
 - Sesiones con `session_start()` y `$_SESSION`
 - Cookies con `setcookie()` y sus opciones de seguridad
@@ -97,7 +109,7 @@
 - Los tres ataques que hay que conocer: XSS, inyección SQL y CSRF
 - Tokens CSRF en los formularios
 
-### Clase 13 · Bloque 07. Organizar el código y controlar los errores · [ver](clase-13-organizar-codigo-errores/README.md)
+### Clase 14 · Bloque 07. Organizar el código y controlar los errores · [ver](clase-14-organizar-codigo-errores/README.md)
 - `include`, `require` y `require_once`; rutas con `__DIR__`
 - Una web con cabecera, menú y pie comunes
 - Leer los mensajes de error: *parse error*, *fatal error*, `TypeError`, *warning*…
@@ -109,7 +121,7 @@
 
 > Antes del bloque 08 conviene haber visto los bloques S01 a S06 del itinerario de SQL.
 
-### Clase 14 · Bloque 08. Bases de datos con PDO · [ver](clase-14-bases-datos-pdo/README.md)
+### Clase 15 · Bloque 08. Bases de datos con PDO · [ver](clase-15-bases-datos-pdo/README.md)
 - La despensa: tablas, filas, columnas, clave primaria y clave foránea; `utf8mb4`
 - La base de datos de prácticas `academia_alpe` (cursos y alumnos)
 - Repaso de SQL: `SELECT`, `INSERT`, `UPDATE` y `DELETE` (siempre con `WHERE`) e `INNER JOIN`
@@ -120,7 +132,7 @@
 - Transacciones: todo o nada (`beginTransaction`, `commit`, `rollBack`)
 - Botiquín de errores típicos de base de datos
 
-### Clase 15 · Bloque 09. Proyecto CRUD paso a paso · [ver](clase-15-proyecto-crud/README.md)
+### Clase 16 · Bloque 09. Proyecto CRUD paso a paso · [ver](clase-16-proyecto-crud/README.md)
 - Qué es un CRUD y qué vamos a construir: el catálogo de cursos de la academia
 - Estructura de carpetas: configuración, piezas comunes y páginas cortas
 - Caja de herramientas: `redirigir()` (tipo `never`), mensajes *flash*, CSRF y guardián de login
@@ -134,7 +146,7 @@
 
 ## Parte 3: Programación orientada a objetos
 
-### Clase 16 · Bloque 10. Clases y objetos · [ver](clase-16-clases-y-objetos/README.md)
+### Clase 17 · Bloque 10. Clases y objetos · [ver](clase-17-clases-y-objetos/README.md)
 - Por qué objetos: los problemas de los arrays sueltos
 - El molde y la galleta: clase, objeto, `new` y la flecha `->`
 - Métodos y `$this`
@@ -145,7 +157,7 @@
 - Una clase por archivo, cargada con `require_once`; del array de la base de datos al objeto con `desdeArray()`
 - Errores típicos con objetos
 
-### Clase 17 · Bloque 11. Herencia, interfaces y polimorfismo · [ver](clase-17-herencia-interfaces/README.md)
+### Clase 18 · Bloque 11. Herencia, interfaces y polimorfismo · [ver](clase-18-herencia-interfaces/README.md)
 - El problema del código repetido entre clases
 - Herencia con `extends` y la prueba del «es un»
 - `parent::__construct()`, sobrescribir métodos y `parent::metodo()`; ahora sí, `protected`
@@ -156,7 +168,7 @@
 - ¿Herencia, interfaz o trait?
 - Clases en archivos: el padre se carga primero
 
-### Clase 18 · Bloque 12. PHP moderno y POO avanzada · [ver](clase-18-php-moderno/README.md)
+### Clase 19 · Bloque 12. PHP moderno y POO avanzada · [ver](clase-19-php-moderno/README.md)
 - Tipos *nullable* (`?string`) y tipos unión (`int|float`)
 - Operador *nullsafe* (`?->`) junto con `??`
 - Enumeraciones (`enum`): casos, `name`, `cases()` y `match`
@@ -166,7 +178,7 @@
 - Excepciones propias que heredan de las de PHP y traen sus datos
 - ⭐ Otros métodos mágicos, enlace estático tardío (`static::`) y tipos *intersection*
 
-### Clase 19 · Bloque 13. Namespaces, Composer y autocarga · [ver](clase-19-namespaces-composer/README.md)
+### Clase 20 · Bloque 13. Namespaces, Composer y autocarga · [ver](clase-20-namespaces-composer/README.md)
 - El problema: `require_once` por todas partes y nombres de clase que chocan
 - Namespaces: el «apellido» de las clases; `Clase::class`
 - `use` y alias con `as`; las clases de PHP (`DateTime`, `PDO`…) dentro de un namespace
@@ -177,8 +189,8 @@
 - `composer.json`, `composer.lock` y `vendor/`; `install`, `update` y `require`
 - ⭐ Scripts de Composer
 
-### Clase 20 · Bloque 14. Bases de datos con objetos · [ver](clase-20-bases-datos-objetos/README.md)
-- El proyecto CRUD de la clase 15 rehecho con clases, Composer y PSR-4
+### Clase 21 · Bloque 14. Bases de datos con objetos · [ver](clase-21-bases-datos-objetos/README.md)
+- El proyecto CRUD de la clase 16 rehecho con clases, Composer y PSR-4
 - Una clase `Conexion` que reutiliza una sola conexión (idea del *Singleton*)
 - Entidades: `Curso` y `Usuario`, con `desdeFila()`, `desdeFormulario()` y su propia validación
 - Patrón *Repository*: `CursoRepositorio` y `UsuarioRepositorio`, los únicos que hablan SQL
@@ -188,7 +200,7 @@
 - La sesión en una clase; `files` en la autocarga de Composer
 - ⭐ Un repositorio en memoria con la misma interfaz
 
-### Clase 21 · Bloque 15. Calidad y buenas prácticas · [ver](clase-21-calidad-buenas-practicas/README.md)
+### Clase 22 · Bloque 15. Calidad y buenas prácticas · [ver](clase-22-calidad-buenas-practicas/README.md)
 - Qué es código de calidad: se lee, se cambia sin miedo y se puede probar
 - Nombres que se explican solos; números mágicos con nombre
 - Funciones cortas; DRY, KISS y YAGNI
@@ -203,7 +215,7 @@
 
 > 📦 Los materiales de este itinerario están en **un repositorio aparte**. Aquí queda el índice para saber qué conviene ver antes de cada clase.
 >
-> Se imparte a lo largo del curso, **antes de empezar PDO (bloque 08)**: lo ideal es empezar tras la clase 8 o 9 e ir alternando con PHP. Los bloques S01 a S06 son **imprescindibles**; S07 a S09 son de **ampliación** ⭐ y se pueden dejar para el final.
+> Se imparte a lo largo del curso, **antes de empezar PDO (bloque 08)**: lo ideal es empezar tras la clase 9 o 10 e ir alternando con PHP. Los bloques S01 a S06 son **imprescindibles**; S07 a S09 son de **ampliación** ⭐ y se pueden dejar para el final.
 
 ### S01. Introducción a las bases de datos
 - Qué es una base de datos y modelo relacional: tablas, filas, columnas, claves
@@ -262,7 +274,7 @@
 
 > Objetivo: construir paso a paso un pequeño *framework* MVC para entender cómo funcionan Laravel y cualquier otro framework por dentro.
 
-### Clase 22 · Bloque 16. Arquitectura MVC y front controller · [ver](clase-22-mvc-front-controller/README.md)
+### Clase 23 · Bloque 16. Arquitectura MVC y front controller · [ver](clase-23-mvc-front-controller/README.md)
 - Qué es MVC: modelo, vista y controlador (la analogía del restaurante)
 - El problema de los archivos sueltos y el *front controller*
 - Estructura de carpetas: solo `public/` es visible desde el navegador
@@ -270,9 +282,9 @@
 - El recorrido completo de una petición
 - El primer controlador
 - Vistas sin lógica y un *layout* común con `extract()` y `ob_start()`
-- El modelo de la clase 20, reutilizado sin cambios
+- El modelo de la clase 21, reutilizado sin cambios
 
-### Clase 23 · Bloque 17. Router, peticiones y respuestas · [ver](clase-23-router-peticiones/README.md)
+### Clase 24 · Bloque 17. Router, peticiones y respuestas · [ver](clase-24-router-peticiones/README.md)
 - Del `if/elseif` a una lista de rutas en `config/rutas.php`
 - La clase `Peticion`: método, ruta, `$_GET` y `$_POST` en un objeto
 - La clase `Respuesta`: contenido, código de estado y cabeceras; un único `enviar()`
@@ -282,7 +294,7 @@
 - Errores 404 y 405 y página 500 con el manejador global de errores
 - El modo depuración y por qué se desactiva en producción
 
-### Clase 24 · Bloque 18. Controladores, vistas y modelos · [ver](clase-24-controladores-vistas-modelos/README.md)
+### Clase 25 · Bloque 18. Controladores, vistas y modelos · [ver](clase-25-controladores-vistas-modelos/README.md)
 - Configuración y variables de entorno en un `.env` (y por qué no se sube a Git)
 - Un modelo base (mini ORM) al estilo de Eloquent: `Curso::buscar()`, `$curso->guardar()`
 - Enlace estático tardío (`static::`) y lista blanca de columnas
@@ -292,7 +304,7 @@
 - Excepciones HTTP para los errores 403, 404 y 405
 - Las siete rutas y acciones de un recurso; código 422 para datos no válidos
 
-### Clase 25 · Bloque 19. Servicios del framework · [ver](clase-25-servicios-framework/README.md)
+### Clase 26 · Bloque 19. Servicios del framework · [ver](clase-26-servicios-framework/README.md)
 - Contenedor de inyección de dependencias y *autowiring* con `Reflection`
 - Middleware: las capas entre la petición y el controlador
 - Middleware global y grupos de rutas protegidas
@@ -302,7 +314,7 @@
 - Funciones de atajo para las vistas: `auth()`, `viejo()`, `error()`, `campoCsrf()`
 - Comparativa: qué parte de nuestro MVC equivale a cada pieza de Laravel
 
-### Clase 26 · Bloque 20. APIs REST con PHP puro · [ver](clase-26-api-rest/README.md)
+### Clase 27 · Bloque 20. APIs REST con PHP puro · [ver](clase-27-api-rest/README.md)
 - Qué es una API REST: recursos, verbos HTTP y códigos de estado
 - Responder en JSON con `Respuesta::json()` y la interfaz `JsonSerializable`
 - Recibir datos en JSON desde `php://input`
@@ -314,7 +326,7 @@
 
 ## Parte 5: Laravel 13
 
-### Clase 27 · Bloque 21. Primeros pasos con Laravel · [ver](clase-27-laravel-primeros-pasos/README.md)
+### Clase 28 · Bloque 21. Primeros pasos con Laravel · [ver](clase-28-laravel-primeros-pasos/README.md)
 - Qué es Laravel y por qué hemos construido antes nuestro MVC
 - Instalación con Composer o con Laragon, y base de datos MySQL
 - Estructura del proyecto comparada con nuestro MVC
@@ -324,7 +336,7 @@
 - Artisan: comandos básicos, Tinker y un comando propio
 - Frontend con Vite (y nuestra hoja de estilos en `public/css`)
 
-### Clase 28 · Bloque 22. Rutas y controladores · [ver](clase-28-laravel-rutas-controladores/README.md)
+### Clase 29 · Bloque 22. Rutas y controladores · [ver](clase-29-laravel-rutas-controladores/README.md)
 - Rutas básicas, `Route::redirect()` y `Route::view()`
 - Parámetros obligatorios, opcionales y con restricciones
 - Rutas con nombre y la función `route()`
@@ -334,7 +346,7 @@
 - *Route model binding*
 - Rutas de la API (`install:api`) y comandos de consola con argumentos y opciones
 
-### Clase 29 · Bloque 23. Vistas con Blade · [ver](clase-29-laravel-blade/README.md)
+### Clase 30 · Bloque 23. Vistas con Blade · [ver](clase-30-laravel-blade/README.md)
 - Qué es Blade y cómo se compila
 - Mostrar datos: `{{ }}`, `{!! !!}`, comentarios, `@php` y `@json`
 - Condiciones (`@if`, `@unless`, `@isset`, `@switch`) y `@class`
@@ -345,7 +357,7 @@
 - Paso de datos a las vistas
 - Recursos estáticos con `asset()` y Vite
 
-### Clase 30 · Bloque 24. Base de datos: migraciones, seeders y factories · [ver](clase-30-laravel-base-datos/README.md)
+### Clase 31 · Bloque 24. Base de datos: migraciones, seeders y factories · [ver](clase-31-laravel-base-datos/README.md)
 - Configuración de la base de datos en `.env`
 - Migraciones: crear tablas, tipos de columna, modificadores y claves foráneas
 - Convenciones de nombres de Laravel (y la tabla intermedia)
@@ -355,7 +367,7 @@
 - Query Builder: consultas, *joins*, agregados, `when()` y colecciones
 - La academia leyendo de la base de datos
 
-### Clase 31 · Bloque 25. Eloquent ORM · [ver](clase-31-laravel-eloquent/README.md)
+### Clase 32 · Bloque 25. Eloquent ORM · [ver](clase-32-laravel-eloquent/README.md)
 - Modelos y convenciones; `#[Table]` y `#[Fillable]`
 - CRUD con Eloquent
 - Relaciones: uno a uno, uno a muchos y muchos a muchos (`pivot`, `attach`, `sync`)
@@ -365,7 +377,7 @@
 - Borrado lógico (*soft deletes*)
 - Paginación y *route model binding* por otra columna
 
-### Clase 32 · Bloque 26. Formularios y validación · [ver](clase-32-laravel-formularios-validacion/README.md)
+### Clase 33 · Bloque 26. Formularios y validación · [ver](clase-33-laravel-formularios-validacion/README.md)
 - Formularios y protección CSRF con `@csrf`
 - Validar con `$request->validate()`
 - Mostrar errores con `@error` y recuperar lo escrito con `old()`
@@ -376,7 +388,7 @@
 - Mensajes *flash* con `->with()` y `@session`
 - Subida y almacenamiento de archivos con `store()` y `storage:link`
 
-### Clase 33 · Bloque 27. Autenticación y autorización · [ver](clase-33-laravel-autenticacion/README.md)
+### Clase 34 · Bloque 27. Autenticación y autorización · [ver](clase-34-laravel-autenticacion/README.md)
 - Sesiones y autenticación con la fachada `Auth`
 - *Starter kits* oficiales (React, Vue y Livewire) y Fortify
 - Nuestro login y registro: `attempt()`, `regenerate()`, `intended()` y contraseñas seguras
@@ -386,7 +398,7 @@
 - *Gates*
 - *Policies* y la página de error 403
 
-### Clase 34 · Bloque 28. Arquitectura interna de Laravel · [ver](clase-34-laravel-arquitectura/README.md)
+### Clase 35 · Bloque 28. Arquitectura interna de Laravel · [ver](clase-35-laravel-arquitectura/README.md)
 - Servicios: código que no es ni controlador ni modelo
 - Contenedor de servicios (*service container*): inyección, `bind` y `singleton`
 - *Service providers*: `register()`, `boot()` y *view composers*
@@ -396,7 +408,7 @@
 - El ciclo de vida completo de una petición
 - Comparación con nuestro MVC
 
-### Clase 35 · Bloque 29. API REST con Laravel · [ver](clase-35-laravel-api-rest/README.md)
+### Clase 36 · Bloque 29. API REST con Laravel · [ver](clase-36-laravel-api-rest/README.md)
 - Rutas de la API, versionado (`/api/v1`) y límite de peticiones
 - *API Resources*: `whenLoaded`, `whenCounted` y `when`
 - El controlador de la API reutilizando el *Form Request* de la web
@@ -406,7 +418,7 @@
 - Gestión de errores en JSON y en español
 - Probar y documentar la API (Markdown, Scramble y Scribe)
 
-### Clase 36 · Bloque 30. Pruebas · [ver](clase-36-laravel-pruebas/README.md)
+### Clase 37 · Bloque 30. Pruebas · [ver](clase-37-laravel-pruebas/README.md)
 - Por qué hacer pruebas; PHPUnit y `php artisan test`
 - La anatomía de una prueba: preparar, actuar y comprobar
 - Pruebas unitarias de un servicio
@@ -416,7 +428,7 @@
 - *Fakes*: probar la subida de archivos
 - Pruebas de la API con Sanctum, y un error real encontrado por una prueba
 
-### Clase 37 · Bloque 31. Funcionalidades avanzadas · [ver](clase-37-laravel-avanzado/README.md)
+### Clase 38 · Bloque 31. Funcionalidades avanzadas · [ver](clase-38-laravel-avanzado/README.md)
 - Eventos y *listeners*
 - Correo electrónico con *Mailables* y vistas Markdown
 - Colas (*queues*), `queue:work` y *jobs*
@@ -426,7 +438,7 @@
 - Registros (*logs*) y canales propios
 - Excepciones propias con `render()` y `context()`
 
-### Clase 38 · Bloque 32. Proyecto final y despliegue · [ver](clase-38-laravel-proyecto-final/README.md)
+### Clase 39 · Bloque 32. Proyecto final y despliegue · [ver](clase-39-laravel-proyecto-final/README.md)
 - La academia completa e instalación del proyecto desde cero
 - Buenas prácticas en Laravel
 - Revisión de código: *pull requests*, Pint con reglas propias y Larastan
