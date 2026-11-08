@@ -324,6 +324,13 @@ Empezad todos los archivos con `declare(strict_types=1);` y poned tipos a los pa
 - [ ] **03 · Precio final.** `precioFinal(float $precio, float $descuento = 0, float $iva = 0.21)` y otra función `formatoEuros()` que lo muestre como «121,00 €». Llamadla usando argumentos con nombre. → [`ej03-precio-final.php`](soluciones/ej03-precio-final.php)
 - [ ] **04 · ¿Es par?** `esPar(int $numero): bool`. Usadla en un bucle del 1 al 10. → [`ej04-es-par.php`](soluciones/ej04-es-par.php)
 - [ ] **05 · Media.** `calcularMedia(array $notas): float`. ¿Qué debe devolver si el array está vacío? (Pensadlo: no se puede dividir entre cero). → [`ej05-media.php`](soluciones/ej05-media.php)
+- [ ] **06 · El mayor (o nada).** `maximo(array $numeros): ?int` que devuelva el mayor sin usar `max()`, o `null` si el array está vacío. El `?` de `?int` significa «un entero o `null`». Mostrad el resultado con `??`. → [`ej06-maximo.php`](soluciones/ej06-maximo.php)
+- [ ] **07 · Días del mes.** `esBisiesto(int $anio): bool` y `diasDelMes(int $mes, int $anio): int`, que use la primera y un `match`. → [`ej07-dias-del-mes.php`](soluciones/ej07-dias-del-mes.php)
+- [ ] **08 · Saludos en idiomas.** `saludo(string $nombre, string $idioma = "es", bool $formal = false): string` con un `match` para el idioma. Llamadla saltándoos el idioma con un argumento con nombre: `saludo("Martínez", formal: true)`. → [`ej08-saludo-idiomas.php`](soluciones/ej08-saludo-idiomas.php)
+- [ ] **09 · Contar vocales.** `contarVocales(string $texto): int`, incluidas las vocales con tilde. Pistas: `mb_strtolower()`, `mb_str_split()` (parte el texto en letras) e `in_array()`. → [`ej09-contar-vocales.php`](soluciones/ej09-contar-vocales.php)
+- [ ] **10 · IMC con dos funciones.** `imc(float $peso, float $altura): float` y `categoriaImc(float $imc): string`, y usadlas en un `foreach` sobre una lista de personas. → [`ej10-imc.php`](soluciones/ej10-imc.php)
+- [ ] **11 · Rebajas con funciones flecha.** Con `array_map()` y una función flecha, aplicad un 10 % de descuento a una lista de precios; con `array_filter()`, quedaos con los de más de 40 €. → [`ej11-flecha-descuento.php`](soluciones/ej11-flecha-descuento.php)
+- [ ] **12 · El contador que no cuenta.** Escribid una función que intente sumar 1 a una variable de fuera y comprobad que no funciona. Después arreglad el problema con parámetros y `return`. → [`ej12-ambito.php`](soluciones/ej12-ambito.php)
 
 > 🏆 **Reto:** volved al ejercicio de la entrada de cine de la clase 8 y convertidlo en una función `precioEntrada(int $edad, bool $esMiercoles): int`. ¿A que ahora es mucho más fácil probar todos los casos?
 

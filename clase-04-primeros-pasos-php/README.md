@@ -1039,19 +1039,19 @@ Juntamos todo lo aprendido: un formulario que **añade alumnos** a la base de da
 
 ## <img src="../img/emojis/genial.webp" width="40" alt=""> 16. Ejercicios propuestos
 
-Cread un archivo por ejercicio dentro de `C:\laragon\www\php-basico` y probadlo en `http://php-basico.test/`. Marcad cada uno al terminarlo.
+Cread un archivo por ejercicio dentro de `C:\laragon\www\php-basico` y probadlo en `http://php-basico.test/`. Marcad cada uno al terminarlo. Tenéis una solución de cada uno en [`soluciones/`](soluciones/) (las de la base de datos, en `soluciones/bd/`, junto a su `conexion.php`): miradla solo después de intentarlo.
 
-- [ ] **01 · Presentación.** Guardad vuestro nombre, edad y ciudad en variables y mostradlos en una frase con `echo`.
-- [ ] **02 · Calculadora de IVA.** Con una constante `IVA`, calculad el precio final de un producto de 59,90 €.
-- [ ] **03 · Par o impar.** Dado un número, indicad si es par o impar con el operador `%`.
-- [ ] **04 · Calificación.** Convertid una nota en Suspenso, Aprobado, Notable o Sobresaliente: primero con `if` y llaves, luego con la sintaxis alternativa y por último con `match`.
-- [ ] **05 · Tabla de multiplicar.** Generad con `for` una tabla HTML con la tabla del número que elijáis.
-- [ ] **06 · Lista de la compra.** Recorred un array de productos con `foreach` y `endforeach;` y mostradlos en una lista `<ul>`.
-- [ ] **07 · Media de notas.** Cread `calcularMedia(array $notas): float` y usadla con un array de alumnos.
-- [ ] **08 · Registro.** Pedid nombre, email y edad por POST, validad los tres campos y mostrad los errores o un mensaje de bienvenida.
-- [ ] **09 · Listado.** Mostrad todos los alumnos de la tabla `alumnos` en una tabla HTML con `foreach`.
-- [ ] **10 · Buscador.** Cread un formulario GET que busque alumnos por nombre con `LIKE` y una consulta preparada.
-- [ ] **11 · Gestión.** Añadid a `alumnos.php` un botón «Borrar» por alumno que envíe el id por POST y ejecute un `DELETE`.
+- [ ] **01 · Presentación.** Guardad vuestro nombre, edad y ciudad en variables y mostradlos en una frase con `echo`. → [`ej01-presentacion.php`](soluciones/ej01-presentacion.php)
+- [ ] **02 · Calculadora de IVA.** Con una constante `IVA`, calculad el precio final de un producto de 59,90 €. → [`ej02-iva.php`](soluciones/ej02-iva.php)
+- [ ] **03 · Par o impar.** Dado un número, indicad si es par o impar con el operador `%`. → [`ej03-par-impar.php`](soluciones/ej03-par-impar.php)
+- [ ] **04 · Calificación.** Convertid una nota en Suspenso, Aprobado, Notable o Sobresaliente: primero con `if` y llaves, luego con la sintaxis alternativa y por último con `match`. → [`ej04-calificacion.php`](soluciones/ej04-calificacion.php)
+- [ ] **05 · Tabla de multiplicar.** Generad con `for` una tabla HTML con la tabla del número que elijáis. → [`ej05-tabla-multiplicar.php`](soluciones/ej05-tabla-multiplicar.php)
+- [ ] **06 · Lista de la compra.** Recorred un array de productos con `foreach` y `endforeach;` y mostradlos en una lista `<ul>`. → [`ej06-lista-compra.php`](soluciones/ej06-lista-compra.php)
+- [ ] **07 · Media de notas.** Cread `calcularMedia(array $notas): float` y usadla con un array de alumnos. → [`ej07-media-notas.php`](soluciones/ej07-media-notas.php)
+- [ ] **08 · Registro.** Pedid nombre, email y edad por POST, validad los tres campos y mostrad los errores o un mensaje de bienvenida. → [`ej08-registro.php`](soluciones/ej08-registro.php)
+- [ ] **09 · Listado.** Mostrad todos los alumnos de la tabla `alumnos` en una tabla HTML con `foreach`. → [`ej09-listado.php`](soluciones/bd/ej09-listado.php)
+- [ ] **10 · Buscador.** Cread un formulario GET que busque alumnos por nombre con `LIKE` y una consulta preparada. → [`ej10-buscador.php`](soluciones/bd/ej10-buscador.php)
+- [ ] **11 · Gestión.** Añadid a `alumnos.php` un botón «Borrar» por alumno que envíe el id por POST y ejecute un `DELETE`. → [`ej11-gestion.php`](soluciones/bd/ej11-gestion.php)
 
 > 🏆 **Vuestro reto final:** unid los ejercicios 04 y 08 en un formulario que pida un nombre y una nota, muestre la calificación y guarde el resultado en la base de datos. Si sabéis explicar qué hace cada línea, lo habéis entendido.
 

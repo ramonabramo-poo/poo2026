@@ -397,6 +397,12 @@ Cread los archivos en `php-paso-a-paso/clase07/`. Primero intentadlo; después c
 - [ ] **03 · Ticket de compra.** 3 auriculares a 24,95 €. Mostrad la base, el IVA (21 %) y el total con formato español. → [`ej03-ticket.php`](soluciones/ej03-ticket.php)
 - [ ] **04 · Saludo por la URL.** Leed `nombre` y `edad` de la URL con `??`. Si no hay edad, decidlo; si la hay, indicad si es mayor de edad o cuántos años le faltan. → [`ej04-saludo-url.php`](soluciones/ej04-saludo-url.php)
 - [ ] **05 · Segundos a horas.** Convertid 4000 segundos en horas, minutos y segundos con `intdiv()` y `%`. Debe salir 1 h, 6 min y 40 s. → [`ej05-tiempo.php`](soluciones/ej05-tiempo.php)
+- [ ] **06 · Temperaturas.** Convertid una temperatura de grados Celsius a Fahrenheit (`ºC × 9 / 5 + 32`) y a Kelvin (`ºC + 273,15`), con formato español. → [`ej06-temperaturas.php`](soluciones/ej06-temperaturas.php)
+- [ ] **07 · Tres formas de comillas.** Escribid la misma frase con una variable y un dato de un array de tres formas: comillas simples y concatenación, comillas dobles, y comillas dobles con llaves. Comprobad qué pasa con `$curso` entre comillas simples. → [`ej07-comillas.php`](soluciones/ej07-comillas.php)
+- [ ] **08 · Precio de socio.** Con las constantes `IVA` y `DESCUENTO_SOCIOS` (15 %), calculad el total de un producto de 120 € aplicando el descuento solo si `$esSocio` es `true` (con un ternario). → [`ej08-constantes.php`](soluciones/ej08-constantes.php)
+- [ ] **09 · Tabla de comparaciones.** Pintad una tabla HTML que compare con `==` y con `===` estas parejas: `0` y `"0"`, `1` y `true`, `"10"` y `"1e1"`, `null` y `false`. Pista: `var_export($valor, true)` convierte `true`/`false` en texto. → [`ej09-tabla-comparaciones.php`](soluciones/ej09-tabla-comparaciones.php)
+- [ ] **10 · Pedido por la URL.** Leed `producto`, `cantidad` y `precio` de la URL con `??` y valores por defecto, convertid los números con *casting* y mostrad el total redondeado a dos decimales. → [`ej10-pedido-url.php`](soluciones/ej10-pedido-url.php)
+- [ ] **11 · ¿Qué puede hacer?** Con la edad, si tiene carné y si es estudiante, calculad con `&&`, `||` y `!` si puede votar, si puede conducir, si tiene descuento (estudiante, menor de 26 o mayor de 65) y si necesita autorización. → [`ej11-logicos.php`](soluciones/ej11-logicos.php)
 
 > 🏆 **Reto:** en el ejercicio 04, probad con `?edad=abc`. ¿Qué ocurre y por qué? Pista: mirad qué devuelve `(int) "abc"`.
 

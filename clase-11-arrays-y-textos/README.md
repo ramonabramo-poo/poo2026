@@ -326,6 +326,13 @@ echo $entrega->format("d/m/Y");   // 21/11/2026
 - [ ] **03 · Nombre de usuario.** `crearUsuario(string $nombre, string $apellido): string`: inicial del nombre más apellido, en minúsculas y sin espacios. «Ramón» y «Abramo» → `rabramo`. → [`ej03-nombre-usuario.php`](soluciones/ej03-nombre-usuario.php)
 - [ ] **04 · Etiquetas limpias.** A partir de `"PHP,  html , css,php , MySQL"`, obtened `css · html · mysql · php`: sin espacios, en minúsculas, sin repetidos y en orden. → [`ej04-etiquetas.php`](soluciones/ej04-etiquetas.php)
 - [ ] **05 · Cuenta atrás.** ¿Cuántos días faltan para el 22 de diciembre? Si ya ha pasado este año, contad hasta el del año que viene. → [`ej05-dias-vacaciones.php`](soluciones/ej05-dias-vacaciones.php)
+- [ ] **06 · Carrito.** Un carrito como array de arrays (producto, precio y cantidad): calculad el total y mostrad las líneas de la más cara a la más barata. Pista: `usort($carrito, fn ($a, $b) => $b["precio"] <=> $a["precio"])`, con la nave espacial de la clase 8. → [`ej06-carrito.php`](soluciones/ej06-carrito.php)
+- [ ] **07 · Palíndromos.** `esPalindromo(string $texto): bool`, sin tener en cuenta mayúsculas, tildes, espacios ni signos. «Dábale arroz a la zorra el abad» lo es. Pistas: `str_replace()` con arrays, `mb_str_split()` y `array_reverse()`. → [`ej07-palindromo.php`](soluciones/ej07-palindromo.php)
+- [ ] **08 · Validar un alta.** `validarAlta(array $datos): array`, que devuelva un array con los errores del correo, de un teléfono de 9 cifras y de un código postal de 5 cifras (con `preg_match()`). → [`ej08-validar-alta.php`](soluciones/ej08-validar-alta.php)
+- [ ] **09 · Palabras más repetidas.** De un texto, las tres palabras de más de 3 letras que más se repiten. Pistas: `explode()`, `array_filter()`, `array_count_values()`, `arsort()` y `array_slice()`. → [`ej09-palabras-frecuentes.php`](soluciones/ej09-palabras-frecuentes.php)
+- [ ] **10 · Edad y cumpleaños.** A partir de una fecha de nacimiento, la edad (`diff()->y`) y en qué día de la semana cae el próximo cumpleaños, en español. → [`ej10-edad-cumple.php`](soluciones/ej10-edad-cumple.php)
+- [ ] **11 · Agrupar por curso.** Con una lista de alumnos y su curso, construid un array `curso => [nombres]` y mostradlo ordenado por curso y por nombre. → [`ej11-agrupar.php`](soluciones/ej11-agrupar.php)
+- [ ] **12 · Nombres bien escritos.** `capitalizarNombre()`: «ana MARÍA  de la fuente» → «Ana María de la Fuente» (las partículas «de», «del», «la», «y»… en minúscula). → [`ej12-capitalizar.php`](soluciones/ej12-capitalizar.php)
 
 > 🏆 **Reto:** en el ejercicio 03 probad con «Lucía Fernández». El usuario sale con tilde: `lfernández`. ¿Cómo lo quitaríais? Pista: `str_replace()` admite arrays como primer y segundo parámetro.
 
