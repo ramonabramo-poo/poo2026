@@ -7,7 +7,7 @@ use Illuminate\View\View;
 
 class CursoController extends Controller
 {
-    // GET /cursos  y  GET /cursos?buscar=php
+    // GET /cursos?buscar=php&max=250&ordenar=precio
     public function index(Request $request): View
     {
         $buscar = $request->query('buscar', '');
@@ -18,6 +18,17 @@ class CursoController extends Controller
                 $cursos,
                 fn (array $curso) => str_contains(mb_strtolower($curso['titulo']), mb_strtolower($buscar))
             );
+        }
+
+        // Ejercicio 07: más datos de la URL con $request
+        if ($request->filled('max')) {
+            $maximo = (float) $request->query('max');
+            $cursos = array_filter($cursos, fn (array $curso) => $curso['precio'] <= $maximo);
+        }
+
+        $ordenar = $request->query('ordenar', 'titulo');
+        if (in_array($ordenar, ['titulo', 'precio', 'horas'], true)) {
+            uasort($cursos, fn (array $a, array $b) => $a[$ordenar] <=> $b[$ordenar]);
         }
 
         return view('cursos.index', [

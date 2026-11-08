@@ -49,3 +49,23 @@ Route::get('/hoy', function () {
     return 'Hoy es ' . $hoy->isoFormat('dddd, D [de] MMMM [de] YYYY')
         . ' y son las ' . $hoy->format('H:i') . ' en ' . config('app.timezone') . '.';
 });
+
+// Ejercicio 04: si una ruta devuelve un array, Laravel lo convierte en JSON
+Route::get('/version', function () {
+    return [
+        'aplicacion' => config('app.name'),
+        'laravel' => app()->version(),
+        'php' => PHP_VERSION,
+        'entorno' => app()->environment(),
+    ];
+});
+
+// Ejercicio 05
+Route::get('/contacto-rapido', function () {
+    return view('contacto-rapido', [
+        'nombreApp' => config('app.name'),
+        'web' => config('app.url'),
+        'telefono' => config('academia.telefono'),
+        'email' => config('academia.email'),
+    ]);
+});

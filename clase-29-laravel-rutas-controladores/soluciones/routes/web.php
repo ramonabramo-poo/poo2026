@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuscarController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\ProfesorController;
@@ -22,6 +23,24 @@ Route::get('/cursos/categoria/{categoria}', [CursoController::class, 'porCategor
 Route::resource('profesores', ProfesorController::class)
     ->only(['index', 'show'])
     ->parameters(['profesores' => 'profesor']);
+
+// Ejercicio 04: tres parámetros, cada uno con su restricción
+Route::get('/calcular/{a}/{operacion}/{b}', function (int $a, string $operacion, int $b) {
+    $resultado = match ($operacion) {
+        'suma' => $a + $b,
+        'resta' => $a - $b,
+        'multiplica' => $a * $b,
+    };
+
+    return "$a $operacion $b = $resultado";
+})->whereNumber(['a', 'b'])->whereIn('operacion', ['suma', 'resta', 'multiplica']);
+
+// Ejercicio 05: un controlador de una sola acción (invocable): basta con la clase
+Route::get('/buscar', BuscarController::class)->name('buscar');
+
+// Ejercicio 06: direcciones antiguas que llevan a las nuevas por su NOMBRE
+Route::get('/catalogo', fn () => redirect()->route('cursos.index'));
+Route::permanentRedirect('/contactanos', '/contacto');
 
 // Atajos: redirigir y mostrar una vista sin controlador
 Route::redirect('/cursos-online', '/cursos');
@@ -79,4 +98,9 @@ Route::get('/info', function () {
         'versionPhp' => PHP_VERSION,
         'ahora' => now()->format('d/m/Y H:i'),
     ]);
+});
+
+// Ejercicio 08: si ninguna ruta coincide, esta es la última oportunidad (va SIEMPRE al final)
+Route::fallback(function () {
+    return response('🤷 Esta página no existe. Prueba con <a href="/cursos">el catálogo</a>.', 404);
 });

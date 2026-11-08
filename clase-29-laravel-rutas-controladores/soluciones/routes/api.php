@@ -32,3 +32,10 @@ Route::get('/cursos/{id}', function (int $id) {
 
     return $curso;
 })->whereNumber('id');
+
+// Ejercicio 10: cuántos cursos hay en cada categoría
+Route::get('/categorias', function () {
+    $categorias = array_column(config('academia.cursos'), 'categoria');
+
+    return array_count_values($categorias);
+});
