@@ -72,6 +72,13 @@ class Curso extends Model
         $consulta->where('precio', '<=', $maximo);
     }
 
+    // Ejercicio 06: los cursos de una categoría, por su slug (whereHas mira en la relación)
+    #[Scope]
+    protected function deCategoria(Builder $consulta, string $slug): void
+    {
+        $consulta->whereHas('categoria', fn (Builder $categoria) => $categoria->where('slug', $slug));
+    }
+
     // ACCESSORS Y MUTATORS
 
     // Ejercicio 03: $curso->plazas_libres (mejor si se cargó con withCount('alumnos'))

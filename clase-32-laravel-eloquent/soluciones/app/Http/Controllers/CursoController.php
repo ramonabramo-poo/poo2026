@@ -14,12 +14,14 @@ class CursoController extends Controller
     {
         $buscar = $request->query('buscar', '');
         $maximo = $request->query('max', '');  // Ejercicio 02
+        $categoria = $request->query('categoria', '');  // Ejercicio 06
 
         $cursos = Curso::publicados()
             ->with('categoria')          // carga ansiosa: evita el problema N+1
             ->withCount('alumnos')       // añade $curso->alumnos_count
             ->when($buscar !== '', fn (Builder $consulta) => $consulta->buscar($buscar))
             ->when(is_numeric($maximo), fn (Builder $consulta) => $consulta->precioMaximo((float) $maximo))
+            ->when($categoria !== '', fn (Builder $consulta) => $consulta->deCategoria($categoria))
             ->orderBy('titulo')
             ->paginate(6)
             ->withQueryString();         // los enlaces de página conservan ?buscar=

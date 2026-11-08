@@ -17,6 +17,10 @@ Route::resource('cursos', CursoController::class)->only(['index', 'show']);
 // Ejercicio 01
 Route::resource('alumnos', AlumnoController::class)->only(['index', 'show']);
 
+// Ejercicios 04 y 07 (antes que la ruta con {categoria:slug}, para que "/categorias" no choque)
+Route::get('/categorias', [CategoriaController::class, 'index'])->name('categorias.index');
+Route::get('/categorias/{categoria:slug}/alumnos', [CategoriaController::class, 'alumnos'])->name('categorias.alumnos');
+
 // Route model binding por otra columna: /categorias/programacion
 Route::get('/categorias/{categoria:slug}', [CategoriaController::class, 'show'])->name('categorias.show');
 
