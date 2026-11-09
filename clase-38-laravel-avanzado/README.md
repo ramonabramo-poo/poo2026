@@ -408,6 +408,22 @@ return view('paginas.inicio', $datos);
 
 `Cache::remember()` hace esto: «¿tengo `portada` guardado? Lo devuelvo. ¿No? Ejecuto la función, guardo el resultado 10 minutos y lo devuelvo».
 
+### Qué objetos se pueden guardar en la caché
+
+Si probáis esto tal cual, la primera visita a la portada funciona… y la segunda da un error 500. ¿Qué ha pasado? Para guardar un objeto en la caché, PHP lo convierte en texto con `serialize()`, y para recuperarlo lo reconstruye con `unserialize()`. Reconstruir objetos a partir de un texto es peligroso: si alguien consiguiera manipular ese texto, podría hacer que nuestra aplicación creara los objetos que él quisiera. Por eso, desde hace poco, Laravel **no reconstruye ningún objeto** de la caché, salvo los que le digamos expresamente. Los datos sencillos (números, textos, arrays) se guardan sin problema.
+
+Nosotros guardamos una colección de cursos, y cada curso lleva cargada su categoría, así que tenemos que permitir esas tres clases en [`config/cache.php`](ejemplos/config/cache.php):
+
+```php
+'serializable_classes' => [
+    App\Models\Curso::class,
+    App\Models\Categoria::class,
+    Illuminate\Database\Eloquent\Collection::class,
+],
+```
+
+> 💡 Cuando guardéis en la caché, preguntaos primero si os basta con datos sencillos (un número, un array con los títulos…). Si guardáis modelos, añadid su clase a esta lista. Si os sale el error *Attempt to read property … on string* o *__PHP_Incomplete_Class*, ya sabéis por dónde van los tiros.
+
 ### El problema de la caché: cuándo vaciarla
 
 Si alguien crea un curso, la portada seguiría enseñando los datos viejos durante 10 minutos. Lo arreglamos con los **eventos del modelo**: cada vez que un curso se guarda o se borra, olvidamos la portada ([`Curso.php`](ejemplos/app/Models/Curso.php)):
@@ -594,8 +610,15 @@ Las soluciones se copian dentro del proyecto, respetando sus carpetas.
 - [ ] **01 · El contacto, por correo.** Cread el *Mailable* `MensajeContacto` (que vaya siempre a la cola: `implements ShouldQueue`) con una vista Markdown, y una nueva implementación del contrato de la clase 35, `NotificadorCorreo`. Cambiad **una línea** del *provider* para que el formulario de contacto envíe correos. → [`MensajeContacto.php`](soluciones/app/Mail/MensajeContacto.php), [`mensaje-contacto.blade.php`](soluciones/resources/views/mail/mensaje-contacto.blade.php), [`NotificadorCorreo.php`](soluciones/app/Servicios/NotificadorCorreo.php) y [`AcademiaServiceProvider.php`](soluciones/app/Providers/AcademiaServiceProvider.php)
 - [ ] **02 · Probar la matrícula.** Escribid pruebas (clase 37) que comprueben que al matricular se lanza el evento (`Event::fake()` y `Event::assertDispatched()`), que el alumno recibe el correo (`Mail::fake()` y `Mail::assertSent()`), que si el curso se llena se notifica al administrador (`Notification::fake()` y `Notification::assertSentTo()`) y que sin plazas no se matricula. → [`MatriculaTest.php`](soluciones/tests/Feature/MatriculaTest.php)
 - [ ] **03 · Las categorías del menú, en caché.** El *view composer* de la clase 35 consulta las categorías en **cada** página. Guardadlas para siempre con `Cache::rememberForever()` y olvidadlas cuando una categoría se guarde o se borre. → [`AcademiaServiceProvider.php`](soluciones/app/Providers/AcademiaServiceProvider.php) y [`Categoria.php`](soluciones/app/Models/Categoria.php)
+- [ ] **04 · El informe semanal.** Cread la notificación `InformeSemanal` (por correo y en la base de datos) y el comando `academia:informe-semanal`, que se la envíe a los administradores con los cursos que empiezan esa semana y cuántos alumnos tiene cada uno. Programadlo para los lunes a las 8:00 y comprobadlo con `php artisan schedule:list`. Ojo: la notificación va a la cola; pasadle un array con los datos, no los modelos (¿por qué?). → [`InformeSemanal.php`](soluciones/app/Notifications/InformeSemanal.php) y [`routes/console.php`](soluciones/routes/console.php)
+- [ ] **05 · Anular una matrícula.** Añadid en la ficha del curso un botón «Anular» junto a cada alumno (`DELETE /cursos/{curso}/matriculas/{alumno}`) que lance un nuevo evento `AlumnoDesmatriculado`. Un oyente en la cola le enviará al alumno el correo `MatriculaAnulada`. → [`MatriculaController.php`](soluciones/app/Http/Controllers/MatriculaController.php), [`AlumnoDesmatriculado.php`](soluciones/app/Events/AlumnoDesmatriculado.php), [`EnviarAnulacionMatricula.php`](soluciones/app/Listeners/EnviarAnulacionMatricula.php), [`MatriculaAnulada.php`](soluciones/app/Mail/MatriculaAnulada.php), [`matricula-anulada.blade.php`](soluciones/resources/views/mail/matricula-anulada.blade.php), [`cursos/show.blade.php`](soluciones/resources/views/cursos/show.blade.php) y [`routes/web.php`](soluciones/routes/web.php)
+- [ ] **06 · Exportar los alumnos.** Un botón del panel encola el *job* `ExportarAlumnos`, que escribe un CSV en el disco privado (recorriendo los alumnos con `cursor()`) y, al terminar, avisa al usuario con una notificación de base de datos que trae el enlace de descarga. Si el *job* falla tras sus 3 intentos, el método `failed()` avisa también. → [`ExportarAlumnos.php`](soluciones/app/Jobs/ExportarAlumnos.php), [`ExportacionLista.php`](soluciones/app/Notifications/ExportacionLista.php), [`admin/panel.blade.php`](soluciones/resources/views/admin/panel.blade.php) y [`routes/web.php`](soluciones/routes/web.php)
+- [ ] **07 · Contar las visitas.** Llevad en la caché un contador de visitas de cada curso (`visitas.curso.{id}`) con `Cache::add()` y `Cache::increment()`, y mostradlo en la ficha («Esta ficha se ha visto 3 veces»). → [`CursoController.php`](soluciones/app/Http/Controllers/CursoController.php) y [`cursos/show.blade.php`](soluciones/resources/views/cursos/show.blade.php)
+- [ ] **08 · Un log de matrículas.** Cread en `config/logging.php` un canal diario `matriculas` y un oyente `RegistrarMatriculasEnLog` con **dos** métodos, `handleMatriculado()` y `handleDesmatriculado()`, que apunten cada alta y cada baja con el alumno, el curso y quién lo hizo. Comprobad con `php artisan event:list` que Laravel lo ha descubierto para los dos eventos. → [`RegistrarMatriculasEnLog.php`](soluciones/app/Listeners/RegistrarMatriculasEnLog.php) y [`config/logging.php`](soluciones/config/logging.php)
+- [ ] **09 · Un correo de bienvenida.** Lanzad en el registro el evento de Laravel `Illuminate\Auth\Events\Registered` y escuchadlo con un oyente propio, `EnviarBienvenida`, que le envíe al nuevo usuario la notificación `Bienvenida`. → [`RegistroController.php`](soluciones/app/Http/Controllers/Auth/RegistroController.php), [`EnviarBienvenida.php`](soluciones/app/Listeners/EnviarBienvenida.php) y [`Bienvenida.php`](soluciones/app/Notifications/Bienvenida.php)
+- [ ] **10 · Limpiar las notificaciones.** Cread el comando `academia:limpiar-notificaciones {--dias=30}`, que borre las notificaciones leídas hace más de esos días, y programadlo cada noche a las 3:00 con `withoutOverlapping()`. → [`routes/console.php`](soluciones/routes/console.php)
 
-> 🏆 **Reto:** cread el comando `academia:informe-semanal`, que envíe a los administradores una notificación con los cursos que empiezan esa semana y cuántos alumnos tiene cada uno, y programadlo para los lunes a las 8:00.
+> 🏆 **Reto:** además del recordatorio del día anterior, enviad otro una semana antes del inicio de cada curso, pero sin ningún comando nuevo: al matricular, encolad un *job* retrasado con `->delay($curso->fecha_inicio->subWeek())`. ¿Qué pasa si el alumno anula la matrícula antes de que se ejecute? Haced que el *job* lo compruebe.
 
 ---
 
