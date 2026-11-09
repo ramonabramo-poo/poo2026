@@ -20,6 +20,12 @@ class CursoController extends Controller
     {
         $porPagina = min((int) $request->query('por_pagina', 10), 50);
 
+        // Ejercicio 07: los filtros también se validan. Si algo falla, la API responde 422
+        $filtros = $request->validate([
+            'precio_max' => ['nullable', 'numeric', 'min:0'],
+            'horas_min' => ['nullable', 'integer', 'min:1'],
+        ]);
+
         $cursos = Curso::publicados()
             ->with('categoria')
             ->withCount('alumnos')
@@ -27,6 +33,8 @@ class CursoController extends Controller
             ->when($request->query('categoria'), function (Builder $consulta, string $slug) {
                 $consulta->whereRelation('categoria', 'slug', $slug);
             })
+            ->when($filtros['precio_max'] ?? null, fn (Builder $consulta, $precio) => $consulta->where('precio', '<=', $precio))
+            ->when($filtros['horas_min'] ?? null, fn (Builder $consulta, $horas) => $consulta->where('horas', '>=', $horas))
             ->tap(fn (Builder $consulta) => $this->ordenar($consulta, $request->query('orden', 'titulo')))
             ->paginate($porPagina)
             ->withQueryString();

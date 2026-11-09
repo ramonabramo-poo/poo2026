@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de cursos</title>
+    <link rel="stylesheet" href="/css/academia.css">
+</head>
+<body>
+    <!-- Ejercicio 04: una página que NO genera Laravel; solo pide datos a la API -->
+    <main>
+        <h1>📚 Catálogo de cursos</h1>
+
+        <form id="buscador" class="campo">
+            <input type="search" id="buscar" placeholder="Buscar un curso">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <p id="estado">Cargando…</p>
+        <div id="cursos"></div>
+
+        <p>
+            <button id="anterior" class="boton-secundario" disabled>← Anterior</button>
+            <button id="siguiente" class="boton-secundario" disabled>Siguiente →</button>
+        </p>
+    </main>
+
+    <script>
+        const contenedor = document.querySelector("#cursos");
+        const estado = document.querySelector("#estado");
+        const botonAnterior = document.querySelector("#anterior");
+        const botonSiguiente = document.querySelector("#siguiente");
+        let enlaces = {};
+
+        const euros = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR" });
+
+        // Pide una página a la API y la pinta
+        async function cargar(url) {
+            estado.textContent = "Cargando…";
+
+            const respuesta = await fetch(url, { headers: { Accept: "application/json" } });
+
+            if (!respuesta.ok) {
+                estado.textContent = "No se han podido cargar los cursos.";
+                return;
+            }
+
+            const json = await respuesta.json();
+            enlaces = json.links;
+
+            contenedor.innerHTML = "";
+            for (const curso of json.data) {
+                const tarjeta = document.createElement("article");
+                tarjeta.className = "tarjeta";
+                // textContent (y no innerHTML) para no ejecutar nada que venga en los datos
+                const titulo = document.createElement("h2");
+                titulo.textContent = curso.titulo;
+                const datos = document.createElement("p");
+                datos.textContent = `${curso.categoria.nombre} · ${curso.horas} horas · ${euros.format(curso.precio)}`;
+                const enlace = document.createElement("a");
+                enlace.className = "boton";
+                enlace.href = curso.enlace;
+                enlace.textContent = "Ver curso";
+                tarjeta.append(titulo, datos, enlace);
+                contenedor.append(tarjeta);
+            }
+
+            estado.textContent = `Página ${json.meta.current_page} de ${json.meta.last_page} (${json.meta.total} cursos)`;
+            botonAnterior.disabled = enlaces.prev === null;
+            botonSiguiente.disabled = enlaces.next === null;
+        }
+
+        botonAnterior.addEventListener("click", () => cargar(enlaces.prev));
+        botonSiguiente.addEventListener("click", () => cargar(enlaces.next));
+
+        document.querySelector("#buscador").addEventListener("submit", (evento) => {
+            evento.preventDefault();
+            const texto = document.querySelector("#buscar").value;
+            cargar("/api/v1/cursos?por_pagina=4&buscar=" + encodeURIComponent(texto));
+        });
+
+        cargar("/api/v1/cursos?por_pagina=4");
+    </script>
+</body>
+</html>
