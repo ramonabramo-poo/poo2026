@@ -108,7 +108,7 @@ Route::get('/edad/{edad}', function (int $edad) {
     return $edad >= 18 ? 'Eres mayor de edad' : 'Eres menor de edad';
 })->whereNumber('edad');
 
-// Rutas de la clase 27
+// Rutas de la clase 28
 Route::get('/hola', function () {
     return '¡Hola desde Laravel! 👋';
 });

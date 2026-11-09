@@ -11,7 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-// La solución del ejercicio 02 de la clase 32, ahora con un evento
+// La solución del ejercicio 02 de la clase 33, ahora con un evento
 class MatriculaController extends Controller
 {
     public function store(Request $request, Curso $curso): RedirectResponse

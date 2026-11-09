@@ -32,7 +32,7 @@ class LoginController extends Controller
                 ->onlyInput('email');
         }
 
-        // Nuevo identificador de sesión: evita la fijación de sesión (clase 12)
+        // Nuevo identificador de sesión: evita la fijación de sesión (clase 13)
         $request->session()->regenerate();
 
         $usuario = Auth::user();

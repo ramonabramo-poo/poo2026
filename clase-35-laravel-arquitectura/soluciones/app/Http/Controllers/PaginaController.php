@@ -54,7 +54,7 @@ class PaginaController extends Controller
             ->with('exito', "Gracias, {$datos['nombre']}. Os responderemos muy pronto.");
     }
 
-    // GET /admin/sistema (la antigua página /info de la clase 27)
+    // GET /admin/sistema (la antigua página /info de la clase 28)
     public function sistema(): View
     {
         return view('info', [
