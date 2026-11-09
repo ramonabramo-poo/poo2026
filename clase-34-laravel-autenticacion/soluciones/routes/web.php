@@ -37,10 +37,17 @@ Route::middleware('auth')->group(function () {
     Route::put('/perfil', [PerfilController::class, 'update'])->name('perfil.update');
     Route::put('/perfil/password', [PerfilController::class, 'cambiarPassword'])->name('perfil.password');
 
+    // Ejercicio 09
+    Route::delete('/perfil', [PerfilController::class, 'destroy'])->name('perfil.destroy');
+
+    // Ejercicio 05
+    Route::get('/mis-cursos', [CursoController::class, 'misCursos'])->middleware('can:create,App\Models\Curso')->name('mis-cursos');
+
     // Ejercicio 03
     Route::middleware('can:administrar-usuarios')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
         Route::put('/usuarios/{user}', [UsuarioController::class, 'update'])->name('usuarios.update');
+        Route::patch('/usuarios/{user}/activo', [UsuarioController::class, 'cambiarActivo'])->name('usuarios.activo');  // Ejercicio 06
     });
 });
 

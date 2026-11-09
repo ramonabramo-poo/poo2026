@@ -65,4 +65,25 @@
 
         <button type="submit">Cambiar la contraseña</button>
     </form>
+
+    {{-- Ejercicio 09 --}}
+    @unless ($usuario->esAdmin())
+        <h2>🗑️ Borrar mi cuenta</h2>
+        <p>Se borrarán tu cuenta y tu perfil. Esta acción no se puede deshacer.</p>
+
+        <form action="{{ route('perfil.destroy') }}" method="post">
+            @csrf
+            @method('DELETE')
+
+            <div class="campo">
+                <label for="password_borrar">Escribe tu contraseña para confirmar</label>
+                <input type="password" id="password_borrar" name="password_borrar">
+                @error('password_borrar')
+                    <p class="error">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <button type="submit" class="boton-peligro">Borrar mi cuenta</button>
+        </form>
+    @endunless
 @endsection

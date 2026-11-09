@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
 
@@ -50,5 +51,31 @@ class PerfilController extends Controller
         $request->user()->update(['password' => $request->input('password')]);
 
         return back()->with('exito', 'Contraseña cambiada.');
+    }
+
+    // Ejercicio 09: borrar la propia cuenta, confirmando con la contraseña
+    public function destroy(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'password_borrar' => ['required', 'current_password'],
+        ], [
+            'password_borrar.required' => 'Escribe tu contraseña para confirmar.',
+            'password_borrar.current_password' => 'La contraseña no es correcta.',
+        ]);
+
+        $usuario = $request->user();
+
+        if ($usuario->esAdmin()) {
+            return back()->with('error', 'Un administrador no puede borrar su propia cuenta.');
+        }
+
+        // Primero cerramos la sesión y después borramos (el perfil se borra en cascada)
+        Auth::logout();
+        $usuario->delete();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('inicio')->with('exito', 'Tu cuenta se ha borrado. ¡Hasta pronto!');
     }
 }

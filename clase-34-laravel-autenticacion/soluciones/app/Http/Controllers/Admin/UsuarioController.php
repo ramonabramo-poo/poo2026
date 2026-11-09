@@ -37,4 +37,17 @@ class UsuarioController extends Controller
 
         return back()->with('exito', "{$user->name} ahora es {$user->rol->etiqueta()}.");
     }
+
+    // Ejercicio 06: activar o desactivar una cuenta
+    public function cambiarActivo(Request $request, User $user): RedirectResponse
+    {
+        if ($user->is($request->user())) {
+            return back()->with('error', 'No puedes desactivar tu propia cuenta.');
+        }
+
+        $user->activo = ! $user->activo;
+        $user->save();
+
+        return back()->with('exito', "La cuenta de {$user->name} está ahora " . ($user->activo ? 'activa' : 'desactivada') . '.');
+    }
 }
