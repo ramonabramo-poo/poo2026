@@ -1,10 +1,14 @@
 <?php
 
+use App\Models\Categoria;
 use App\Models\Curso;
 use App\Servicios\CalculadoraPrecios;
+use App\Servicios\EstadisticasAcademia;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
@@ -37,13 +41,14 @@ Artisan::command('academia:cursos {--categoria=}', function () {
 })->purpose('Lista los cursos de la academia');
 
 // php artisan academia:estadisticas
-Artisan::command('academia:estadisticas', function () {
+// Ejercicio 04: las cifras salen del servicio, el mismo que usa el panel
+Artisan::command('academia:estadisticas', function (EstadisticasAcademia $estadisticas) {
     $this->info('📊 Estadísticas de la academia');
-    $this->line('Cursos: ' . DB::table('cursos')->count());
-    $this->line('Alumnos: ' . DB::table('alumnos')->count());
-    $this->line('Matrículas: ' . DB::table('alumno_curso')->count());
-    $this->line('Precio medio: ' . number_format(DB::table('cursos')->avg('precio'), 2, ',', '.') . ' €');
-    $this->line('Curso más caro: ' . DB::table('cursos')->orderByDesc('precio')->value('titulo'));
+    $this->line('Cursos: ' . $estadisticas->totalCursos());
+    $this->line('Alumnos: ' . $estadisticas->totalAlumnos());
+    $this->line('Matrículas: ' . $estadisticas->totalMatriculas());
+    $this->line('Precio medio: ' . number_format($estadisticas->precioMedio(), 2, ',', '.') . ' €');
+    $this->line('Curso más popular: ' . ($estadisticas->cursoMasPopular()?->titulo ?? '—'));
 })->purpose('Muestra unas cifras de la academia');
 
 // Ejercicio 03: php artisan academia:presupuesto 3 --descuento=10
@@ -66,3 +71,30 @@ Artisan::command('academia:presupuesto {curso} {--descuento=0}', function (Calcu
         ['Total con IVA', $calculadora->formatear($calculadora->conIva($base))],
     ]);
 })->purpose('Calcula el presupuesto de un curso');
+
+// Ejercicio 10: php artisan academia:categoria   (pregunta lo que falte)
+// La facade Validator valida datos que no vienen de una petición
+Artisan::command('academia:categoria {nombre?}', function (?string $nombre = null) {
+    $nombre ??= $this->ask('¿Cómo se llama la nueva categoría?');
+
+    $validador = Validator::make(['nombre' => $nombre], [
+        'nombre' => ['required', 'string', 'min:3', 'max:60', 'unique:categorias,nombre'],
+    ]);
+
+    if ($validador->fails()) {
+        $this->error($validador->errors()->first('nombre'));
+
+        return 1;
+    }
+
+    $slug = Str::slug($nombre);
+
+    if (! $this->confirm("Se creará «{$nombre}» con la dirección /categorias/{$slug}. ¿Seguimos?", true)) {
+        $this->warn('No se ha creado nada.');
+
+        return 0;
+    }
+
+    Categoria::create(['nombre' => $nombre, 'slug' => $slug]);
+    $this->info('✅ Categoría creada.');
+})->purpose('Crea una categoría desde la consola');
