@@ -303,6 +303,55 @@ echo "Precio con IVA: " . $precio * (1 + IVA);   // 121
 
 📄 Ejemplo: [`06-var-dump-comillas-constantes.php`](ejemplos/06-var-dump-comillas-constantes.php)
 
+### `const` o `define()`: ¿cuál uso?
+
+Las dos crean constantes y las dos se usan igual (`IVA`, `NOMBRE_WEB`), pero no son lo mismo [9]:
+
+- **`const`** es una palabra del lenguaje, como `if` o `echo`. PHP la lee **antes** de ejecutar nada, así que tiene que ir «suelta» en el código, en el nivel principal del archivo.
+- **`define()`** es una **función**, así que se ejecuta cuando le llega el turno, como cualquier otra instrucción. Por eso puede ir dentro de un `if`, y su nombre y su valor se pueden calcular.
+
+```php
+<?php
+const IVA = 0.21;
+const PRECIO_ENVIO = 4.95;
+const TOTAL_MINIMO = PRECIO_ENVIO * 10;   // const puede usar otras constantes
+
+define("VERSION", "1.0");
+
+// Dentro de un if solo vale define(): con const, PHP da un error de sintaxis
+if (date("G") < 14) {
+    define("SALUDO", "Buenos días");
+} else {
+    define("SALUDO", "Buenas tardes");
+}
+
+define("ANIO_ACTUAL", (int) date("Y"));   // un valor que sale de una función
+
+$idioma = "ES";
+define("MONEDA_" . $idioma, "€");          // un nombre construido: MONEDA_ES
+
+echo SALUDO . " y bienvenidos (versión " . VERSION . ")";
+
+if (defined("IVA")) {                      // ¿existe la constante?
+    echo "El IVA es del " . IVA * 100 . " %";
+}
+```
+
+| | `const` | `define()` |
+|---|---|---|
+| Qué es | Una palabra del lenguaje | Una función |
+| Cuándo se crea | Antes de ejecutar el programa | Al llegar a esa línea |
+| Dentro de un `if`, un bucle o una función | ❌ Error de sintaxis | ✅ Sí |
+| Nombre calculado (`"MONEDA_" . $idioma`) | ❌ No | ✅ Sí |
+| Valor | Fijo o una operación con otras constantes | Cualquier valor, también el resultado de una función |
+| Dentro de una clase (clase 17) | ✅ Sí: `const IVA = 0.21;` | ❌ No |
+
+En los dos casos, una vez creada, la constante **no se puede cambiar** ni volver a definir. Y para saber si existe, `defined("NOMBRE")`.
+
+> 💡 **Mi consejo:** usad **`const`** siempre que podáis: se lee mejor, PHP la conoce desde el principio y es la que usaréis dentro de las clases. Dejad `define()` para cuando la necesitéis de verdad, por ejemplo para crear una constante solo si se cumple una condición.
+
+📄 Ejemplo: [`07-const-o-define.php`](ejemplos/07-const-o-define.php)
+
 ### ✅ Dos pruebas para comprobarlo
 
 | Haced esto | Debéis obtener |
@@ -348,7 +397,7 @@ $saludo .= "!";                  // añade al final → Hola, Pedro!
 | `!==` | Distinto valor o tipo | `5 !== "5"` | `true` |
 | `<` `>` `<=` `>=` | Menor, mayor… | `5 >= 5` | `true` |
 
-📄 Ejemplo: [`07-operadores.php`](ejemplos/07-operadores.php)
+📄 Ejemplo: [`08-operadores.php`](ejemplos/08-operadores.php)
 
 ---
 
@@ -417,7 +466,7 @@ $edad = 16;
 $mensaje = ($edad >= 18) ? "Mayor de edad" : "Menor de edad";
 ```
 
-📄 Ejemplo: [`08-condicionales.php`](ejemplos/08-condicionales.php)
+📄 Ejemplo: [`09-condicionales.php`](ejemplos/09-condicionales.php)
 
 > ⚠️ **Fijaos:** `=` asigna y `===` compara. Escribir `if ($x = 5)` no compara: guarda un 5 en `$x` y la condición siempre se cumple.
 
@@ -463,7 +512,7 @@ echo $texto;   // Página no encontrada
 | Devuelve un valor | No | Sí |
 | Sintaxis alternativa | Sí: `endswitch;` | No: solo llaves |
 
-📄 Ejemplo: [`09-switch-match.php`](ejemplos/09-switch-match.php)
+📄 Ejemplo: [`10-switch-match.php`](ejemplos/10-switch-match.php)
 
 > ⚠️ **Fijaos:** sin `break`, `switch` sigue ejecutando los `case` de debajo.
 
@@ -502,7 +551,7 @@ while ($cuenta > 0) {
 
 > 🔁 **Fijaos:** si la condición nunca deja de cumplirse (por ejemplo, olvidáis `$cuenta--`), creáis un **bucle infinito** y la página se queda cargando.
 
-📄 Ejemplo: [`10-bucles.php`](ejemplos/10-bucles.php)
+📄 Ejemplo: [`11-bucles.php`](ejemplos/11-bucles.php)
 
 ### foreach, do…while, break y continue
 
@@ -527,7 +576,7 @@ for ($i = 1; $i <= 10; $i++) {
 
 `break` sale del bucle al momento; `continue` salta a la siguiente vuelta. `do…while` es el único bucle que **no tiene sintaxis alternativa**.
 
-📄 Ejemplo: [`11-mas-bucles.php`](ejemplos/11-mas-bucles.php)
+📄 Ejemplo: [`12-mas-bucles.php`](ejemplos/12-mas-bucles.php)
 
 ### ✅ Dos pruebas para comprobarlo
 
@@ -564,7 +613,7 @@ Todas las estructuras de bloque admiten las dos formas, salvo `do…while` y `ma
 <?php endif; ?>
 ```
 
-📄 Ejemplo: [`12-sintaxis-alternativa-html.php`](ejemplos/12-sintaxis-alternativa-html.php)
+📄 Ejemplo: [`13-sintaxis-alternativa-html.php`](ejemplos/13-sintaxis-alternativa-html.php)
 
 ### Reglas que debéis recordar
 
@@ -618,7 +667,7 @@ foreach ($alumnos as $a) {
 | `implode()` | Une en un texto | `implode(", ", $colores)` |
 | `print_r()` | Muestra todo el array | `print_r($alumno)` |
 
-📄 Ejemplo: [`13-arrays.php`](ejemplos/13-arrays.php)
+📄 Ejemplo: [`14-arrays.php`](ejemplos/14-arrays.php)
 
 ---
 
@@ -663,7 +712,7 @@ function esMayorDeEdad(int $edad): bool {
 }
 ```
 
-📄 Ejemplo: [`14-funciones.php`](ejemplos/14-funciones.php)
+📄 Ejemplo: [`15-funciones.php`](ejemplos/15-funciones.php)
 
 > 💡 El cuerpo de una función **siempre se escribe con llaves**. La sintaxis alternativa solo existe para `if`, `switch` y los bucles.
 
@@ -697,7 +746,7 @@ pruebaBien($mensaje);
 | `rand()` | Número aleatorio | `rand(1, 6)` |
 | `isset()` | ¿Existe y no es `null`? | `isset($_POST["email"])` |
 
-📄 Ejemplo: [`15-ambito-funciones-internas.php`](ejemplos/15-ambito-funciones-internas.php)
+📄 Ejemplo: [`16-ambito-funciones-internas.php`](ejemplos/16-ambito-funciones-internas.php)
 
 ### ✅ Dos pruebas para comprobarlo
 
@@ -723,13 +772,81 @@ PHP recibe los datos de un formulario en dos arrays especiales: **`$_GET`** y **
 | GET | En la URL: `buscar.php?q=php` | Búsquedas y filtros que se pueden compartir |
 | POST | Ocultos en la petición | Registros, contraseñas y datos que cambian algo |
 
-### Primero, con dos páginas: una pregunta y otra responde
+### El ejemplo más sencillo con GET
 
-La forma más fácil de entenderlo es con **dos archivos**: uno con el formulario y otro que recibe los datos. El atributo **`action`** del formulario dice a qué página se envían:
+Empezamos con **dos archivos**: uno con el formulario y otro que recibe los datos. El atributo **`action`** dice a qué página se envían, y **`method`**, cómo:
 
 ```html
-<!-- 17-formulario-saludo.html: la página que PREGUNTA -->
-<form action="18-recibir-saludo.php" method="post">
+<!-- 17-formulario-get.html: la página que PREGUNTA -->
+<form action="18-recibir-get.php" method="get">
+    Nombre: <input type="text" name="nombre">
+    Ciudad: <input type="text" name="ciudad">
+    <button type="submit">Enviar</button>
+</form>
+```
+
+```php
+<?php
+// 18-recibir-get.php: la página que RESPONDE
+echo "Hola, " . $_GET["nombre"] . "<br>";
+echo "Vives en " . $_GET["ciudad"];
+```
+
+Escribid vuestro nombre y vuestra ciudad, pulsad **Enviar** y mirad la barra de direcciones:
+
+```text
+http://php-basico.test/18-recibir-get.php?nombre=Ana&ciudad=Santander
+```
+
+Después del `?` van los datos: `nombre=Ana` y `ciudad=Santander`, separados por `&`. Cada `name` del formulario se convierte en una clave de `$_GET`. Como están en la URL, podéis cambiarlos a mano, guardar la dirección en favoritos o enviársela a alguien.
+
+📄 Ejemplos: [`17-formulario-get.html`](ejemplos/17-formulario-get.html) y [`18-recibir-get.php`](ejemplos/18-recibir-get.php)
+
+### El mismo ejemplo con POST
+
+Solo cambian dos cosas: `method="post"` en el formulario y `$_POST` en lugar de `$_GET` en la página que recibe.
+
+```html
+<!-- 19-formulario-post.html -->
+<form action="20-recibir-post.php" method="post">
+    Usuario: <input type="text" name="usuario">
+    Contraseña: <input type="password" name="clave">
+    <button type="submit">Entrar</button>
+</form>
+```
+
+```php
+<?php
+// 20-recibir-post.php
+echo "Usuario: " . $_POST["usuario"] . "<br>";
+echo "La contraseña tiene " . strlen($_POST["clave"]) . " caracteres";
+```
+
+Ahora la URL es solo `20-recibir-post.php`: los datos viajan **dentro** de la petición. ¿Os imagináis la contraseña escrita en la barra de direcciones (y en el historial) con GET? Por eso los formularios de acceso, de registro o los que cambian algo van siempre por POST.
+
+> 🔍 Para verlos, abrid las herramientas del navegador (**F12**), pestaña **Red**, pulsad sobre la petición y mirad la sección **Carga** (*Payload*). POST oculta los datos de la URL, pero **no los cifra**: eso lo hace HTTPS.
+
+📄 Ejemplos: [`19-formulario-post.html`](ejemplos/19-formulario-post.html) y [`20-recibir-post.php`](ejemplos/20-recibir-post.php)
+
+### Dos problemas: los espacios y el HTML que escribe el usuario
+
+Estos dos ejemplos funcionan, pero son muy confiados. Probad estas tres cosas:
+
+1. Abrid `18-recibir-get.php` directamente, sin pasar por el formulario: PHP avisa con un *Warning: Undefined array key "nombre"*, porque esa clave no existe.
+2. Escribid `   Ana   ` con espacios delante y detrás: llegan tal cual.
+3. Escribid `<b>Ana</b>` como nombre: ¡sale en negrita! El navegador ha interpretado vuestro texto como HTML. Si en lugar de `<b>` alguien escribe un `<script>`, se ejecutaría: es un ataque **XSS**.
+
+Tres herramientas lo arreglan, y a partir de ahora las usaremos siempre:
+
+| Herramienta | Qué hace |
+|---|---|
+| `$_POST["nombre"] ?? ""` | Si la clave no existe, usa un texto vacío y no hay aviso |
+| `trim()` | Quita los espacios del principio y del final |
+| `htmlspecialchars()` | Convierte `<` en `&lt;`, `>` en `&gt;`…: el texto se ve, pero no se ejecuta [5] |
+
+```html
+<!-- 21-formulario-saludo.html -->
+<form action="22-recibir-saludo.php" method="post">
     Nombre: <input type="text" name="nombre">
     <button type="submit">Saludar</button>
 </form>
@@ -737,23 +854,136 @@ La forma más fácil de entenderlo es con **dos archivos**: uno con el formulari
 
 ```php
 <?php
-// 18-recibir-saludo.php: la página que RESPONDE
+// 22-recibir-saludo.php
 $nombre = trim($_POST["nombre"] ?? "");
 ?>
 <?php if ($nombre === ""): ?>
-    <p>No has escrito tu nombre. <a href="17-formulario-saludo.html">Volver</a></p>
+    <p>No has escrito tu nombre. <a href="21-formulario-saludo.html">Volver</a></p>
 <?php else: ?>
     <p>¡Hola, <?php echo htmlspecialchars($nombre); ?>! 👋</p>
 <?php endif; ?>
 ```
 
-📄 Ejemplos: [`17-formulario-saludo.html`](ejemplos/17-formulario-saludo.html) y [`18-recibir-saludo.php`](ejemplos/18-recibir-saludo.php)
+📄 Ejemplos: [`21-formulario-saludo.html`](ejemplos/21-formulario-saludo.html) y [`22-recibir-saludo.php`](ejemplos/22-recibir-saludo.php)
 
-Fijaos en la barra de direcciones: al enviar, **cambiáis de página**. Funciona, pero si hay un error, el usuario tiene que volver atrás y puede perder lo que había escrito. Por eso, en los dos ejemplos siguientes, el formulario se envía **a sí mismo**: sin `action`, la misma página pregunta y responde. En la clase 12 compararemos con calma las dos formas y veremos cómo separar «lo que decide» de «lo que se ve», la idea que acabará siendo el MVC.
+Fijaos en que, al enviar, **cambiáis de página**. Si hay un error, el usuario tiene que volver atrás y puede perder lo que había escrito. Por eso, en los ejemplos siguientes, el formulario se envía **a sí mismo**: sin `action`, la misma página pregunta y responde. En la clase 12 compararemos con calma las dos formas y veremos cómo separar «lo que decide» de «lo que se ve», la idea que acabará siendo el MVC.
 
-### Un formulario GET
+### ¿Se ha enviado el formulario? Con `REQUEST_METHOD`
 
-Un buscador sencillo. Fijaos en cómo aparece lo que escribís en la barra de direcciones:
+Cuando la misma página muestra el formulario y lo procesa, necesita saber en qué momento está: ¿acabamos de llegar o nos han enviado datos? `$_SERVER["REQUEST_METHOD"]` dice con qué método se ha pedido la página. La primera vez que entramos es `GET` (escribir una dirección o pulsar un enlace siempre es GET) y, al pulsar el botón de un formulario POST, es `POST`:
+
+```php
+<?php
+$mensaje = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $nombre = trim($_POST["nombre"] ?? "");
+    $mensaje = "Formulario recibido. Hola, " . htmlspecialchars($nombre) . ".";
+}
+?>
+<?php if ($mensaje !== ""): ?>
+    <p><?php echo $mensaje; ?></p>
+<?php else: ?>
+    <p>Todavía no has enviado el formulario.</p>
+<?php endif; ?>
+
+<form method="post">
+    Nombre: <input type="text" name="nombre">
+    <button type="submit">Enviar</button>
+</form>
+```
+
+📄 Ejemplo: [`23-enviado-post.php`](ejemplos/23-enviado-post.php)
+
+¿Y con GET? Aquí está la trampa: **con GET no sirve**. Al entrar en la página, el método es `GET`, y al enviar el formulario… también es `GET`. Lo que cambia es que, al enviar, `$_GET` trae los campos. Así que preguntamos si existe uno con **`isset()`**:
+
+```php
+<?php
+$mensaje = "";
+
+// Al entrar, $_GET está vacío; al enviar, trae "nombre" (aunque esté en blanco)
+if (isset($_GET["nombre"])) {
+    $nombre = trim($_GET["nombre"]);
+    $mensaje = "Formulario recibido. Hola, " . htmlspecialchars($nombre) . ".";
+}
+
+$metodo = $_SERVER["REQUEST_METHOD"];   // "GET" al entrar y "GET" al enviar
+?>
+<p>Método de esta petición: <strong><?php echo $metodo; ?></strong></p>
+<!-- ...el mismo mensaje y el mismo formulario, con method="get" -->
+```
+
+📄 Ejemplo: [`24-enviado-get.php`](ejemplos/24-enviado-get.php)
+
+### ¿Se ha enviado el formulario? Con el `name` del botón
+
+Hay otra forma muy habitual, y funciona igual con los dos métodos: ponerle un **`name` al botón**. El botón pulsado también se envía con el formulario, así que su clave solo existe en `$_POST` (o en `$_GET`) cuando alguien lo ha pulsado:
+
+```php
+<?php
+$mensaje = "";
+
+if (isset($_POST["enviar"])) {     // ¿se ha pulsado el botón "enviar"?
+    $nombre = trim($_POST["nombre"] ?? "");
+    $mensaje = "Has pulsado «Enviar». Hola, " . htmlspecialchars($nombre) . ".";
+}
+?>
+<?php if ($mensaje !== ""): ?>
+    <p><?php echo $mensaje; ?></p>
+<?php endif; ?>
+
+<form method="post">
+    Nombre: <input type="text" name="nombre">
+    <button type="submit" name="enviar">Enviar</button>
+</form>
+```
+
+📄 Ejemplo: [`25-boton-post.php`](ejemplos/25-boton-post.php)
+
+Con GET es igual, cambiando `$_POST` por `$_GET` y `method="post"` por `method="get"`. Al enviar, veréis el botón en la URL: `26-boton-get.php?nombre=Ana&enviar=`.
+
+📄 Ejemplo: [`26-boton-get.php`](ejemplos/26-boton-get.php)
+
+| Forma de comprobarlo | Con POST | Con GET |
+|---|---|---|
+| `$_SERVER["REQUEST_METHOD"] === "POST"` | ✅ | ❌ Siempre es GET |
+| `isset($_GET["campo"])` / `isset($_POST["campo"])` | ✅ | ✅ |
+| `isset($_POST["boton"])` con `name` en el botón | ✅ | ✅ |
+
+### Un formulario con varios botones
+
+La ventaja del `name` en el botón se ve cuando hay **varios**: solo llega el que se ha pulsado, así que sabemos qué quería hacer el usuario.
+
+```php
+<?php
+$numero1 = (float) ($_POST["numero1"] ?? 0);
+$numero2 = (float) ($_POST["numero2"] ?? 0);
+$resultado = "";
+
+if (isset($_POST["sumar"])) {
+    $resultado = "$numero1 + $numero2 = " . ($numero1 + $numero2);
+} elseif (isset($_POST["restar"])) {
+    $resultado = "$numero1 - $numero2 = " . ($numero1 - $numero2);
+} elseif (isset($_POST["multiplicar"])) {
+    $resultado = "$numero1 × $numero2 = " . ($numero1 * $numero2);
+}
+?>
+<form method="post">
+    <input type="number" step="any" name="numero1" value="<?php echo $numero1; ?>">
+    <input type="number" step="any" name="numero2" value="<?php echo $numero2; ?>">
+    <button type="submit" name="sumar">Sumar</button>
+    <button type="submit" name="restar">Restar</button>
+    <button type="submit" name="multiplicar">Multiplicar</button>
+</form>
+```
+
+Todo lo que llega de un formulario es **texto**, aunque el campo sea `type="number"`: por eso convertimos con `(float)` antes de operar. Y fijaos en el `value` de los campos: así los números siguen ahí después de calcular.
+
+📄 Ejemplo: [`27-calculadora-dos-botones.php`](ejemplos/27-calculadora-dos-botones.php)
+
+### Un buscador con GET que recuerda lo escrito
+
+Un buscador sencillo que se envía a sí mismo. Aquí no hace falta `isset()`: con `?? ""`, al entrar `$q` vale un texto vacío y no mostramos nada. Fijaos en el `value` de la caja: después de buscar, lo que habíais escrito sigue ahí.
 
 ```php
 <?php
@@ -769,7 +999,37 @@ $q = trim($_GET["q"] ?? "");
 <?php endif; ?>
 ```
 
-📄 Ejemplo: [`16-buscar-get.php`](ejemplos/16-buscar-get.php)
+📄 Ejemplo: [`28-buscar-get.php`](ejemplos/28-buscar-get.php)
+
+### Otros tipos de campos
+
+Hasta ahora solo hemos usado cajas de texto, pero un formulario tiene muchos más campos. Cada uno llega a PHP de una forma:
+
+| Campo | Qué llega | Si no se marca |
+|---|---|---|
+| `<input type="radio" name="nivel" value="...">` | El `value` del elegido | No llega nada |
+| `<input type="checkbox" name="temas[]" value="...">` | Un **array** con los `value` marcados (por los `[]` del `name`) | No llega nada |
+| `<select name="horario">` | El `value` de la opción elegida | Siempre llega una |
+| `<textarea name="comentario">` | El texto, con sus saltos de línea | Llega vacío |
+
+```php
+<?php
+$enviado = isset($_POST["enviar"]);
+
+$nivel = $_POST["nivel"] ?? "";              // radio
+$temas = $_POST["temas"] ?? [];              // casillas: un array
+$horario = $_POST["horario"] ?? "mañana";    // desplegable
+$comentario = trim($_POST["comentario"] ?? "");
+?>
+<?php if ($enviado): ?>
+    <p>Temas: <?php echo count($temas) > 0 ? htmlspecialchars(implode(", ", $temas)) : "ninguno"; ?></p>
+    <p>Comentario: <?php echo nl2br(htmlspecialchars($comentario)); ?></p>
+<?php endif; ?>
+```
+
+`implode()` une los elementos de un array con el texto que le digáis, y `nl2br()` convierte los saltos de línea del `textarea` en `<br>`. Fijaos en el orden: **primero** `htmlspecialchars()` y **después** `nl2br()`; al revés, el `<br>` también se escaparía y se vería como texto.
+
+📄 Ejemplo: [`29-encuesta.php`](ejemplos/29-encuesta.php)
 
 ### Un formulario POST con validación
 
@@ -807,7 +1067,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <?php endif; ?>
 ```
 
-📄 Ejemplo: [`19-contacto.php`](ejemplos/19-contacto.php)
+📄 Ejemplo: [`30-contacto.php`](ejemplos/30-contacto.php)
 
 ### ¿Qué hace cada parte?
 
@@ -825,11 +1085,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 - **Escapad al mostrar.** Si alguien escribe `<script>` en su nombre y lo mostráis sin `htmlspecialchars()`, el navegador lo ejecuta. Es un ataque **XSS**.
 - **Volved a rellenar los campos** con lo que escribió el usuario cuando hay errores, para que no tenga que repetirlo.
 
-### ✅ Dos pruebas para comprobarlo
+### ✅ Pruebas para comprobarlo
 
 | Haced esto | Debéis obtener |
 |---|---|
-| Enviad el formulario vacío | Los dos mensajes de error en rojo |
+| Enviad `17-formulario-get.html` y luego cambiad el nombre en la URL | El saludo cambia sin volver a usar el formulario |
+| Abrid `24-enviado-get.php` y enviadlo | El método es `GET` las dos veces, pero solo la segunda dice «Formulario recibido» |
+| Pulsad «Restar» en la calculadora con 7 y 2,5 | 7 - 2.5 = 4.5, y los dos números siguen en sus cajas |
+| Enviad `30-contacto.php` vacío | Los dos mensajes de error en rojo |
 | Escribid `<b>Ana</b>` como nombre y un email válido | Gracias, `<b>Ana</b>`. (con las etiquetas visibles, no en negrita) |
 
 > ⚠️ **Fijaos:** el atributo `name` del input y la clave de `$_POST` deben coincidir exactamente, mayúsculas incluidas.
@@ -859,7 +1122,7 @@ ini_set("display_errors", 1);
 error_reporting(E_ALL);
 ```
 
-📄 Ejemplo: [`20-mostrar-errores.php`](ejemplos/20-mostrar-errores.php)
+📄 Ejemplo: [`31-mostrar-errores.php`](ejemplos/31-mostrar-errores.php)
 
 O de forma permanente: clic derecho en Laragon → **PHP → php.ini**, poned `display_errors = On`, guardad y pulsad **Recargar**.
 
@@ -908,7 +1171,7 @@ INSERT INTO alumnos (nombre, email, nota) VALUES
 
 📄 Ejemplo: [`bd/academia.sql`](ejemplos/bd/academia.sql)
 
-### La conexión
+### Los datos de la conexión
 
 | Dato | Valor en Laragon |
 |---|---|
@@ -917,6 +1180,70 @@ INSERT INTO alumnos (nombre, email, nota) VALUES
 | Usuario / contraseña | `root` / vacía |
 | Base de datos | `academia` |
 | Juego de caracteres | `utf8mb4` |
+
+### Paso 1: la conexión más sencilla
+
+Empezamos con lo mínimo: conectar y leer la tabla, en un solo archivo y sin nada más.
+
+```php
+<?php
+// Conectar: tipo de base de datos, servidor, nombre de la base y caracteres; usuario; contraseña
+$pdo = new PDO("mysql:host=localhost;dbname=academia;charset=utf8mb4", "root", "");
+
+echo "<p>¡Conectados con MySQL!</p>";
+
+// Pedir datos con una consulta SQL fija
+$consulta = $pdo->query("SELECT nombre, email, nota FROM alumnos");
+
+// Recorrer las filas: cada una es un array con los datos de un alumno
+foreach ($consulta as $fila) {
+    echo $fila["nombre"] . " (" . $fila["email"] . "): " . $fila["nota"] . "<br>";
+}
+```
+
+📄 Ejemplo: [`bd/conexion-sencilla.php`](ejemplos/bd/conexion-sencilla.php)
+
+| Pieza | Qué hace |
+|---|---|
+| `new PDO(...)` | Abre la conexión. Desde ahora, `$pdo` es nuestra «línea directa» con MySQL |
+| `"mysql:host=...;dbname=...;charset=..."` | El **DSN**: a qué base de datos nos conectamos y cómo |
+| `$pdo->query("SELECT ...")` | Envía la consulta a MySQL y nos devuelve el resultado |
+| `foreach ($consulta as $fila)` | Recorre las filas una a una, como un array |
+
+Ahora cambiad `dbname=academia` por `dbname=academiaa` y recargad: aparece un **error fatal** (*Fatal error: Uncaught PDOException… Unknown database*) con un montón de líneas que el usuario no debería ver, y el programa se detiene ahí.
+
+### Paso 2: controlar el error con try/catch
+
+Con **`try` / `catch`** [10] le decimos a PHP: «intenta hacer esto (`try`) y, si algo falla, en lugar de detenerte con un error, haz esto otro (`catch`)». En la clase 14 lo veremos a fondo; de momento, basta con esta idea:
+
+```php
+<?php
+try {
+    $pdo = new PDO("mysql:host=localhost;dbname=academia;charset=utf8mb4", "root", "");
+
+    echo "<p>¡Conectados con MySQL!</p>";
+
+    $consulta = $pdo->query("SELECT nombre, nota FROM alumnos");
+
+    foreach ($consulta as $fila) {
+        echo $fila["nombre"] . ": " . $fila["nota"] . "<br>";
+    }
+} catch (PDOException $e) {
+    // Si la conexión o la consulta fallan, llegamos aquí
+    echo "<p>No se ha podido conectar con la base de datos.</p>";
+    echo "<p>Motivo: " . $e->getMessage() . "</p>";
+}
+```
+
+📄 Ejemplo: [`bd/conexion-try-catch.php`](ejemplos/bd/conexion-try-catch.php)
+
+Repetid la prueba con `dbname=academiaa`: ahora sale nuestro mensaje y el motivo (*Unknown database 'academiaa'*). `$e` es la **excepción**, un objeto con la información del error, y `getMessage()` nos da su descripción.
+
+> 🔐 Mostrar `getMessage()` está bien mientras aprendéis, pero en una web publicada no: puede dar pistas sobre vuestro servidor. Allí se enseña un mensaje genérico y el detalle se guarda en un registro.
+
+### Paso 3: la conexión completa, en su propio archivo
+
+En un proyecto real, la conexión se escribe **una sola vez** en un archivo, `conexion.php`, que incluyen todos los demás. Y le añadimos dos opciones que nos harán la vida más fácil:
 
 ```php
 <?php
@@ -936,11 +1263,11 @@ try {
 
 | Pieza | Qué hace |
 |---|---|
-| `$dsn` | Indica el tipo de base de datos, el servidor, la base y los caracteres |
-| `new PDO(...)` | Abre la conexión: recibe el DSN, el usuario, la contraseña y opciones |
-| `ERRMODE_EXCEPTION` | Si una consulta falla, PHP lanza una excepción en vez de callar |
+| `$dsn` | El mismo texto de antes, guardado en una variable para que se lea mejor |
+| `new PDO(...)` | Abre la conexión: recibe el DSN, el usuario, la contraseña y un array de **opciones** |
+| `ERRMODE_EXCEPTION` | Si algo falla, PHP lanza una excepción que recogemos con `catch` (en PHP 8 ya es así por defecto, pero lo dejamos escrito para que se vea) |
 | `FETCH_ASSOC` | Cada fila llega como array asociativo: `$fila["nombre"]` |
-| `try / catch` | Captura el fallo de conexión y muestra un mensaje |
+| `die()` | Muestra el mensaje y detiene el programa: sin conexión, no tiene sentido seguir |
 
 > 🔐 `root` sin contraseña solo vale en vuestro equipo. En un servidor real se crea un usuario propio con los permisos justos.
 
@@ -958,7 +1285,7 @@ echo "Conexión correcta con MySQL " . $pdo->getAttribute(PDO::ATTR_SERVER_VERSI
 
 ### Leer datos
 
-PDO ofrece dos caminos: `query()` para consultas fijas y `prepare()` con `execute()` cuando intervienen valores variables.
+Con `conexion.php` listo, cada script empieza con un `require` y se centra en lo suyo. PDO ofrece dos caminos: `query()`, el que hemos usado hasta ahora, para consultas fijas, y `prepare()` con `execute()` cuando en la consulta intervienen valores variables.
 
 ```php
 <?php
@@ -1049,6 +1376,8 @@ Juntamos todo lo aprendido: un formulario que **añade alumnos** a la base de da
 
 | Haced esto | Debéis obtener |
 |---|---|
+| Abrid `conexion-sencilla.php` | ¡Conectados con MySQL! y la lista de alumnos |
+| Cambiad en `conexion-try-catch.php` el nombre de la base por `academiaa` | Vuestro mensaje con el motivo: *Unknown database* |
 | Abrid `probar.php` | Conexión correcta y la versión de MySQL |
 | Enviad en `alumnos.php` un nombre y un email válidos | El alumno aparece en la lista y en HeidiSQL (F5) |
 | Enviad el formulario vacío | Dos mensajes de error y no se inserta nada |
@@ -1095,14 +1424,18 @@ Cread un archivo por ejercicio dentro de `C:\laragon\www\php-basico` y probadlo 
 | **phpinfo()** | Función que muestra la configuración y las extensiones de PHP en el servidor |
 | **Variable** | Espacio con nombre que guarda un dato; empieza por `$` |
 | **Constante** | Valor con nombre que no cambia durante la ejecución |
+| **`const` / `define()`** | Las dos formas de crear una constante: `const` va en el nivel principal del código; `define()` es una función y puede ir dentro de un `if` |
 | **Sintaxis alternativa** | Forma de escribir `if`, `for`, `while`… con `:` y `endif;`, `endfor;`… en lugar de llaves |
 | **Array** | Varios valores guardados en una misma variable |
 | **Función** | Bloque de código reutilizable con nombre |
 | **Parámetro** | Dato que recibe una función |
 | **Superglobal** | Variable disponible en todo el script: `$_GET`, `$_POST`, `$_SERVER` |
+| **`isset()`** | Pregunta si una variable o una clave de un array existe (y no es `null`) |
+| **`REQUEST_METHOD`** | Clave de `$_SERVER` con el método de la petición: `GET` o `POST` |
 | **XSS** | Ataque que inyecta código en una página a través de datos del usuario |
 | **PDO** | Extensión de PHP para conectar con bases de datos como MySQL |
 | **DSN** | Cadena que indica a PDO qué base de datos, servidor y caracteres usar |
+| **try / catch** | Bloque que intenta ejecutar un código y, si lanza una excepción, la recoge en lugar de detener el programa |
 | **Consulta preparada** | Consulta SQL con marcadores (`:id`) a los que se envían los valores aparte |
 | **Inyección SQL** | Ataque que altera una consulta a través de datos del usuario mal tratados |
 
@@ -1123,3 +1456,5 @@ Cread un archivo por ejercicio dentro de `C:\laragon\www\php-basico` y probadlo 
 6. [Manual de PHP: PDO (PHP Data Objects)](https://www.php.net/manual/es/book.pdo.php)
 7. [Manual de PHP: sentencias preparadas y procedimientos almacenados](https://www.php.net/manual/es/pdo.prepared-statements.php)
 8. [Manual de PHP: etiquetas de PHP](https://www.php.net/manual/es/language.basic-syntax.phptags.php)
+9. [Manual de PHP: sintaxis de las constantes (`const` y `define()`)](https://www.php.net/manual/es/language.constants.syntax.php)
+10. [Manual de PHP: excepciones (`try` y `catch`)](https://www.php.net/manual/es/language.exceptions.php)
