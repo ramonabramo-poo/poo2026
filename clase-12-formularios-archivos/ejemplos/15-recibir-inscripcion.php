@@ -32,7 +32,7 @@ if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
             <?php endforeach; ?>
         </ul>
         <!-- El usuario tiene que volver atrás… y puede que lo escrito se haya perdido -->
-        <p><a href="01-formulario.html">← Volver al formulario</a></p>
+        <p><a href="14-inscripcion.html">← Volver al formulario</a></p>
     <?php endif; ?>
 </body>
 </html>

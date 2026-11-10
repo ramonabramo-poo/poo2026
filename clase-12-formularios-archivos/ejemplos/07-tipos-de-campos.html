@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tipos de campos</title>
+</head>
+<body>
+    <h1>Ficha de inscripción</h1>
+
+    <form action="08-recibir-campos.php" method="post">
+        <p>
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre">
+        </p>
+        <p>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email">
+        </p>
+        <p>
+            <label for="edad">Edad</label>
+            <input type="number" id="edad" name="edad" min="16" max="99">
+        </p>
+        <p>
+            <label for="fecha">Fecha de inicio</label>
+            <input type="date" id="fecha" name="fecha">
+        </p>
+
+        <p>Turno:</p>
+        <!-- radio: todos con el MISMO name; solo se puede marcar uno -->
+        <label><input type="radio" name="turno" value="mañana"> Mañana</label>
+        <label><input type="radio" name="turno" value="tarde"> Tarde</label>
+
+        <p>Lenguajes que conoces:</p>
+        <!-- Varias casillas con el mismo name terminado en [] llegan como un array -->
+        <label><input type="checkbox" name="lenguajes[]" value="HTML"> HTML</label>
+        <label><input type="checkbox" name="lenguajes[]" value="CSS"> CSS</label>
+        <label><input type="checkbox" name="lenguajes[]" value="JavaScript"> JavaScript</label>
+
+        <p>
+            <label for="ciudad">Ciudad</label>
+            <select id="ciudad" name="ciudad">
+                <option value="">— Elige —</option>
+                <option value="santander">Santander</option>
+                <option value="torrelavega">Torrelavega</option>
+                <option value="online">Online</option>
+            </select>
+        </p>
+
+        <p>
+            <label for="comentario">Comentario</label><br>
+            <textarea id="comentario" name="comentario" rows="4" cols="40"></textarea>
+        </p>
+
+        <!-- Una sola casilla suelta: si no se marca, NO llega -->
+        <p><label><input type="checkbox" name="boletin" value="si"> Quiero recibir el boletín</label></p>
+
+        <!-- Un campo oculto: el usuario no lo ve, pero se envía -->
+        <input type="hidden" name="origen" value="web">
+
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
